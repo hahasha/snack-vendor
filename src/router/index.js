@@ -17,11 +17,11 @@ const routes = [
     component: category
   },
   {
-    path: 'shopcart',
+    path: '/shopcart',
     component: shopcart
   },
   {
-    path: 'userCenter',
+    path: '/userCenter',
     component: userCenter
   }
 ]

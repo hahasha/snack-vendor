@@ -1,11 +1,7 @@
 <template>
-    <div class="tab-container">
-        <cube-tab-bar
-            v-model="selectedDefault"
-            :data="tabs"
-            @change="handleChange"
-        ></cube-tab-bar>
-    </div>
+  <div class="tab-container">
+    <cube-tab-bar v-model="selectedDefault" :data="tabs" @change="handleChange"></cube-tab-bar>
+  </div>
 </template>
 
 <script>
@@ -13,40 +9,42 @@ export default {
   name: 'tab',
   data () {
     return {
-      selectedDefault: 'home',
+      selectedDefault: '/',
       tabs: [{
         label: '首页',
-        value: 'home',
-        icon: 'cubeic-home'
+        value: '/',
+        icon: 'iconfont icon-zhuye1'
       }, {
         label: '分类',
         value: 'category',
-        icon: 'cubeic-more'
+        icon: 'iconfont icon-fenlei'
       }, {
         label: '购物车',
         value: 'shopcart',
-        icon: 'cubeic-mall'
+        icon: 'iconfont icon-gouwuche'
       }, {
         label: '我的',
-        value: 'user',
-        icon: 'cubeic-person'
+        value: 'userCenter',
+        icon: 'iconfont icon-wode'
       }]
     }
   },
   methods: {
     handleChange (value) {
-      this.$router.replace(value)
+      this.$router.push(value)
     }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-  .tab-container
-    position fixed
-    left 0
-    right 0
-    bottom 0
-    font-size 14px
-    background-color #f5f5f5
+.tab-container {
+  position: fixed;
+  height 50px
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 14px;
+  background-color: #f5f5f5;
+}
 </style>
