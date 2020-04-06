@@ -5,7 +5,7 @@
             <cube-tab-bar v-model="selectedLabel" :data="categories" @change="changeHandler"></cube-tab-bar>
         </cube-scroll>
     </div>
-    <div class="right-panel" v-for="(category, index) in categories" :label="category.label" :key="index">
+    <div class="right-panel">
         <cube-scroll ref="scroll">
             <div class="head-img-wrap">
                 <img :src="category.src" alt="">
@@ -31,6 +31,7 @@ export default {
   data () {
     return {
       selectedLabel: '果味',
+      category: {},
       categories: [{
         label: '果味',
         src: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1627503492,4129003238&fm=26&gp=0.jpg',
@@ -190,12 +191,29 @@ export default {
       }]
     }
   },
+  created () {
+    this.categories.forEach((item) => {
+      if (item.label === this.selectedLabel) {
+        this.category = item
+      }
+    })
+  },
   methods: {
     changeHandler (value) {
-      this.$nextTick(() => {
-        this.$refs.scroll[1].scrollTo(0, 500)
-        this.$refs.scroll[1].refresh()
+      this.categories.forEach((item) => {
+        if (item.label === this.selectedLabel) {
+          this.category = item
+        }
       })
+      this.$nextTick(() => {
+        this.$refs.scroll.scrollTo(0, 0)
+        this.$refs.scroll.refresh()
+      })
+    }
+  },
+  watch: {
+    selectedLabel (newV) {
+      console.log(newV)
     }
   }
 }

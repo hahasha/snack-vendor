@@ -49,6 +49,7 @@ export default {
   bottom 0
   font-size 14px
   background-color #f5f5f5
+  z-index 99
   >>> .cube-tab
     color #b6b6b6
   >>> .cube-tab .iconfont
