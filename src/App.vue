@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Header></Header>
     <router-view></router-view>
     <tab></tab>
   </div>
@@ -7,9 +8,11 @@
 
 <script>
 import Tab from '@/components/tab/tab'
+import Header from '@/components/header/header'
 export default {
   components: {
-    Tab
+    Tab,
+    Header
   }
 }
 </script>

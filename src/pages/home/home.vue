@@ -4,78 +4,22 @@
         <div class="theme-wrap">
             <h2 class="title">精选主题</h2>
             <div class="theme-content">
-                <div class="theme-item">
-                    <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2879600121,3244445369&fm=26&gp=0.jpg" alt="">
-                </div>
-                <div class="theme-item">
-                    <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1777725305,2802666167&fm=26&gp=0.jpg" alt="">
-                </div>
-                <div class="theme-item">
-                    <img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=179253925,1991244828&fm=26&gp=0.jpg" alt="">
+                <div class="theme-item" v-for="(item, index) in themes" :key="index">
+                    <img :src="item.src" alt="">
                 </div>
             </div>
         </div>
         <div class="new-product-wrap">
             <h2 class="title">最近新品</h2>
             <div class="product-content">
-                <div class="product">
-                    <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2885912154,5422214&fm=26&gp=0.jpg" alt="">
+                <div class="product" v-for="(item, index) in products" :key="index">
+                    <img :src="item.src" alt="">
                     <div class="desc">
                         <p class="name-wrap">
-                            <span class="name">秀色瓜子</span>
-                            <span class="spec">100克</span>
+                            <span class="name">{{item.desc.name}}</span>
+                            <span class="spec">{{item.desc.spec}}</span>
                         </p>
-                        <span class="price">¥0.01</span>
-                    </div>
-                </div>
-                <div class="product">
-                    <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2102853231,3067344161&fm=26&gp=0.jpg" alt="">
-                    <div class="desc">
-                        <p class="name-wrap">
-                            <span class="name">梨花带雨</span>
-                            <span class="spec">3个</span>
-                        </p>
-                        <span class="price">¥0.01</span>
-                    </div>
-                </div>
-                <div class="product">
-                    <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2885912154,5422214&fm=26&gp=0.jpg" alt="">
-                    <div class="desc">
-                        <p class="name-wrap">
-                            <span class="name">秀色瓜子</span>
-                            <span class="spec">100克</span>
-                        </p>
-                        <span class="price">¥0.01</span>
-                    </div>
-                </div>
-                <div class="product">
-                    <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2102853231,3067344161&fm=26&gp=0.jpg" alt="">
-                    <div class="desc">
-                        <p class="name-wrap">
-                            <span class="name">梨花带雨</span>
-                            <span class="spec">3个</span>
-                        </p>
-                        <span class="price">¥0.01</span>
-                    </div>
-                </div>
-                <div class="product">
-                    <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2885912154,5422214&fm=26&gp=0.jpg" alt="">
-                    <div class="desc">
-                        <p class="name-wrap">
-                            <span class="name">秀色瓜子</span>
-                            <span class="spec">100克</span>
-                        </p>
-                        <span class="price">¥0.01</span>
-                    </div>
-                </div>
-                <div class="product">
-                    <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2102853231,3067344161&fm=26&gp=0.jpg" alt="">
-                    <div class="desc">
-                        <p class="name-wrap">
-                            <span class="name">梨花带雨</span>
-                            <span class="spec">3个</span>
-                        </p>
-                        <span class="price">¥0.01</span>
+                        <span class="price">¥{{item.desc.price}}</span>
                     </div>
                 </div>
             </div>
@@ -99,6 +43,42 @@ export default {
       }, {
         url: '/',
         image: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2179136077,2541367481&fm=26&gp=0.jpg'
+      }],
+      themes: [{
+        src: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2879600121,3244445369&fm=26&gp=0.jpg'
+      }, {
+        src: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1777725305,2802666167&fm=26&gp=0.jpg'
+      }, {
+        src: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=179253925,1991244828&fm=26&gp=0.jpg'
+      }],
+      products: [{
+        src: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2885912154,5422214&fm=26&gp=0.jpg',
+        desc: {
+          name: '秀色瓜子',
+          spec: '100克',
+          price: '9.9'
+        }
+      }, {
+        src: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2102853231,3067344161&fm=26&gp=0.jpg',
+        desc: {
+          name: '梨花带雨',
+          spec: '3个',
+          price: '19.9'
+        }
+      }, {
+        src: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2885912154,5422214&fm=26&gp=0.jpg',
+        desc: {
+          name: '秀色瓜子',
+          spec: '100克',
+          price: '9.9'
+        }
+      }, {
+        src: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2102853231,3067344161&fm=26&gp=0.jpg',
+        desc: {
+          name: '梨花带雨',
+          spec: '3个',
+          price: '19.9'
+        }
       }]
     }
   }
@@ -107,7 +87,7 @@ export default {
 
 <style lang="stylus" scoped>
 .home-container
-    padding-bottom 50px
+    margin 46px 0 60px 0
 .cube-slide
     height 5.6rem
     >>> .cube-slide-item > a > img
