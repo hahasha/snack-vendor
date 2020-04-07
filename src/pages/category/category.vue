@@ -2,18 +2,22 @@
   <div class="category-container">
     <div class="left-panel">
         <cube-scroll>
-            <cube-tab-bar v-model="selectedLabel" :data="categories" @change="changeHandler"></cube-tab-bar>
+            <cube-tab-bar v-model="selectedTab" @change="changeHandler">
+              <cube-tab v-for="(item, index) in categories" :key="index" :label="item.title" :value="item.id">
+                {{item.title}}
+              </cube-tab>
+            </cube-tab-bar>
         </cube-scroll>
     </div>
     <div class="right-panel">
         <cube-scroll ref="scroll">
             <div class="head-img-wrap">
-                <img :src="category.src" alt="">
+                <img src="" alt="">
             </div>
             <ul class="product-wrap">
-                <li class="product" v-for="(item, index) in category.products" :key="index">
+                <li class="product" v-for="(item, index) in currentData" :key="index">
                     <div class="img-wrap">
-                        <img :src="item.src" alt="">
+                        <img :src="item.img_url" alt="">
                     </div>
                     <p class="desc">
                         <span class="name">{{item.name}}</span>
@@ -27,193 +31,33 @@
 </template>
 
 <script>
+import { getCategories, getProducts } from '@/api/api'
 export default {
   data () {
     return {
-      selectedLabel: '果味',
-      category: {},
-      categories: [{
-        label: '果味',
-        src: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1627503492,4129003238&fm=26&gp=0.jpg',
-        products: [{
-          src: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3797977393,2684712832&fm=26&gp=0.jpg',
-          name: '梨花带雨',
-          spec: '3个'
-        }, {
-          src: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1145245586,2546465794&fm=26&gp=0.jpg',
-          name: '春生龙眼',
-          spec: '500g'
-        }, {
-          src: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=214537324,1753204075&fm=26&gp=0.jpg',
-          name: '夏日芒果',
-          spec: '3个'
-        }, {
-          src: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3797977393,2684712832&fm=26&gp=0.jpg',
-          name: '梨花带雨',
-          spec: '3个'
-        }, {
-          src: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1145245586,2546465794&fm=26&gp=0.jpg',
-          name: '春生龙眼',
-          spec: '500g'
-        }, {
-          src: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=214537324,1753204075&fm=26&gp=0.jpg',
-          name: '夏日芒果',
-          spec: '3个'
-        }, {
-          src: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3797977393,2684712832&fm=26&gp=0.jpg',
-          name: '梨花带雨',
-          spec: '3个'
-        }, {
-          src: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1145245586,2546465794&fm=26&gp=0.jpg',
-          name: '春生龙眼',
-          spec: '500g'
-        }, {
-          src: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=214537324,1753204075&fm=26&gp=0.jpg',
-          name: '夏日芒果',
-          spec: '3个'
-        }, {
-          src: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3797977393,2684712832&fm=26&gp=0.jpg',
-          name: '梨花带雨',
-          spec: '3个'
-        }, {
-          src: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1145245586,2546465794&fm=26&gp=0.jpg',
-          name: '春生龙眼',
-          spec: '500g'
-        }, {
-          src: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=214537324,1753204075&fm=26&gp=0.jpg',
-          name: '夏日芒果',
-          spec: '3个'
-        }, {
-          src: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3797977393,2684712832&fm=26&gp=0.jpg',
-          name: '梨花带雨',
-          spec: '3个'
-        }, {
-          src: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1145245586,2546465794&fm=26&gp=0.jpg',
-          name: '春生龙眼',
-          spec: '500g'
-        }, {
-          src: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=214537324,1753204075&fm=26&gp=0.jpg',
-          name: '夏日芒果',
-          spec: '3个'
-        }, {
-          src: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3797977393,2684712832&fm=26&gp=0.jpg',
-          name: '梨花带雨',
-          spec: '3个'
-        }, {
-          src: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1145245586,2546465794&fm=26&gp=0.jpg',
-          name: '春生龙眼',
-          spec: '500g'
-        }, {
-          src: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=214537324,1753204075&fm=26&gp=0.jpg',
-          name: '夏日芒果',
-          spec: '3个'
-        }]
-      }, {
-        label: '蔬菜',
-        src: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=562313376,2720304216&fm=11&gp=0.jpg',
-        products: [{
-          src: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2481257848,1542323099&fm=26&gp=0.jpg',
-          name: '西红柿',
-          spec: '3个'
-        }, {
-          src: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2956037402,2418020945&fm=26&gp=0.jpg',
-          name: '土豆',
-          spec: '500g'
-        }, {
-          src: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1652803613,3944909903&fm=26&gp=0.jpg',
-          name: '青椒',
-          spec: '300g'
-        }]
-      }, {
-        label: '炒货',
-        src: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=562313376,2720304216&fm=11&gp=0.jpg',
-        products: [{
-          src: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3234145165,2168254717&fm=26&gp=0.jpg',
-          name: '瓜子',
-          spec: '500g'
-        }, {
-          src: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3234145165,2168254717&fm=26&gp=0.jpg',
-          name: '瓜子',
-          spec: '500g'
-        }, {
-          src: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3234145165,2168254717&fm=26&gp=0.jpg',
-          name: '瓜子',
-          spec: '500g'
-        }]
-      }, {
-        label: '点心',
-        src: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=562313376,2720304216&fm=11&gp=0.jpg',
-        products: [{
-          src: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3636890683,2513385364&fm=26&gp=0.jpg',
-          name: '蛋挞',
-          spec: '3个'
-        }, {
-          src: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3636890683,2513385364&fm=26&gp=0.jpg',
-          name: '蛋挞',
-          spec: '3个'
-        }, {
-          src: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3636890683,2513385364&fm=26&gp=0.jpg',
-          name: '蛋挞',
-          spec: '3个'
-        }]
-      }, {
-        label: '粗茶',
-        src: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=562313376,2720304216&fm=11&gp=0.jpg',
-        products: [{
-          src: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1820872614,3768339621&fm=26&gp=0.jpg',
-          name: '龙井',
-          spec: '5g'
-        }, {
-          src: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1820872614,3768339621&fm=26&gp=0.jpg',
-          name: '龙井',
-          spec: '5g'
-        }, {
-          src: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1820872614,3768339621&fm=26&gp=0.jpg',
-          name: '龙井',
-          spec: '5g'
-        }]
-      }, {
-        label: '淡饭',
-        src: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=562313376,2720304216&fm=11&gp=0.jpg',
-        products: [{
-          src: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3939440367,1047120324&fm=26&gp=0.jpg',
-          name: '绿豆',
-          spec: '500g'
-        }, {
-          src: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3939440367,1047120324&fm=26&gp=0.jpg',
-          name: '绿豆',
-          spec: '500g'
-        }, {
-          src: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3939440367,1047120324&fm=26&gp=0.jpg',
-          name: '绿豆',
-          spec: '500g'
-        }]
-      }]
+      selectedTab: 1,
+      categories: [],
+      currentData: []
     }
   },
   created () {
-    this.categories.forEach((item) => {
-      if (item.label === this.selectedLabel) {
-        this.category = item
-      }
-    })
+    this.getCategories()
   },
   methods: {
     changeHandler (value) {
-      this.categories.forEach((item) => {
-        if (item.label === this.selectedLabel) {
-          this.category = item
-        }
+      const category = this.categories[value - 1]
+      getProducts().then((products) => {
+        products.forEach(item => {
+          if (item.category_id === category.id) {
+            this.currentData.push(item)
+          }
+        })
       })
-      this.$nextTick(() => {
-        this.$refs.scroll.scrollTo(0, 0)
-        this.$refs.scroll.refresh()
+    },
+    getCategories () {
+      getCategories().then((categories) => {
+        this.categories = categories
       })
-    }
-  },
-  watch: {
-    selectedLabel (newV) {
-      console.log(newV)
     }
   }
 }

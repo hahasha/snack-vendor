@@ -30,7 +30,7 @@ export default {
     }
   },
   created () {
-    this.selectedDefault = this.$route.path.replace('/', '')
+    this.selectedDefault = this.$route.path === '/' ? '/' : this.$route.path.replace('/', '')
   },
   methods: {
     changeHandler (value) {

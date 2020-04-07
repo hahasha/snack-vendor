@@ -1,0 +1,192 @@
+{
+    "slides" : [
+        {
+            "img_url" : "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2887000679,1421162626&fm=26&gp=0.jpg",
+            "product_id" : 1
+        },
+        {
+            "img_url" : "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1962276041,1430089589&fm=26&gp=0.jpg",
+            "product_id" : 2
+        },
+        {
+            "img_url" : "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2459636152,1827442611&fm=26&gp=0.jpg",
+            "product_id" : 3
+        },
+        {
+            "img_url" : "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1921524603,1282160432&fm=26&gp=0.jpg",
+            "product_id" : 4
+        }
+    ],
+    "themes" : [
+        {
+            "id" : 1,
+            "description" : "美味水果新世界",
+            "img_url" : "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1627503492,4129003238&fm=26&gp=0.jpg"
+        },
+        {
+            "id" : 2,
+            "description" : "给生活加点糖",
+            "img_url" : "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3636890683,2513385364&fm=26&gp=0.jpg"
+        },
+        {
+            "id" : 3,
+            "description" : "做一个干物女",
+            "img_url" : "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3240661186,1499180526&fm=26&gp=0.jpg"
+        }
+    ],
+    "categories" : [
+        {
+            "id" : 1,
+            "title" : "果味",
+            "img_url" : "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1627503492,4129003238&fm=26&gp=0.jpg"
+        },
+        {
+            "id" : 2,
+            "title" : "蔬菜",
+            "img_url" : "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=562313376,2720304216&fm=11&gp=0.jpg"
+        },
+        {
+            "id" : 3,
+            "title" : "炒货",
+            "img_url" : "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3240661186,1499180526&fm=26&gp=0.jpg"
+        },
+        {
+            "id" : 4,
+            "title" : "点心",
+            "img_url" : "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1318800565,703923803&fm=11&gp=0.jpg"
+        },
+        {
+            "id" : 5,
+            "title" : "粗茶",
+            "img_url" : "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2564084157,3162278043&fm=26&gp=0.jpg"
+        },
+        {
+            "id" : 6,
+            "title" : "淡饭",
+            "img_url" : "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1080748112,982693556&fm=26&gp=0.jpg"
+        }
+    ],
+    "products": [
+        {
+            "id" : 1,
+            "name" : "梨花带雨",
+            "category_id" : 1,
+            "theme_id" : 1,
+            "img_url" : "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3797977393,2684712832&fm=26&gp=0.jpg",
+            "price" : "9.9",
+            "spec" : "3个",
+            "create_time" : "1586226897788",
+            "update_time" : "1586226897788"
+        },
+        {
+            "id" : 2,
+            "name" : "春生龙眼",
+            "category_id" : 1,
+            "theme_id" : 1,
+            "img_url" : "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1145245586,2546465794&fm=26&gp=0.jpg",
+            "price" : "19.9",
+            "spec" : "500g",
+            "create_time" : "1586246896537",
+            "update_time" : "1586246896537"
+        },
+        {
+            "id" : 3,
+            "name" : "夏日芒果",
+            "category_id" : 1,
+            "theme_id" : 1,
+            "img_url" : "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=214537324,1753204075&fm=26&gp=0.jpg",
+            "price" : "19.9",
+            "spec" : "3个",
+            "create_time" : "1586226897788",
+            "update_time" : "1586226897788"
+        },
+        {
+            "id" : 4,
+            "name" : "贵妃笑",
+            "category_id" : 1,
+            "theme_id" : 1,
+            "img_url" : "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1582476418,2211105839&fm=26&gp=0.jpg",
+            "price" : "59.9",
+            "spec" : "500g",
+            "create_time" : "1586246896537",
+            "update_time" : "1586246896537"
+        },
+        {
+            "id" : 5,
+            "name" : "西红柿",
+            "category_id" : 2,
+            "theme_id" : null,
+            "img_url" : "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=562313376,2720304216&fm=11&gp=0.jpg",
+            "price" : "9.9",
+            "spec" : "3个",
+            "create_time" : "1586226897788",
+            "update_time" : "1586226897788"
+        },
+        {
+            "id" : 6,
+            "name" : "土豆",
+            "category_id" : 2,
+            "theme_id" : null,
+            "img_url" : "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2956037402,2418020945&fm=26&gp=0.jpg",
+            "price" : "19.9",
+            "spec" : "500g",
+            "create_time" : "1586226897788",
+            "update_time" : "1586226897788"
+        },
+        {
+            "id" : 7,
+            "name" : "青椒",
+            "category_id" : 2,
+            "theme_id" : null,
+            "img_url" : "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1652803613,3944909903&fm=26&gp=0.jpg",
+            "price" : "19.9",
+            "spec" : "500g",
+            "create_time" : "1586226897788",
+            "update_time" : "1586226897788"
+        },
+        {
+            "id" : 8,
+            "name" : "修色瓜子",
+            "category_id" : 3,
+            "theme_id" : 3,
+            "img_url" : "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3234145165,2168254717&fm=26&gp=0.jpg",
+            "price" : "19.9",
+            "spec" : "500g",
+            "create_time" : "1586226897788",
+            "update_time" : "1586226897788"
+        },
+        {
+            "id" : 9,
+            "name" : "蛋挞",
+            "category_id" : 4,
+            "theme_id" : 2,
+            "img_url" : "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3636890683,2513385364&fm=26&gp=0.jpg",
+            "price" : "19.9",
+            "spec" : "3个",
+            "create_time" : "1586226897788",
+            "update_time" : "1586226897788"
+        },
+        {
+            "id" : 10,
+            "name" : "龙井",
+            "category_id" : 5,
+            "theme_id" : null,
+            "img_url" : "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1820872614,3768339621&fm=26&gp=0.jpg",
+            "price" : "119.9",
+            "spec" : "5g",
+            "create_time" : "1586226897788",
+            "update_time" : "1586226897788"
+        },
+        {
+            "id" : 11,
+            "name" : "绿豆",
+            "category_id" : 6,
+            "theme_id" : null,
+            "img_url" : "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3939440367,1047120324&fm=26&gp=0.jpg",
+            "price" : "19.9",
+            "spec" : "500g",
+            "create_time" : "1586246896537",
+            "update_time" : "1586246896537"
+        }
+    ]
+}

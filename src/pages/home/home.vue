@@ -1,25 +1,31 @@
 <template>
     <div class="home-container">
-        <cube-slide :data="slides"></cube-slide>
+        <cube-slide :data="slides">
+          <cube-slide-item v-for="(item, index) in slides" :key="index">
+            <a href="">
+              <img :src="item.img_url" alt="">
+            </a>
+          </cube-slide-item>
+        </cube-slide>
         <div class="theme-wrap">
             <h2 class="title">精选主题</h2>
             <div class="theme-content">
                 <div class="theme-item" v-for="(item, index) in themes" :key="index">
-                    <img :src="item.src" alt="">
+                    <img :src="item.img_url" alt="">
                 </div>
             </div>
         </div>
         <div class="new-product-wrap">
             <h2 class="title">最近新品</h2>
             <div class="product-content">
-                <div class="product" v-for="(item, index) in products" :key="index">
-                    <img :src="item.src" alt="">
+                <div class="product" v-for="(item, index) in newProducts" :key="index">
+                    <img :src="item.img_url" alt="">
                     <div class="desc">
                         <p class="name-wrap">
-                            <span class="name">{{item.desc.name}}</span>
-                            <span class="spec">{{item.desc.spec}}</span>
+                            <span class="name">{{item.name}}</span>
+                            <span class="spec">{{item.spec}}</span>
                         </p>
-                        <span class="price">¥{{item.desc.price}}</span>
+                        <span class="price">¥{{item.price}}</span>
                     </div>
                 </div>
             </div>
@@ -28,58 +34,53 @@
 </template>
 
 <script>
+import { getSliders, getThemes, getProducts } from '@/api/api'
+
+const NEW_PRODUCT_COUNT = 3
+
+function compareFn (key) {
+  return function (a, b) {
+    const value1 = a[key]
+    const value2 = b[key]
+    return value2 - value1
+  }
+}
+
 export default {
   data () {
     return {
-      slides: [{
-        url: '/',
-        image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=179253925,1991244828&fm=26&gp=0.jpg'
-      }, {
-        url: '/',
-        image: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1242481022,2205374762&fm=26&gp=0.jpg'
-      }, {
-        url: '/',
-        image: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=212927095,691126906&fm=26&gp=0.jpg'
-      }, {
-        url: '/',
-        image: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2179136077,2541367481&fm=26&gp=0.jpg'
-      }],
-      themes: [{
-        src: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2879600121,3244445369&fm=26&gp=0.jpg'
-      }, {
-        src: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1777725305,2802666167&fm=26&gp=0.jpg'
-      }, {
-        src: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=179253925,1991244828&fm=26&gp=0.jpg'
-      }],
-      products: [{
-        src: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2885912154,5422214&fm=26&gp=0.jpg',
-        desc: {
-          name: '秀色瓜子',
-          spec: '100克',
-          price: '9.9'
-        }
-      }, {
-        src: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2102853231,3067344161&fm=26&gp=0.jpg',
-        desc: {
-          name: '梨花带雨',
-          spec: '3个',
-          price: '19.9'
-        }
-      }, {
-        src: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2885912154,5422214&fm=26&gp=0.jpg',
-        desc: {
-          name: '秀色瓜子',
-          spec: '100克',
-          price: '9.9'
-        }
-      }, {
-        src: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2102853231,3067344161&fm=26&gp=0.jpg',
-        desc: {
-          name: '梨花带雨',
-          spec: '3个',
-          price: '19.9'
-        }
-      }]
+      slides: [],
+      themes: [],
+      newProducts: []
+    }
+  },
+  created () {
+    this.getSliders()
+    this.getThemes()
+    this.getProducts()
+  },
+  methods: {
+    getSliders () {
+      getSliders().then((slides) => {
+        this.slides = slides
+      })
+    },
+    getThemes () {
+      getThemes().then((themes) => {
+        this.themes = themes
+      })
+    },
+    getProducts () {
+      getProducts().then((products) => {
+        const sortedArr = products.sort(compareFn('create_time'))
+        let count = 0
+        sortedArr.forEach(item => {
+          if (count < NEW_PRODUCT_COUNT) {
+            this.newProducts.push(item)
+          }
+          count++
+        })
+      })
     }
   }
 }

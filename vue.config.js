@@ -1,4 +1,5 @@
 const path = require('path')
+const appData = require('./public/data.json')
 
 function resolve (dir) {
   return path.join(__dirname, dir)
@@ -20,6 +21,35 @@ module.exports = {
       theme: true
     }
   },
+  devServer: {
+    // api接口mock
+    before(app) {
+      app.get('/api/slides', function(req, res) {
+        res.json({
+          errno: 0,
+          data: appData.slides
+        })
+      })
+      app.get('/api/themes', function(req, res) {
+        res.json({
+          errno: 0,
+          data: appData.themes
+        })
+      })
+      app.get('/api/categories', function(req, res) {
+        res.json({
+          errno: 0,
+          data: appData.categories
+        })
+      })
+      app.get('/api/products', function(req, res) {
+        res.json({
+          errno: 0,
+          data: appData.products
+        })
+      })
+    }
+  },
   chainWebpack (config) {
     config.resolve.alias
       .set('components', resolve('src/components'))
@@ -27,5 +57,6 @@ module.exports = {
       .set('api', resolve('src/api'))
       .set('pages', resolve('src/pages'))
       .set('assets', resolve('src/assets'))
+      .set('api', resolve('src/api'))
   }
 }
