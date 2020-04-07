@@ -2,7 +2,7 @@
   <div class="category-container">
     <div class="left-panel">
         <cube-scroll>
-            <cube-tab-bar v-model="selectedTab" @change="changeHandler">
+            <cube-tab-bar v-model="currrentIndex">
               <cube-tab v-for="(item, index) in categories" :key="index" :label="item.title" :value="item.id">
                 {{item.title}}
               </cube-tab>
@@ -12,10 +12,10 @@
     <div class="right-panel">
         <cube-scroll ref="scroll">
             <div class="head-img-wrap">
-                <img src="" alt="">
+                <img :src="c_category.head_img_url" alt="">
             </div>
             <ul class="product-wrap">
-                <li class="product" v-for="(item, index) in currentData" :key="index">
+                <li class="product" v-for="(item, index) in c_products" :key="index">
                     <div class="img-wrap">
                         <img :src="item.img_url" alt="">
                     </div>
@@ -35,28 +35,36 @@ import { getCategories, getProducts } from '@/api/api'
 export default {
   data () {
     return {
-      selectedTab: 1,
-      categories: [],
-      currentData: []
+      currrentIndex: 1,
+      categories: [{
+        id: 1,
+        title: '',
+        head_img_url: ''
+      }],
+      products: []
+    }
+  },
+  computed: {
+    c_products () {
+      return this.products.filter((item) => item.category_id === this.currrentIndex)
+    },
+    c_category () {
+      return this.categories[this.currrentIndex - 1]
     }
   },
   created () {
     this.getCategories()
+    this.getProducts()
   },
   methods: {
-    changeHandler (value) {
-      const category = this.categories[value - 1]
-      getProducts().then((products) => {
-        products.forEach(item => {
-          if (item.category_id === category.id) {
-            this.currentData.push(item)
-          }
-        })
-      })
-    },
     getCategories () {
       getCategories().then((categories) => {
         this.categories = categories
+      })
+    },
+    getProducts () {
+      getProducts().then((products) => {
+        this.products = products
       })
     }
   }
@@ -99,6 +107,7 @@ export default {
         padding 20px
     .head-img-wrap
         width 100%
+        margin-bottom 20px
     .head-img-wrap img
         width 100%
         height 100px

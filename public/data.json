@@ -38,32 +38,32 @@
         {
             "id" : 1,
             "title" : "果味",
-            "img_url" : "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1627503492,4129003238&fm=26&gp=0.jpg"
+            "head_img_url" : "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1627503492,4129003238&fm=26&gp=0.jpg"
         },
         {
             "id" : 2,
             "title" : "蔬菜",
-            "img_url" : "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=562313376,2720304216&fm=11&gp=0.jpg"
+            "head_img_url" : "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=562313376,2720304216&fm=11&gp=0.jpg"
         },
         {
             "id" : 3,
             "title" : "炒货",
-            "img_url" : "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3240661186,1499180526&fm=26&gp=0.jpg"
+            "head_img_url" : "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3240661186,1499180526&fm=26&gp=0.jpg"
         },
         {
             "id" : 4,
             "title" : "点心",
-            "img_url" : "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1318800565,703923803&fm=11&gp=0.jpg"
+            "head_img_url" : "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1318800565,703923803&fm=11&gp=0.jpg"
         },
         {
             "id" : 5,
             "title" : "粗茶",
-            "img_url" : "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2564084157,3162278043&fm=26&gp=0.jpg"
+            "head_img_url" : "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2564084157,3162278043&fm=26&gp=0.jpg"
         },
         {
             "id" : 6,
             "title" : "淡饭",
-            "img_url" : "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1080748112,982693556&fm=26&gp=0.jpg"
+            "head_img_url" : "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1080748112,982693556&fm=26&gp=0.jpg"
         }
     ],
     "products": [
