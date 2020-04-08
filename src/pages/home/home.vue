@@ -1,41 +1,44 @@
 <template>
-    <div class="home-container">
-        <cube-slide :data="slides">
-          <cube-slide-item v-for="(item, index) in slides" :key="index">
-            <a href="">
-              <img :src="item.img_url" alt="">
-            </a>
-          </cube-slide-item>
-        </cube-slide>
-        <div class="theme-wrap">
-            <h2 class="title">精选主题</h2>
-            <div class="theme-content">
-                <div class="theme-item" v-for="(item, index) in themes" :key="index">
-                    <img :src="item.img_url" alt="">
-                </div>
-            </div>
-        </div>
-        <div class="new-product-wrap">
-            <h2 class="title">最近新品</h2>
-            <div class="product-content">
-                <div class="product" v-for="(item, index) in newProducts" :key="index">
-                    <img :src="item.img_url" alt="">
-                    <div class="desc">
-                        <p class="name-wrap">
-                            <span class="name">{{item.name}}</span>
-                            <span class="spec">{{item.spec}}</span>
-                        </p>
-                        <span class="price">¥{{item.price}}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="container">
+      <div class="home-container">
+          <cube-slide :data="slides">
+            <cube-slide-item v-for="(item, index) in slides" :key="index">
+              <a href="">
+                <img :src="item.img_url" alt="">
+              </a>
+            </cube-slide-item>
+          </cube-slide>
+          <div class="theme-wrap">
+              <h2 class="title">精选主题</h2>
+              <div class="theme-content">
+                  <div class="theme-item" v-for="(item, index) in themes" :key="index">
+                      <img :src="item.img_url" alt="">
+                  </div>
+              </div>
+          </div>
+          <div class="new-product-wrap">
+              <h2 class="title">最近新品</h2>
+              <div class="product-content">
+                  <div class="product" v-for="(item, index) in newProducts" :key="index">
+                      <img :src="item.img_url" alt="">
+                      <div class="desc">
+                          <p class="name-wrap">
+                              <span class="name">{{item.name}}</span>
+                              <span class="spec">{{item.spec}}</span>
+                          </p>
+                          <span class="price">¥{{item.price}}</span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <tab></tab>
     </div>
 </template>
 
 <script>
 import { getSliders, getThemes, getProducts } from '@/api/api'
-
+import Tab from '@/components/tab/tab'
 const NEW_PRODUCT_COUNT = 3
 
 function compareFn (key) {
@@ -82,6 +85,9 @@ export default {
         })
       })
     }
+  },
+  components: {
+    Tab
   }
 }
 </script>

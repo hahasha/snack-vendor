@@ -75,6 +75,22 @@
             "img_url" : "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3797977393,2684712832&fm=26&gp=0.jpg",
             "price" : "9.9",
             "spec" : "3个",
+            "stock" : "100",
+            "after_sale" : "七天无理由免费退货",
+            "attrs" : {
+                "name" : "梨花带雨",
+                "taste" : "酸、甜、苦、辣",
+                "origin" : "上海市",
+                "shelf_life" : "180天"
+            },
+            "details" : [
+                {
+                    "d_img_url" : "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1516450897,254829567&fm=26&gp=0.jpg"
+                },
+                {
+                    "d_img_url" : "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2102853231,3067344161&fm=26&gp=0.jpg"
+                }
+            ],
             "create_time" : "1586226897788",
             "update_time" : "1586226897788"
         },
@@ -86,6 +102,22 @@
             "img_url" : "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1145245586,2546465794&fm=26&gp=0.jpg",
             "price" : "19.9",
             "spec" : "500g",
+            "stock" : "100",
+            "after_sale" : "七天无理由免费退货",
+            "attrs" : {
+                "name" : "春生龙眼",
+                "taste" : "酸、甜、苦、辣",
+                "origin" : "上海市",
+                "shelf_life" : "180天"
+            },
+            "details" : [
+                {
+                    "d_img_url" : "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1407053207,4063156458&fm=26&gp=0.jpg"
+                },
+                {
+                    "d_img_url" : "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1854104947,4228338877&fm=26&gp=0.jpg"
+                }
+            ],
             "create_time" : "1586246896537",
             "update_time" : "1586246896537"
         },
@@ -97,6 +129,22 @@
             "img_url" : "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=214537324,1753204075&fm=26&gp=0.jpg",
             "price" : "19.9",
             "spec" : "3个",
+            "stock" : "100",
+            "after_sale" : "七天无理由免费退货",
+            "attrs" : {
+                "name" : "夏日芒果",
+                "taste" : "酸、甜、苦、辣",
+                "origin" : "上海市",
+                "shelf_life" : "180天"
+            },
+            "details" : [
+                {
+                    "d_img_url" : "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3111312885,1538583221&fm=26&gp=0.jpg"
+                },
+                {
+                    "d_img_url" : "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1446699327,3260843977&fm=26&gp=0.jpg"
+                }
+            ],
             "create_time" : "1586226897788",
             "update_time" : "1586226897788"
         },
@@ -108,6 +156,31 @@
             "img_url" : "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1582476418,2211105839&fm=26&gp=0.jpg",
             "price" : "59.9",
             "spec" : "500g",
+            "stock" : "100",
+            "after_sale" : "七天无理由免费退货",
+            "attrs" : {
+                "name" : "贵妃笑",
+                "taste" : "酸、甜、苦、辣",
+                "origin" : "上海市",
+                "shelf_life" : "180天"
+            },
+            "details" : [
+                {
+                    "d_img_url" : "http://img0.imgtn.bdimg.com/it/u=1587043629,697820265&fm=26&gp=0.jpg"
+                },
+                {
+                    "d_img_url" : "http://img4.imgtn.bdimg.com/it/u=865147142,2259915122&fm=26&gp=0.jpg"
+                },
+                {
+                    "d_img_url" : "http://img0.imgtn.bdimg.com/it/u=1587043629,697820265&fm=26&gp=0.jpg"
+                },
+                {
+                    "d_img_url" : "http://img0.imgtn.bdimg.com/it/u=2332550492,3750424010&fm=26&gp=0.jpg"
+                },
+                {
+                    "d_img_url" : "http://img4.imgtn.bdimg.com/it/u=2746494773,1035707483&fm=26&gp=0.jpg"
+                }
+            ],
             "create_time" : "1586246896537",
             "update_time" : "1586246896537"
         },
@@ -119,6 +192,16 @@
             "img_url" : "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=562313376,2720304216&fm=11&gp=0.jpg",
             "price" : "9.9",
             "spec" : "3个",
+            "stock" : "100",
+            "after_sale" : "七天无理由免费退货",
+            "attrs" : {
+                "name" : "西红柿",
+                "taste" : "酸、甜、苦、辣",
+                "origin" : "上海市",
+                "shelf_life" : "180天"
+            },
+            "details" : [
+            ],
             "create_time" : "1586226897788",
             "update_time" : "1586226897788"
         },
@@ -130,6 +213,16 @@
             "img_url" : "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2956037402,2418020945&fm=26&gp=0.jpg",
             "price" : "19.9",
             "spec" : "500g",
+            "stock" : "100",
+            "after_sale" : "七天无理由免费退货",
+            "attrs" : {
+                "name" : "土豆",
+                "taste" : "酸、甜、苦、辣",
+                "origin" : "上海市",
+                "shelf_life" : "180天"
+            },
+            "details" : [
+            ],
             "create_time" : "1586226897788",
             "update_time" : "1586226897788"
         },
@@ -141,17 +234,37 @@
             "img_url" : "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1652803613,3944909903&fm=26&gp=0.jpg",
             "price" : "19.9",
             "spec" : "500g",
+            "stock" : "100",
+            "after_sale" : "七天无理由免费退货",
+            "attrs" : {
+                "name" : "青椒",
+                "taste" : "酸、甜、苦、辣",
+                "origin" : "上海市",
+                "shelf_life" : "180天"
+            },
+            "details" : [
+            ],
             "create_time" : "1586226897788",
             "update_time" : "1586226897788"
         },
         {
             "id" : 8,
-            "name" : "修色瓜子",
+            "name" : "秀色瓜子",
             "category_id" : 3,
             "theme_id" : 3,
             "img_url" : "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3234145165,2168254717&fm=26&gp=0.jpg",
             "price" : "19.9",
             "spec" : "500g",
+            "stock" : "100",
+            "after_sale" : "七天无理由免费退货",
+            "attrs" : {
+                "name" : "秀色瓜子",
+                "taste" : "酸、甜、苦、辣",
+                "origin" : "上海市",
+                "shelf_life" : "180天"
+            },
+            "details" : [
+            ],
             "create_time" : "1586226897788",
             "update_time" : "1586226897788"
         },
@@ -163,6 +276,16 @@
             "img_url" : "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3636890683,2513385364&fm=26&gp=0.jpg",
             "price" : "19.9",
             "spec" : "3个",
+            "stock" : "100",
+            "after_sale" : "七天无理由免费退货",
+            "attrs" : {
+                "name" : "蛋挞",
+                "taste" : "酸、甜、苦、辣",
+                "origin" : "上海市",
+                "shelf_life" : "180天"
+            },
+            "details" : [
+            ],
             "create_time" : "1586226897788",
             "update_time" : "1586226897788"
         },
@@ -174,6 +297,16 @@
             "img_url" : "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1820872614,3768339621&fm=26&gp=0.jpg",
             "price" : "119.9",
             "spec" : "5g",
+            "stock" : "100",
+            "after_sale" : "七天无理由免费退货",
+            "attrs" : {
+                "name" : "龙井",
+                "taste" : "酸、甜、苦、辣",
+                "origin" : "上海市",
+                "shelf_life" : "180天"
+            },
+            "details" : [
+            ],
             "create_time" : "1586226897788",
             "update_time" : "1586226897788"
         },
@@ -185,6 +318,16 @@
             "img_url" : "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3939440367,1047120324&fm=26&gp=0.jpg",
             "price" : "19.9",
             "spec" : "500g",
+            "stock" : "100",
+            "after_sale" : "七天无理由免费退货",
+            "attrs" : {
+                "name" : "绿豆",
+                "taste" : "酸、甜、苦、辣",
+                "origin" : "上海市",
+                "shelf_life" : "180天"
+            },
+            "details" : [
+            ],
             "create_time" : "1586246896537",
             "update_time" : "1586246896537"
         }

@@ -1,46 +1,46 @@
 <template>
-  <div class="category-container">
-    <div class="left-panel">
-        <cube-scroll>
-            <cube-tab-bar v-model="currrentIndex">
-              <cube-tab v-for="(item, index) in categories" :key="index" :label="item.title" :value="item.id">
-                {{item.title}}
-              </cube-tab>
-            </cube-tab-bar>
-        </cube-scroll>
+  <div class="container">
+    <div class="category-container">
+      <div class="left-panel">
+          <cube-scroll>
+              <cube-tab-bar v-model="currrentIndex">
+                <cube-tab v-for="(item, index) in categories" :key="index" :label="item.title" :value="item.id">
+                  {{item.title}}
+                </cube-tab>
+              </cube-tab-bar>
+          </cube-scroll>
+      </div>
+      <div class="right-panel">
+          <cube-scroll ref="scroll">
+              <div class="head-img-wrap" >
+                  <img :src="c_category.head_img_url" alt="">
+              </div>
+              <ul class="product-wrap">
+                  <li class="product" v-for="(item, index) in c_products" :key="index" @click="clickHandler(item)">
+                      <div class="img-wrap">
+                          <img :src="item.img_url" alt="">
+                      </div>
+                      <p class="desc">
+                          <span class="name">{{item.name}}</span>
+                          <span class="spec">{{item.spec}}</span>
+                      </p>
+                  </li>
+              </ul>
+          </cube-scroll>
+      </div>
     </div>
-    <div class="right-panel">
-        <cube-scroll ref="scroll">
-            <div class="head-img-wrap">
-                <img :src="c_category.head_img_url" alt="">
-            </div>
-            <ul class="product-wrap">
-                <li class="product" v-for="(item, index) in c_products" :key="index">
-                    <div class="img-wrap">
-                        <img :src="item.img_url" alt="">
-                    </div>
-                    <p class="desc">
-                        <span class="name">{{item.name}}</span>
-                        <span class="spec">{{item.spec}}</span>
-                    </p>
-                </li>
-            </ul>
-        </cube-scroll>
-    </div>
+    <tab></tab>
   </div>
 </template>
 
 <script>
 import { getCategories, getProducts } from '@/api/api'
+import Tab from '@/components/tab/tab'
 export default {
   data () {
     return {
       currrentIndex: 1,
-      categories: [{
-        id: 1,
-        title: '',
-        head_img_url: ''
-      }],
+      categories: [],
       products: []
     }
   },
@@ -49,7 +49,7 @@ export default {
       return this.products.filter((item) => item.category_id === this.currrentIndex)
     },
     c_category () {
-      return this.categories[this.currrentIndex - 1]
+      return this.categories.length > 0 ? this.categories[this.currrentIndex - 1] : {}
     }
   },
   created () {
@@ -66,7 +66,15 @@ export default {
       getProducts().then((products) => {
         this.products = products
       })
+    },
+    clickHandler (item) {
+      this.$router.push({
+        path: `product/${item.id}`
+      })
     }
+  },
+  components: {
+    Tab
   }
 }
 </script>

@@ -4,6 +4,7 @@ import home from '@/pages/home/home'
 import category from '@/pages/category/category'
 import shopcart from '@/pages/shopcart/shopcart'
 import userCenter from '@/pages/user-center/user-center'
+import product from '@/pages/product/product'
 
 Vue.use(VueRouter)
 
@@ -23,6 +24,10 @@ const routes = [
   {
     path: '/userCenter',
     component: userCenter
+  },
+  {
+    path: '/product/:id',
+    component: product
   }
 ]
 

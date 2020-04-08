@@ -48,6 +48,12 @@ module.exports = {
           data: appData.products
         })
       })
+      app.get('/api/product', function(req, res) {
+        res.json({
+          errno: 0,
+          data: appData.products.filter((item) => { return item.id == req.query.id })[0]
+        })
+      })
     }
   },
   chainWebpack (config) {
