@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+      <topBar></topBar>
       <div class="home-container">
           <cube-slide :data="slides">
             <cube-slide-item v-for="(item, index) in slides" :key="index">
@@ -19,7 +20,7 @@
           <div class="new-product-wrap">
               <h2 class="title">最近新品</h2>
               <div class="product-content">
-                  <div class="product" v-for="(item, index) in newProducts" :key="index">
+                  <div class="product" v-for="(item, index) in newProducts" :key="index" @click="clickHandler(item)">
                       <img :src="item.img_url" alt="">
                       <div class="desc">
                           <p class="name-wrap">
@@ -38,6 +39,7 @@
 
 <script>
 import { getSliders, getThemes, getProducts } from '@/api/api'
+import topBar from '@/components/top-bar/top-bar'
 import Tab from '@/components/tab/tab'
 const NEW_PRODUCT_COUNT = 3
 
@@ -84,9 +86,13 @@ export default {
           count++
         })
       })
+    },
+    clickHandler (item) {
+      this.$router.push(`product/${item.id}`)
     }
   },
   components: {
+    topBar,
     Tab
   }
 }

@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <topBar></topBar>
     <div class="category-container">
       <div class="left-panel">
           <cube-scroll>
@@ -35,6 +36,7 @@
 
 <script>
 import { getCategories, getProducts } from '@/api/api'
+import topBar from '@/components/top-bar/top-bar'
 import Tab from '@/components/tab/tab'
 export default {
   data () {
@@ -74,6 +76,7 @@ export default {
     }
   },
   components: {
+    topBar,
     Tab
   }
 }
