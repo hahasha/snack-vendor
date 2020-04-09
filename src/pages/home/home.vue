@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-      <topBar></topBar>
+      <topBar :nav="nav"></topBar>
       <div class="home-container">
           <cube-slide :data="slides">
             <cube-slide-item v-for="(item, index) in slides" :key="index">
@@ -54,6 +54,9 @@ function compareFn (key) {
 export default {
   data () {
     return {
+      nav: {
+        title: '首页'
+      },
       slides: [],
       themes: [],
       newProducts: []

@@ -1,20 +1,29 @@
 <template>
     <div class="head-container">
-        <span class="back cubeic-back" v-if="back"></span>
-        <span class="nav">{{nav}}</span>
+        <div class="nav">
+          <span class="back cubeic-back" v-show="nav.back" @click="goBack"></span>
+          <span class="title">{{nav.title}}</span>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
   props: {
-    back: {
-      type: Boolean,
-      default: false
-    },
     nav: {
-      type: String,
-      default: '零食商贩'
+      title: {
+        type: String,
+        default: '零食商贩'
+      },
+      back: {
+        type: Boolean,
+        default: false
+      }
+    }
+  },
+  methods: {
+    goBack () {
+      window.history.length > 0 ? this.$router.go(-1) : this.$router.push('/')
     }
   }
 }
@@ -35,4 +44,9 @@ export default {
     color #fff
     font-size 14px
     letter-spacing 1px
+    .nav
+      position relative
+    .nav .back
+      position absolute
+      left 15px
 </style>

@@ -13,15 +13,15 @@ export default {
       tabs: [{
         label: '首页',
         value: '/',
-        icon: 'iconfont icon-zhuye1'
+        icon: 'iconfont icon-home'
       }, {
         label: '分类',
         value: 'category',
-        icon: 'iconfont icon-fenlei'
+        icon: 'iconfont icon-category'
       }, {
         label: '购物车',
         value: 'shopcart',
-        icon: 'iconfont icon-gouwuche'
+        icon: 'iconfont icon-cart'
       }, {
         label: '我的',
         value: 'userCenter',

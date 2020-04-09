@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <topBar></topBar>
+    <topBar :nav="nav"></topBar>
     <div class="category-container">
       <div class="left-panel">
           <cube-scroll>
@@ -41,6 +41,9 @@ import Tab from '@/components/tab/tab'
 export default {
   data () {
     return {
+      nav: {
+        title: '分类'
+      },
       currrentIndex: 1,
       categories: [],
       products: []

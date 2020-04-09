@@ -1,12 +1,24 @@
 <template>
     <div class="product-container">
+        <topBar :nav="nav"></topBar>
         <div class="head-wrap">
+            <div class="icon-wrap">
+                <bubble :num="cartCount"></bubble>
+                <span class="iconfont icon-cart"></span>
+            </div>
             <div class="head-img-wrap">
                 <img :src="productInfo.img_url" alt="">
             </div>
             <div class="operate-wrap">
-                <div class="like">收藏<span class="icon cubeic-star"></span></div>
-                <div class="cart">加入购物车<span class="icon cubeic-mall"></span></div>
+                <div class="like" @click="collect">
+                    <span>收藏</span>
+                    <span class="iconfont icon-star-active" v-if="like"></span>
+                    <span class="iconfont icon-star" v-else></span>
+                </div>
+                <div class="cart" @click="addCart">
+                    <span>加入购物车</span>
+                    <span class="iconfont icon-cart"></span>
+                </div>
             </div>
             <div class="info-wrap">
                 <span class="stock">{{showStock}}</span>
@@ -42,9 +54,17 @@
 
 <script>
 import { getProductById } from '@/api/api'
+import topBar from '@/components/top-bar/top-bar'
+import Bubble from '@/components/bubble/bubble'
 export default {
   data () {
     return {
+      nav: {
+        title: '商品详情',
+        back: true
+      },
+      like: false,
+      cartCount: 0,
       productInfo: {},
       selectedTab: '商品详情',
       tabs: [{
@@ -77,7 +97,18 @@ export default {
       }).then((data) => {
         this.productInfo = data
       })
+    },
+    collect () {
+      this.like = !this.like
+    },
+    addCart () {
+      this.cartCount++
+      console.log(this.cartCount)
     }
+  },
+  components: {
+    topBar,
+    Bubble
   }
 }
 </script>
@@ -88,8 +119,15 @@ export default {
     height 100%
     background-color #f9f9f9
     .head-wrap
-        padding 20px
+        padding 40px 20px 20px 20px
         background-color #fff
+        position relative
+    .head-wrap .icon-wrap
+        position absolute
+        top 30px
+        right 30px
+    .head-wrap .icon-cart
+        font-size 24px
     .head-img-wrap
         width 200px
         height 160px
@@ -123,7 +161,8 @@ export default {
     .operate-wrap .cart
         flex 1
         text-align center
-    .operate-wrap .icon
+    .operate-wrap .icon-star, .operate-wrap .icon-star-active, .operate-wrap .icon-cart
+        font-size 14px
         margin-left 14px
     .info-wrap
         width 100%

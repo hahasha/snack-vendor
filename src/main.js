@@ -5,7 +5,7 @@ import router from './router'
 import store from './store'
 import 'amfe-flexible'
 import '@/common/stylus/index.styl'
-import '@/assets/iconfont.css'
+import '@/assets/iconfont/iconfont.css'
 
 Vue.config.productionTip = false
 
