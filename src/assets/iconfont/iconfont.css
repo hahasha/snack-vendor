@@ -15,12 +15,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-morentouxiang:before {
+.icon-avater:before {
   content: "\e616";
-}
-
-.icon-lujing:before {
-  content: "\e621";
 }
 
 .icon-check:before {

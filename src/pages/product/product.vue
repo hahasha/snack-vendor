@@ -11,9 +11,14 @@
             </div>
             <div class="operate-wrap">
                 <div class="like" @click="collect">
-                    <span>收藏</span>
-                    <span class="iconfont icon-star-active" v-if="like"></span>
-                    <span class="iconfont icon-star" v-else></span>
+                    <div v-if="like">
+                      <span>已收藏</span>
+                      <span class="iconfont icon-star-active"></span>
+                    </div>
+                    <div else>
+                      <span>收藏</span>
+                      <span class="iconfont icon-star"></span>
+                    </div>
                 </div>
                 <div class="cart" @click="addCart">
                     <span>加入购物车</span>
