@@ -2,7 +2,7 @@
     <div class="product-container">
         <topBar :nav="nav"></topBar>
         <div class="head-wrap">
-            <div class="icon-wrap">
+            <div class="icon-cart-wrap" @click="goCart">
                 <bubble :num="cartCount"></bubble>
                 <span class="iconfont icon-cart"></span>
             </div>
@@ -108,7 +108,9 @@ export default {
     },
     addCart () {
       this.cartCount++
-      console.log(this.cartCount)
+    },
+    goCart () {
+      this.$router.push('/shopCart')
     }
   },
   components: {
@@ -127,7 +129,7 @@ export default {
         padding 40px 20px 20px 20px
         background-color #fff
         position relative
-    .head-wrap .icon-wrap
+    .head-wrap .icon-cart-wrap
         position absolute
         top 30px
         right 30px

@@ -26,11 +26,13 @@ export default {
         label: '我的',
         value: 'userCenter',
         icon: 'iconfont icon-wode'
-      }]
+      }],
+      path: this.$route.path
     }
   },
   created () {
     this.selectedDefault = this.$route.path === '/' ? '/' : this.$route.path.replace('/', '')
+    console.log(this.selectedDefault)
   },
   methods: {
     changeHandler (value) {
@@ -58,5 +60,5 @@ export default {
     margin-top 3px
     font-size 12px
   >>> .cube-tab_active
-    color #bdaf95
+    color #a28b60
 </style>

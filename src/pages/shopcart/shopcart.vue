@@ -4,7 +4,7 @@
         <div class="shopcart-container">
             <div class="cart-list-wrap">
               <div class="cart-item" v-for="(item, index) in cartList" :key="index">
-                <div class="check-wrap">
+                <div class="check-wrap" @click="checkHandler(item)">
                   <span class="iconfont icon-checked" v-if="item.isChecked"></span>
                   <span class="iconfont icon-unchecked" v-else></span>
                 </div>
@@ -21,32 +21,34 @@
                   </div>
                   <div class="control-wrap">
                     <div class="count-wrap">
-                      <span class="reduce">-</span>
+                      <span class="reduce" @click="reduce(item)">-</span>
                       <span class="count">{{item.count}}</span>
-                      <span class="add">+</span>
+                      <span class="add" @click="add(item)">+</span>
                     </div>
-                    <span class="delete cubeic-close"></span>
+                    <span class="delete cubeic-close" @click="deleteHandler(item)"></span>
                   </div>
                 </div>
               </div>
             </div>
             <div class="operate-wrap">
-              <div class="select-all">
-                <span class="iconfont icon-check" v-if="checkedAll"></span>
+              <div class="select-all" @click="checkAll">
+                <span class="iconfont icon-check" v-if="allChecked"></span>
                 <span class="iconfont icon-unchecked" v-else></span>
-                <span class="total-count">全选(0)</span>
+                <span class="total-count">全选({{totalCount}})</span>
               </div>
-              <span class="total-price">合计：¥0</span>
+              <span class="total-price">合计：¥{{totalPrice}}</span>
               <span class="place-order">去结算</span>
             </div>
         </div>
         <tab></tab>
+        <popup ref="popup"></popup>
     </div>
 </template>
 
 <script>
 import topBar from '@/components/top-bar/top-bar'
 import Tab from '@/components/tab/tab'
+import Popup from '@/components/popup/popup'
 export default {
   data () {
     return {
@@ -71,13 +73,70 @@ export default {
         isChecked: false,
         isDelete: false,
         count: 2
-      }],
-      checkedAll: true
+      }]
+    }
+  },
+  computed: {
+    checkedCartList () {
+      return this.cartList.filter((item) => { return item.isChecked === true })
+    },
+    totalCount () {
+      let count = 0
+      this.checkedCartList.forEach((item) => {
+        count += item.count
+      })
+      return count
+    },
+    totalPrice () {
+      let totalPrice = 0
+      this.checkedCartList.forEach((item) => {
+        totalPrice += item.count * Number(item.price)
+      })
+      return totalPrice
+    },
+    allChecked () {
+      return this.cartList.every((item) => { return item.isChecked === true })
+    }
+  },
+  methods: {
+    checkHandler (item) {
+      item.isChecked = !item.isChecked
+    },
+    deleteHandler (item) {
+      item.isDelete = true
+      this.cartList = this.cartList.filter((item) => {
+        return item.isDelete === false
+      })
+    },
+    reduce (item) {
+      if (item.count > 1) {
+        item.count--
+      } else {
+        this.show()
+      }
+    },
+    add (item) {
+      item.count++
+    },
+    show () {
+      this.$refs.popup.show()
+    },
+    checkAll () {
+      if (this.allChecked) {
+        this.cartList.forEach(item => {
+          item.isChecked = false
+        })
+      } else {
+        this.cartList.forEach(item => {
+          item.isChecked = true
+        })
+      }
     }
   },
   components: {
     topBar,
-    Tab
+    Tab,
+    Popup
   }
 }
 </script>
@@ -145,7 +204,7 @@ export default {
       display flex
       align-items center
       .select-all
-        flex-basis 54%
+        flex-basis 50%
         display flex
         align-items center
         .iconfont
