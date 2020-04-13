@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import home from '@/pages/home/home'
 import category from '@/pages/category/category'
-import shopcart from '@/pages/shopcart/shopcart'
+import shopCart from '@/pages/shopCart/shopCart'
 import userCenter from '@/pages/user-center/user-center'
 import product from '@/pages/product/product'
 
@@ -18,8 +18,8 @@ const routes = [
     component: category
   },
   {
-    path: '/shopcart',
-    component: shopcart
+    path: '/shopCart',
+    component: shopCart
   },
   {
     path: '/userCenter',

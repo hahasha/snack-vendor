@@ -20,7 +20,7 @@ export default {
         icon: 'iconfont icon-category'
       }, {
         label: '购物车',
-        value: 'shopcart',
+        value: 'shopCart',
         icon: 'iconfont icon-cart'
       }, {
         label: '我的',
@@ -32,7 +32,6 @@ export default {
   },
   created () {
     this.selectedDefault = this.$route.path === '/' ? '/' : this.$route.path.replace('/', '')
-    // console.log(this.selectedDefault)
   },
   methods: {
     changeHandler (value) {
