@@ -61,6 +61,7 @@
 import { getProductById } from '@/api/api'
 import topBar from '@/components/top-bar/top-bar'
 import Bubble from '@/components/bubble/bubble'
+import { mapMutations } from 'vuex'
 export default {
   data () {
     return {
@@ -94,6 +95,10 @@ export default {
   },
   created () {
     this.getProductInfo()
+    const index = this.$store.state.cartList.findIndex(item => { return item.id === Number(this.$route.params.id) })
+    if (index !== -1) {
+      this.cartCount = this.$store.state.cartList[index].count
+    }
   },
   methods: {
     getProductInfo () {
@@ -108,10 +113,18 @@ export default {
     },
     addCart () {
       this.cartCount++
+      this.updateCart(Object.assign(this.productInfo, {
+        count: this.cartCount,
+        isChecked: false,
+        isDelete: false
+      }))
     },
     goCart () {
       this.$router.push('/shopCart')
-    }
+    },
+    ...mapMutations([
+      'updateCart'
+    ])
   },
   components: {
     topBar,

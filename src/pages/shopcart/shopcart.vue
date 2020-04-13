@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <topBar :nav="nav"></topBar>
-        <div class="shopcart-container">
+        <div class="shopcart-container" v-if="!isEmpty">
             <div class="cart-list-wrap">
               <div class="cart-item" v-for="(item, index) in cartList" :key="index">
                 <div class="check-wrap" @click="checkHandler(item)">
@@ -40,6 +40,9 @@
               <span class="place-order">去结算</span>
             </div>
         </div>
+        <div class="shopcart-container" v-else>
+          <p class="text">您还没有添加任何商品</p>
+        </div>
         <tab></tab>
         <popup ref="popup"></popup>
     </div>
@@ -54,29 +57,13 @@ export default {
     return {
       nav: {
         title: '购物车'
-      },
-      cartList: [{
-        id: 2,
-        name: '春生龙眼',
-        img_url: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1145245586,2546465794&fm=26&gp=0.jpg',
-        price: '19.9',
-        spec: '500g',
-        isChecked: true,
-        isDelete: false,
-        count: 1
-      }, {
-        id: 4,
-        name: '贵妃笑',
-        img_url: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1582476418,2211105839&fm=26&gp=0.jpg',
-        price: '59.9',
-        spec: '500g',
-        isChecked: false,
-        isDelete: false,
-        count: 2
-      }]
+      }
     }
   },
   computed: {
+    isEmpty () {
+      return this.cartList.length === 0
+    },
     checkedCartList () {
       return this.cartList.filter((item) => { return item.isChecked === true })
     },
@@ -96,6 +83,9 @@ export default {
     },
     allChecked () {
       return this.cartList.every((item) => { return item.isChecked === true })
+    },
+    cartList () {
+      return this.$store.state.cartList
     }
   },
   methods: {
@@ -144,6 +134,11 @@ export default {
 <style lang="stylus" scoped>
 .shopcart-container
     margin 46px 0 60px 0
+    .text
+      text-align center
+      font-size 14px
+      color #c7c4c4
+      margin-top 70px
     .cart-list-wrap
       width 100%
       .cart-item
