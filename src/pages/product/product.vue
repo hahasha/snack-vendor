@@ -80,7 +80,7 @@ export default {
       }, {
         label: '售后保证'
       }],
-      currentId: this.$route.params.id
+      currentId: Number(this.$route.params.id)
     }
   },
   computed: {
@@ -99,7 +99,7 @@ export default {
   },
   created () {
     this.getProductInfo()
-    const index = this.cartList.findIndex(item => { return item.id === Number(this.currentId) })
+    const index = this.cartList.findIndex(item => { return item.id === this.currentId })
     if (index !== -1) {
       this.cartCount = this.cartList[index].isDelete ? 0 : this.cartList[index].count
     }

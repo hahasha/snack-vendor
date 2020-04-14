@@ -115,17 +115,18 @@ export default {
     },
     checkAll () {
       if (this.allChecked) {
-        this.cartList.forEach(item => {
-          item.isChecked = false
+        this.updateAll({
+          isChecked: false
         })
       } else {
-        this.cartList.forEach(item => {
-          item.isChecked = true
+        this.updateAll({
+          isChecked: true
         })
       }
     },
     ...mapMutations([
-      'updateCart'
+      'updateCart',
+      'updateAll'
     ])
   },
   components: {

@@ -18,6 +18,13 @@ export default new Vuex.Store({
         cartList.push(product)
       }
       store.set('cartList', state.cartList)
+    },
+    updateAll (state, obj) {
+      const key = Object.keys(obj)[0]
+      const value = Object.values(obj)[0]
+      state.cartList.forEach(item => {
+        item[key] = value
+      })
     }
   },
   actions: {

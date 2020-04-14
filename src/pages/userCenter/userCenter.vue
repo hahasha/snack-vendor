@@ -7,13 +7,13 @@
             <span class="username">sasa</span>
             <span class="edit">编辑</span>
           </div>
-          <div class="setting-wrap">
-            <div class="set-item address">我的收货地址<span class="arrow cubeic-arrow"></span></div>
-            <div class="set-item order">我的收藏<span class="arrow cubeic-arrow"></span></div>
-            <div class="set-item order">我的订单<span class="arrow cubeic-arrow"></span></div>
-            <div class="set-item about">关于我们<span class="arrow cubeic-arrow"></span></div>
-            <div class="set-item switch">切换账户</div>
-            <div class="set-item logout">退出登录</div>
+          <div class="setting-wrap" @click="clickHandler">
+            <div class="set-item" data-type="address">我的收货地址<span class="arrow cubeic-arrow"></span></div>
+            <div class="set-item" data-type="collections">我的收藏<span class="arrow cubeic-arrow"></span></div>
+            <div class="set-item" data-type="orders">我的订单<span class="arrow cubeic-arrow"></span></div>
+            <div class="set-item" data-type="aboutUs">关于我们<span class="arrow cubeic-arrow"></span></div>
+            <div class="set-item switch" @click="switchAcount">切换账户</div>
+            <div class="set-item logout" @click="logout">退出登录</div>
           </div>
         </div>
         <tab></tab>
@@ -29,6 +29,15 @@ export default {
       nav: {
         title: '我的'
       }
+    }
+  },
+  methods: {
+    clickHandler (e) {
+      console.log(e.target.dataset.type)
+    },
+    switchAcount () {
+    },
+    logout () {
     }
   },
   components: {
