@@ -79,7 +79,8 @@ export default {
         label: '产品参数'
       }, {
         label: '售后保证'
-      }]
+      }],
+      currentId: this.$route.params.id
     }
   },
   computed: {
@@ -91,19 +92,22 @@ export default {
     },
     details () {
       return this.productInfo.details && this.productInfo.details.length > 0 ? this.productInfo.details : ''
+    },
+    cartList () {
+      return this.$store.state.cartList
     }
   },
   created () {
     this.getProductInfo()
-    const index = this.$store.state.cartList.findIndex(item => { return item.id === Number(this.$route.params.id) })
+    const index = this.cartList.findIndex(item => { return item.id === Number(this.currentId) })
     if (index !== -1) {
-      this.cartCount = this.$store.state.cartList[index].count
+      this.cartCount = this.cartList[index].isDelete ? 0 : this.cartList[index].count
     }
   },
   methods: {
     getProductInfo () {
       getProductById({
-        id: this.$route.params.id
+        id: this.currentId
       }).then((data) => {
         this.productInfo = data
       })
@@ -115,8 +119,8 @@ export default {
       this.cartCount++
       this.updateCart(Object.assign(this.productInfo, {
         count: this.cartCount,
-        isChecked: false,
-        isDelete: false
+        isDelete: false,
+        isChecked: false
       }))
     },
     goCart () {

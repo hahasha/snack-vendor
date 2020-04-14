@@ -52,6 +52,7 @@
 import topBar from '@/components/top-bar/top-bar'
 import Tab from '@/components/tab/tab'
 import Popup from '@/components/popup/popup'
+import { mapMutations } from 'vuex'
 export default {
   data () {
     return {
@@ -61,6 +62,9 @@ export default {
     }
   },
   computed: {
+    cartList () {
+      return this.$store.state.cartList.filter(item => { return item.isDelete === false })
+    },
     isEmpty () {
       return this.cartList.length === 0
     },
@@ -79,24 +83,20 @@ export default {
       this.checkedCartList.forEach((item) => {
         totalPrice += item.count * Number(item.price)
       })
-      return totalPrice
+      return totalPrice.toFixed(2)
     },
     allChecked () {
       return this.cartList.every((item) => { return item.isChecked === true })
-    },
-    cartList () {
-      return this.$store.state.cartList
     }
   },
   methods: {
     checkHandler (item) {
       item.isChecked = !item.isChecked
+      this.updateCart(item)
     },
     deleteHandler (item) {
       item.isDelete = true
-      this.cartList = this.cartList.filter((item) => {
-        return item.isDelete === false
-      })
+      this.updateCart(item)
     },
     reduce (item) {
       if (item.count > 1) {
@@ -104,9 +104,11 @@ export default {
       } else {
         this.show()
       }
+      this.updateCart(item)
     },
     add (item) {
       item.count++
+      this.updateCart(item)
     },
     show () {
       this.$refs.popup.show()
@@ -121,7 +123,10 @@ export default {
           item.isChecked = true
         })
       }
-    }
+    },
+    ...mapMutations([
+      'updateCart'
+    ])
   },
   components: {
     topBar,
