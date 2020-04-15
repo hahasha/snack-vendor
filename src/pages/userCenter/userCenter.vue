@@ -7,7 +7,7 @@
             <span class="username">sasa</span>
             <span class="edit">编辑</span>
           </div>
-          <div class="setting-wrap" @click="clickHandler">
+          <div class="setting-wrap" @click.stop="clickHandler">
             <div class="set-item" data-type="address">我的收货地址<span class="arrow cubeic-arrow"></span></div>
             <div class="set-item" data-type="collections">我的收藏<span class="arrow cubeic-arrow"></span></div>
             <div class="set-item" data-type="orders">我的订单<span class="arrow cubeic-arrow"></span></div>
@@ -33,7 +33,8 @@ export default {
   },
   methods: {
     clickHandler (e) {
-      console.log(e.target.dataset.type)
+      const type = e.target.dataset.type
+      this.$router.push(type)
     },
     switchAcount () {
     },

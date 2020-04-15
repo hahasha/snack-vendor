@@ -9,6 +9,8 @@ import aboutUs from '@/pages/aboutUs/aboutUs'
 import orders from '@/pages/orders/orders'
 import collections from '@/pages/collections/collections'
 import address from '@/pages/address/address'
+import addAddress from '@/pages/addAddress/addAddress'
+import editAddress from '@/pages/editAddress/editAddress'
 
 Vue.use(VueRouter)
 
@@ -27,25 +29,31 @@ const routes = [
   },
   {
     path: '/userCenter',
-    component: userCenter,
-    children: [
-      {
-        path: 'aboutUs',
-        component: aboutUs
-      },
-      {
-        path: 'orders',
-        component: orders
-      },
-      {
-        path: 'collections',
-        component: collections
-      },
-      {
-        path: 'address',
-        component: address
-      }
-    ]
+    component: userCenter
+  },
+  {
+    path: '/aboutUs',
+    component: aboutUs
+  },
+  {
+    path: '/orders',
+    component: orders
+  },
+  {
+    path: '/collections',
+    component: collections
+  },
+  {
+    path: '/address',
+    component: address
+  },
+  {
+    path: '/addAddress',
+    component: addAddress
+  },
+  {
+    path: '/editAddress',
+    component: editAddress
   },
   {
     path: '/product/:id',
