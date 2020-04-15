@@ -1,60 +1,62 @@
 <template>
-    <div class="product-container">
-        <topBar :nav="nav"></topBar>
-        <div class="head-wrap">
-            <div class="icon-cart-wrap" @click="goCart">
-                <bubble :num="cartCount"></bubble>
+<div class="container">
+  <topBar :nav="nav"></topBar>
+  <div class="product-container">
+    <div class="head-wrap">
+        <div class="icon-cart-wrap" @click="goCart">
+            <bubble :num="cartCount"></bubble>
+            <span class="iconfont icon-cart"></span>
+        </div>
+        <div class="head-img-wrap">
+            <img :src="productInfo.img_url" alt="">
+        </div>
+        <div class="operate-wrap">
+            <div class="like" @click="collect">
+                <div v-if="like">
+                  <span>已收藏</span>
+                  <span class="iconfont icon-star-active"></span>
+                </div>
+                <div else>
+                  <span>收藏</span>
+                  <span class="iconfont icon-star"></span>
+                </div>
+            </div>
+            <div class="cart" @click="addCart">
+                <span>加入购物车</span>
                 <span class="iconfont icon-cart"></span>
             </div>
-            <div class="head-img-wrap">
-                <img :src="productInfo.img_url" alt="">
-            </div>
-            <div class="operate-wrap">
-                <div class="like" @click="collect">
-                    <div v-if="like">
-                      <span>已收藏</span>
-                      <span class="iconfont icon-star-active"></span>
-                    </div>
-                    <div else>
-                      <span>收藏</span>
-                      <span class="iconfont icon-star"></span>
-                    </div>
-                </div>
-                <div class="cart" @click="addCart">
-                    <span>加入购物车</span>
-                    <span class="iconfont icon-cart"></span>
-                </div>
-            </div>
-            <div class="info-wrap">
-                <span class="stock">{{showStock}}</span>
-                <span class="price">¥{{productInfo.price}}</span>
-            </div>
         </div>
-        <div class="tab-wrap">
-            <cube-tab-bar v-model="selectedTab" :data="tabs" show-slider></cube-tab-bar>
-            <cube-tab-panels v-model="selectedTab">
-                <cube-tab-panel label="商品详情" >
-                    <div class="detail-wrap" v-if="details">
-                        <div v-for="(item, index) in details" :key="index">
-                            <img :src="item.d_img_url" alt="">
-                        </div>
-                    </div>
-                    <div class="detail-wrap none" v-else>暂无详细信息</div>
-                </cube-tab-panel>
-                <cube-tab-panel label="产品参数">
-                    <div class="attr-wrap">
-                      <div class="attr-item"><span>品名</span>{{attrs.name}}</div>
-                      <div class="attr-item"><span>口味</span>{{attrs.taste}}</div>
-                      <div class="attr-item"><span>产地</span>{{attrs.origin}}</div>
-                      <div class="attr-item"><span>保质期</span>{{attrs.shelf_life}}</div>
-                    </div>
-                </cube-tab-panel>
-                <cube-tab-panel label="售后保证">
-                    <div class="after-sale-wrap">{{productInfo.after_sale}}</div>
-                </cube-tab-panel>
-            </cube-tab-panels>
+        <div class="info-wrap">
+            <span class="stock">{{showStock}}</span>
+            <span class="price">¥{{productInfo.price}}</span>
         </div>
     </div>
+    <div class="tab-wrap">
+        <cube-tab-bar v-model="selectedTab" :data="tabs" show-slider></cube-tab-bar>
+        <cube-tab-panels v-model="selectedTab">
+            <cube-tab-panel label="商品详情" >
+                <div class="detail-wrap" v-if="details">
+                    <div v-for="(item, index) in details" :key="index">
+                        <img :src="item.d_img_url" alt="">
+                    </div>
+                </div>
+                <div class="detail-wrap none" v-else>暂无详细信息</div>
+            </cube-tab-panel>
+            <cube-tab-panel label="产品参数">
+                <div class="attr-wrap">
+                  <div class="attr-item"><span>品名</span>{{attrs.name}}</div>
+                  <div class="attr-item"><span>口味</span>{{attrs.taste}}</div>
+                  <div class="attr-item"><span>产地</span>{{attrs.origin}}</div>
+                  <div class="attr-item"><span>保质期</span>{{attrs.shelf_life}}</div>
+                </div>
+            </cube-tab-panel>
+            <cube-tab-panel label="售后保证">
+                <div class="after-sale-wrap">{{productInfo.after_sale}}</div>
+            </cube-tab-panel>
+        </cube-tab-panels>
+    </div>
+  </div>
+</div>
 </template>
 
 <script>
