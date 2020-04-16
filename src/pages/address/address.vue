@@ -1,9 +1,9 @@
 <template>
     <div class="container">
         <topBar :nav="nav"></topBar>
-        <div class="address-container">
+        <div class="address-container" v-if="addressList.length">
             <div class="add-address" @click="addAddress">添加新地址</div>
-            <div class="address-item" v-for="(item, index) in address" :key="index">
+            <div class="address-item" v-for="(item, index) in addressList" :key="index">
                 <div class="icon-wrap">
                     <span class="iconfont icon-address-home" v-if="item.label==='家'"></span>
                     <span class="iconfont icon-address-company2" v-else-if="item.label==='公司'"></span>
@@ -19,12 +19,16 @@
                         <p class="detail">
                             <span class="default" v-show="item.isDefault">默认</span>
                             <span class="label" v-show="item.label">{{item.label}}</span>
-                            {{item.province + ' ' + item.city + ' ' + item.area + ' ' + item.detail}}
+                            {{item.location.join(' ') + ' ' + item.detail}}
                         </p>
                     </div>
                 </div>
-                <span class="edit" @click="editAddress">编辑</span>
+                <span class="edit" @click="editAddress(item)">编辑</span>
             </div>
+        </div>
+        <div class="address-container" v-else>
+          <div class="add-address" @click="addAddress">添加新地址</div>
+          <p class="text">请添加收货地址</p>
         </div>
     </div>
 </template>
@@ -37,71 +41,25 @@ export default {
       nav: {
         title: '我的收货地址',
         back: true
-      },
-      address: [{
-        id: 1,
-        name: 'liusha',
-        tel: '18210587582',
-        province: '北京',
-        city: '北京市',
-        area: '朝阳区',
-        detail: '香江北路瑞平家园1号院1号楼1单元2806',
-        label: '家',
-        isDefault: true,
-        isDelete: false
-      }, {
-        id: 2,
-        name: 'sasa',
-        tel: '13701141845',
-        province: '北京',
-        city: '北京市',
-        area: '朝阳区',
-        detail: '来广营东路朝来科技产业园36号院北京快道网络有限公司',
-        label: '公司',
-        isDefault: false,
-        isDelete: false
-      }, {
-        id: 3,
-        name: 'zxq',
-        tel: '13701141845',
-        province: '湖南省',
-        city: '长沙市',
-        area: '芙蓉区',
-        detail: '长郡中学',
-        label: '学校',
-        isDefault: false,
-        isDelete: false
-      }, {
-        id: 4,
-        name: '刘莎',
-        tel: '18210587582',
-        province: '贵州省',
-        city: '铜仁市',
-        area: '碧江区',
-        detail: '江华小区',
-        label: '',
-        isDefault: false,
-        isDelete: false
-      }, {
-        id: 5,
-        name: '张新成',
-        tel: '18210587582',
-        province: '湖南省',
-        city: '长沙市',
-        area: '开福区',
-        detail: '湘雅路街道',
-        label: '',
-        isDefault: false,
-        isDelete: false
-      }]
+      }
+    }
+  },
+  computed: {
+    addressList () {
+      return this.$store.state.addressList.filter(item => { return item.isDelete === false })
     }
   },
   methods: {
     addAddress () {
-      this.$router.push('/addAddress')
+      this.$router.push('addAddress')
     },
-    editAddress () {
-      this.$router.push('/editAddress')
+    editAddress (item) {
+      this.$router.push({
+        name: 'editAddress',
+        params: {
+          data: item
+        }
+      })
     }
   },
   components: {
@@ -113,6 +71,11 @@ export default {
 <style lang="stylus">
 .address-container
     margin-top 66px
+    .text
+      text-align center
+      font-size 14px
+      color #c7c4c4
+      margin-top 70px
     .add-address
         position fixed
         top 18px

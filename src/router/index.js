@@ -16,46 +16,57 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    name: 'home',
     path: '/',
     component: home
   },
   {
+    name: 'category',
     path: '/category',
     component: category
   },
   {
+    name: 'shopCart',
     path: '/shopCart',
     component: shopCart
   },
   {
+    name: 'userCenter',
     path: '/userCenter',
     component: userCenter
   },
   {
+    name: 'aboutUs',
     path: '/aboutUs',
     component: aboutUs
   },
   {
+    name: 'orders',
     path: '/orders',
     component: orders
   },
   {
+    name: 'collections',
     path: '/collections',
     component: collections
   },
   {
+    name: 'address',
     path: '/address',
     component: address
   },
   {
+    name: 'addAddress',
     path: '/addAddress',
     component: addAddress
   },
   {
+    name: 'editAddress',
     path: '/editAddress',
     component: editAddress
   },
   {
+    name: 'product',
     path: '/product/:id',
     component: product
   }

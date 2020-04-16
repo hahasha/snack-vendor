@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <topBar :nav="nav"></topBar>
-        <div class="shopcart-container" v-if="!isEmpty">
+        <div class="shopcart-container" v-if="cartList.length">
             <div class="cart-list-wrap">
               <div class="cart-item" v-for="(item, index) in cartList" :key="index">
                 <div class="check-wrap" @click="checkHandler(item)">
@@ -64,9 +64,6 @@ export default {
   computed: {
     cartList () {
       return this.$store.state.cartList.filter(item => { return item.isDelete === false })
-    },
-    isEmpty () {
-      return this.cartList.length === 0
     },
     checkedCartList () {
       return this.cartList.filter((item) => { return item.isChecked === true })

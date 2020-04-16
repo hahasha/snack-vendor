@@ -3477,7 +3477,7 @@ export const areaList = {
       value: '140981'
     }
   ],
-  '141000': [
+  141000: [
     {
       city: '临汾市',
       text: '市辖区',
@@ -3569,7 +3569,7 @@ export const areaList = {
       value: '141082'
     }
   ],
-  '141100': [
+  141100: [
     {
       city: '吕梁市',
       text: '市辖区',
@@ -3641,7 +3641,7 @@ export const areaList = {
       value: '141182'
     }
   ],
-  '150100': [
+  150100: [
     {
       city: '呼和浩特市',
       text: '市辖区',
@@ -3693,7 +3693,7 @@ export const areaList = {
       value: '150125'
     }
   ],
-  '150200': [
+  150200: [
     {
       city: '包头市',
       text: '市辖区',
@@ -3745,7 +3745,7 @@ export const areaList = {
       value: '150223'
     }
   ],
-  '150300': [
+  150300: [
     {
       city: '乌海市',
       text: '市辖区',
@@ -3767,7 +3767,7 @@ export const areaList = {
       value: '150304'
     }
   ],
-  '150400': [
+  150400: [
     {
       city: '赤峰市',
       text: '市辖区',
@@ -3834,7 +3834,7 @@ export const areaList = {
       value: '150430'
     }
   ],
-  '150500': [
+  150500: [
     {
       city: '通辽市',
       text: '市辖区',
@@ -3881,7 +3881,7 @@ export const areaList = {
       value: '150581'
     }
   ],
-  '150600': [
+  150600: [
     {
       city: '鄂尔多斯市',
       text: '市辖区',
@@ -3933,7 +3933,7 @@ export const areaList = {
       value: '150627'
     }
   ],
-  '150700': [
+  150700: [
     {
       city: '呼伦贝尔市',
       text: '市辖区',
@@ -4010,7 +4010,7 @@ export const areaList = {
       value: '150785'
     }
   ],
-  '150800': [
+  150800: [
     {
       city: '巴彦淖尔市',
       text: '市辖区',
@@ -4052,7 +4052,7 @@ export const areaList = {
       value: '150826'
     }
   ],
-  '150900': [
+  150900: [
     {
       city: '乌兰察布市',
       text: '市辖区',
@@ -4114,7 +4114,7 @@ export const areaList = {
       value: '150981'
     }
   ],
-  '152200': [
+  152200: [
     {
       city: '兴安盟',
       text: '乌兰浩特市',
@@ -4146,7 +4146,7 @@ export const areaList = {
       value: '152224'
     }
   ],
-  '152500': [
+  152500: [
     {
       city: '锡林郭勒盟',
       text: '二连浩特市',
@@ -4208,7 +4208,7 @@ export const areaList = {
       value: '152531'
     }
   ],
-  '152900': [
+  152900: [
     {
       city: '阿拉善盟',
       text: '阿拉善左旗',
@@ -4225,7 +4225,7 @@ export const areaList = {
       value: '152923'
     }
   ],
-  '210100': [
+  210100: [
     {
       city: '沈阳市',
       text: '市辖区',
@@ -4297,7 +4297,7 @@ export const areaList = {
       value: '210181'
     }
   ],
-  '210200': [
+  210200: [
     {
       city: '大连市',
       text: '市辖区',
@@ -4354,7 +4354,7 @@ export const areaList = {
       value: '210283'
     }
   ],
-  '210300': [
+  210300: [
     {
       city: '鞍山市',
       text: '市辖区',
@@ -4396,7 +4396,7 @@ export const areaList = {
       value: '210381'
     }
   ],
-  '210400': [
+  210400: [
     {
       city: '抚顺市',
       text: '市辖区',
@@ -4438,7 +4438,7 @@ export const areaList = {
       value: '210423'
     }
   ],
-  '210500': [
+  210500: [
     {
       city: '本溪市',
       text: '市辖区',
@@ -4475,7 +4475,7 @@ export const areaList = {
       value: '210522'
     }
   ],
-  '210600': [
+  210600: [
     {
       city: '丹东市',
       text: '市辖区',
@@ -4512,7 +4512,7 @@ export const areaList = {
       value: '210682'
     }
   ],
-  '210700': [
+  210700: [
     {
       city: '锦州市',
       text: '市辖区',
@@ -4554,7 +4554,7 @@ export const areaList = {
       value: '210782'
     }
   ],
-  '210800': [
+  210800: [
     {
       city: '营口市',
       text: '市辖区',
@@ -4591,7 +4591,7 @@ export const areaList = {
       value: '210882'
     }
   ],
-  '210900': [
+  210900: [
     {
       city: '阜新市',
       text: '市辖区',
@@ -4633,7 +4633,7 @@ export const areaList = {
       value: '210922'
     }
   ],
-  '211000': [
+  211000: [
     {
       city: '辽阳市',
       text: '市辖区',
@@ -4675,7 +4675,7 @@ export const areaList = {
       value: '211081'
     }
   ],
-  '211100': [
+  211100: [
     {
       city: '盘锦市',
       text: '市辖区',
@@ -4702,7 +4702,7 @@ export const areaList = {
       value: '211122'
     }
   ],
-  '211200': [
+  211200: [
     {
       city: '铁岭市',
       text: '市辖区',
@@ -4744,7 +4744,7 @@ export const areaList = {
       value: '211282'
     }
   ],
-  '211300': [
+  211300: [
     {
       city: '朝阳市',
       text: '市辖区',
@@ -4786,7 +4786,7 @@ export const areaList = {
       value: '211382'
     }
   ],
-  '211400': [
+  211400: [
     {
       city: '葫芦岛市',
       text: '市辖区',
@@ -4823,7 +4823,7 @@ export const areaList = {
       value: '211481'
     }
   ],
-  '220100': [
+  220100: [
     {
       city: '长春市',
       text: '市辖区',
@@ -4880,7 +4880,7 @@ export const areaList = {
       value: '220183'
     }
   ],
-  '220200': [
+  220200: [
     {
       city: '吉林市',
       text: '市辖区',
@@ -4932,7 +4932,7 @@ export const areaList = {
       value: '220284'
     }
   ],
-  '220300': [
+  220300: [
     {
       city: '四平市',
       text: '市辖区',
@@ -4969,7 +4969,7 @@ export const areaList = {
       value: '220382'
     }
   ],
-  '220400': [
+  220400: [
     {
       city: '辽源市',
       text: '市辖区',
@@ -4996,7 +4996,7 @@ export const areaList = {
       value: '220422'
     }
   ],
-  '220500': [
+  220500: [
     {
       city: '通化市',
       text: '市辖区',
@@ -5038,7 +5038,7 @@ export const areaList = {
       value: '220582'
     }
   ],
-  '220600': [
+  220600: [
     {
       city: '白山市',
       text: '市辖区',
@@ -5075,7 +5075,7 @@ export const areaList = {
       value: '220681'
     }
   ],
-  '220700': [
+  220700: [
     {
       city: '松原市',
       text: '市辖区',
@@ -5107,7 +5107,7 @@ export const areaList = {
       value: '220781'
     }
   ],
-  '220800': [
+  220800: [
     {
       city: '白城市',
       text: '市辖区',
@@ -5139,7 +5139,7 @@ export const areaList = {
       value: '220882'
     }
   ],
-  '222400': [
+  222400: [
     {
       city: '延边朝鲜族自治州',
       text: '延吉市',
@@ -5181,7 +5181,7 @@ export const areaList = {
       value: '222426'
     }
   ],
-  '230100': [
+  230100: [
     {
       city: '哈尔滨市',
       text: '市辖区',
@@ -5278,7 +5278,7 @@ export const areaList = {
       value: '230184'
     }
   ],
-  '230200': [
+  230200: [
     {
       city: '齐齐哈尔市',
       text: '市辖区',
@@ -5365,7 +5365,7 @@ export const areaList = {
       value: '230281'
     }
   ],
-  '230300': [
+  230300: [
     {
       city: '鸡西市',
       text: '市辖区',
@@ -5417,7 +5417,7 @@ export const areaList = {
       value: '230382'
     }
   ],
-  '230400': [
+  230400: [
     {
       city: '鹤岗市',
       text: '市辖区',
@@ -5464,7 +5464,7 @@ export const areaList = {
       value: '230422'
     }
   ],
-  '230500': [
+  230500: [
     {
       city: '双鸭山市',
       text: '市辖区',
@@ -5511,7 +5511,7 @@ export const areaList = {
       value: '230524'
     }
   ],
-  '230600': [
+  230600: [
     {
       city: '大庆市',
       text: '市辖区',
@@ -5563,7 +5563,7 @@ export const areaList = {
       value: '230624'
     }
   ],
-  '230700': [
+  230700: [
     {
       city: '伊春市',
       text: '市辖区',
@@ -5655,7 +5655,7 @@ export const areaList = {
       value: '230781'
     }
   ],
-  '230800': [
+  230800: [
     {
       city: '佳木斯市',
       text: '市辖区',
@@ -5712,7 +5712,7 @@ export const areaList = {
       value: '230883'
     }
   ],
-  '230900': [
+  230900: [
     {
       city: '七台河市',
       text: '市辖区',
@@ -5739,7 +5739,7 @@ export const areaList = {
       value: '230921'
     }
   ],
-  '231000': [
+  231000: [
     {
       city: '牡丹江市',
       text: '市辖区',
@@ -5796,7 +5796,7 @@ export const areaList = {
       value: '231086'
     }
   ],
-  '231100': [
+  231100: [
     {
       city: '黑河市',
       text: '市辖区',
@@ -5833,7 +5833,7 @@ export const areaList = {
       value: '231182'
     }
   ],
-  '231200': [
+  231200: [
     {
       city: '绥化市',
       text: '市辖区',
@@ -5890,7 +5890,7 @@ export const areaList = {
       value: '231283'
     }
   ],
-  '232700': [
+  232700: [
     {
       city: '大兴安岭地区',
       text: '呼玛县',
@@ -5907,7 +5907,7 @@ export const areaList = {
       value: '232723'
     }
   ],
-  '310100': [
+  310100: [
     {
       city: '市辖区',
       text: '黄浦区',
@@ -5989,7 +5989,7 @@ export const areaList = {
       value: '310151'
     }
   ],
-  '320100': [
+  320100: [
     {
       city: '南京市',
       text: '市辖区',
@@ -6051,7 +6051,7 @@ export const areaList = {
       value: '320118'
     }
   ],
-  '320200': [
+  320200: [
     {
       city: '无锡市',
       text: '市辖区',
@@ -6093,7 +6093,7 @@ export const areaList = {
       value: '320282'
     }
   ],
-  '320300': [
+  320300: [
     {
       city: '徐州市',
       text: '市辖区',
@@ -6150,7 +6150,7 @@ export const areaList = {
       value: '320382'
     }
   ],
-  '320400': [
+  320400: [
     {
       city: '常州市',
       text: '市辖区',
@@ -6187,7 +6187,7 @@ export const areaList = {
       value: '320481'
     }
   ],
-  '320500': [
+  320500: [
     {
       city: '苏州市',
       text: '市辖区',
@@ -6239,7 +6239,7 @@ export const areaList = {
       value: '320585'
     }
   ],
-  '320600': [
+  320600: [
     {
       city: '南通市',
       text: '市辖区',
@@ -6286,7 +6286,7 @@ export const areaList = {
       value: '320684'
     }
   ],
-  '320700': [
+  320700: [
     {
       city: '连云港市',
       text: '市辖区',
@@ -6323,7 +6323,7 @@ export const areaList = {
       value: '320724'
     }
   ],
-  '320800': [
+  320800: [
     {
       city: '淮安市',
       text: '市辖区',
@@ -6365,7 +6365,7 @@ export const areaList = {
       value: '320831'
     }
   ],
-  '320900': [
+  320900: [
     {
       city: '盐城市',
       text: '市辖区',
@@ -6417,7 +6417,7 @@ export const areaList = {
       value: '320981'
     }
   ],
-  '321000': [
+  321000: [
     {
       city: '扬州市',
       text: '市辖区',
@@ -6454,7 +6454,7 @@ export const areaList = {
       value: '321084'
     }
   ],
-  '321100': [
+  321100: [
     {
       city: '镇江市',
       text: '市辖区',
@@ -6491,7 +6491,7 @@ export const areaList = {
       value: '321183'
     }
   ],
-  '321200': [
+  321200: [
     {
       city: '泰州市',
       text: '市辖区',
@@ -6528,7 +6528,7 @@ export const areaList = {
       value: '321283'
     }
   ],
-  '321300': [
+  321300: [
     {
       city: '宿迁市',
       text: '市辖区',
@@ -6560,7 +6560,7 @@ export const areaList = {
       value: '321324'
     }
   ],
-  '330100': [
+  330100: [
     {
       city: '杭州市',
       text: '市辖区',
@@ -6632,7 +6632,7 @@ export const areaList = {
       value: '330185'
     }
   ],
-  '330200': [
+  330200: [
     {
       city: '宁波市',
       text: '市辖区',
@@ -6694,7 +6694,7 @@ export const areaList = {
       value: '330283'
     }
   ],
-  '330300': [
+  330300: [
     {
       city: '温州市',
       text: '市辖区',
@@ -6756,7 +6756,7 @@ export const areaList = {
       value: '330382'
     }
   ],
-  '330400': [
+  330400: [
     {
       city: '嘉兴市',
       text: '市辖区',
@@ -6798,7 +6798,7 @@ export const areaList = {
       value: '330483'
     }
   ],
-  '330500': [
+  330500: [
     {
       city: '湖州市',
       text: '市辖区',
@@ -6830,7 +6830,7 @@ export const areaList = {
       value: '330523'
     }
   ],
-  '330600': [
+  330600: [
     {
       city: '绍兴市',
       text: '市辖区',
@@ -6867,7 +6867,7 @@ export const areaList = {
       value: '330683'
     }
   ],
-  '330700': [
+  330700: [
     {
       city: '金华市',
       text: '市辖区',
@@ -6919,7 +6919,7 @@ export const areaList = {
       value: '330784'
     }
   ],
-  '330800': [
+  330800: [
     {
       city: '衢州市',
       text: '市辖区',
@@ -6956,7 +6956,7 @@ export const areaList = {
       value: '330881'
     }
   ],
-  '330900': [
+  330900: [
     {
       city: '舟山市',
       text: '市辖区',
@@ -6983,7 +6983,7 @@ export const areaList = {
       value: '330922'
     }
   ],
-  '331000': [
+  331000: [
     {
       city: '台州市',
       text: '市辖区',
@@ -7035,7 +7035,7 @@ export const areaList = {
       value: '331082'
     }
   ],
-  '331100': [
+  331100: [
     {
       city: '丽水市',
       text: '市辖区',
@@ -7087,7 +7087,7 @@ export const areaList = {
       value: '331181'
     }
   ],
-  '340100': [
+  340100: [
     {
       city: '合肥市',
       text: '市辖区',
@@ -7139,7 +7139,7 @@ export const areaList = {
       value: '340181'
     }
   ],
-  '340200': [
+  340200: [
     {
       city: '芜湖市',
       text: '市辖区',
@@ -7186,7 +7186,7 @@ export const areaList = {
       value: '340225'
     }
   ],
-  '340300': [
+  340300: [
     {
       city: '蚌埠市',
       text: '市辖区',
@@ -7228,7 +7228,7 @@ export const areaList = {
       value: '340323'
     }
   ],
-  '340400': [
+  340400: [
     {
       city: '淮南市',
       text: '市辖区',
@@ -7270,7 +7270,7 @@ export const areaList = {
       value: '340422'
     }
   ],
-  '340500': [
+  340500: [
     {
       city: '马鞍山市',
       text: '市辖区',
@@ -7307,7 +7307,7 @@ export const areaList = {
       value: '340523'
     }
   ],
-  '340600': [
+  340600: [
     {
       city: '淮北市',
       text: '市辖区',
@@ -7334,7 +7334,7 @@ export const areaList = {
       value: '340621'
     }
   ],
-  '340700': [
+  340700: [
     {
       city: '铜陵市',
       text: '市辖区',
@@ -7361,7 +7361,7 @@ export const areaList = {
       value: '340722'
     }
   ],
-  '340800': [
+  340800: [
     {
       city: '安庆市',
       text: '市辖区',
@@ -7418,7 +7418,7 @@ export const areaList = {
       value: '340881'
     }
   ],
-  '341000': [
+  341000: [
     {
       city: '黄山市',
       text: '市辖区',
@@ -7460,7 +7460,7 @@ export const areaList = {
       value: '341024'
     }
   ],
-  '341100': [
+  341100: [
     {
       city: '滁州市',
       text: '市辖区',
@@ -7507,7 +7507,7 @@ export const areaList = {
       value: '341182'
     }
   ],
-  '341200': [
+  341200: [
     {
       city: '阜阳市',
       text: '市辖区',
@@ -7554,7 +7554,7 @@ export const areaList = {
       value: '341282'
     }
   ],
-  '341300': [
+  341300: [
     {
       city: '宿州市',
       text: '市辖区',
@@ -7586,7 +7586,7 @@ export const areaList = {
       value: '341324'
     }
   ],
-  '341500': [
+  341500: [
     {
       city: '六安市',
       text: '市辖区',
@@ -7628,7 +7628,7 @@ export const areaList = {
       value: '341525'
     }
   ],
-  '341600': [
+  341600: [
     {
       city: '亳州市',
       text: '市辖区',
@@ -7655,7 +7655,7 @@ export const areaList = {
       value: '341623'
     }
   ],
-  '341700': [
+  341700: [
     {
       city: '池州市',
       text: '市辖区',
@@ -7682,7 +7682,7 @@ export const areaList = {
       value: '341723'
     }
   ],
-  '341800': [
+  341800: [
     {
       city: '宣城市',
       text: '市辖区',
@@ -7724,7 +7724,7 @@ export const areaList = {
       value: '341881'
     }
   ],
-  '350100': [
+  350100: [
     {
       city: '福州市',
       text: '市辖区',
@@ -7796,7 +7796,7 @@ export const areaList = {
       value: '350182'
     }
   ],
-  '350200': [
+  350200: [
     {
       city: '厦门市',
       text: '市辖区',
@@ -7833,7 +7833,7 @@ export const areaList = {
       value: '350213'
     }
   ],
-  '350300': [
+  350300: [
     {
       city: '莆田市',
       text: '市辖区',
@@ -7865,7 +7865,7 @@ export const areaList = {
       value: '350322'
     }
   ],
-  '350400': [
+  350400: [
     {
       city: '三明市',
       text: '市辖区',
@@ -7932,7 +7932,7 @@ export const areaList = {
       value: '350481'
     }
   ],
-  '350500': [
+  350500: [
     {
       city: '泉州市',
       text: '市辖区',
@@ -7999,7 +7999,7 @@ export const areaList = {
       value: '350583'
     }
   ],
-  '350600': [
+  350600: [
     {
       city: '漳州市',
       text: '市辖区',
@@ -8061,7 +8061,7 @@ export const areaList = {
       value: '350681'
     }
   ],
-  '350700': [
+  350700: [
     {
       city: '南平市',
       text: '市辖区',
@@ -8118,7 +8118,7 @@ export const areaList = {
       value: '350783'
     }
   ],
-  '350800': [
+  350800: [
     {
       city: '龙岩市',
       text: '市辖区',
@@ -8160,7 +8160,7 @@ export const areaList = {
       value: '350881'
     }
   ],
-  '350900': [
+  350900: [
     {
       city: '宁德市',
       text: '市辖区',
@@ -8212,7 +8212,7 @@ export const areaList = {
       value: '350982'
     }
   ],
-  '360100': [
+  360100: [
     {
       city: '南昌市',
       text: '市辖区',
@@ -8264,7 +8264,7 @@ export const areaList = {
       value: '360124'
     }
   ],
-  '360200': [
+  360200: [
     {
       city: '景德镇市',
       text: '市辖区',
@@ -8291,7 +8291,7 @@ export const areaList = {
       value: '360281'
     }
   ],
-  '360300': [
+  360300: [
     {
       city: '萍乡市',
       text: '市辖区',
@@ -8323,7 +8323,7 @@ export const areaList = {
       value: '360323'
     }
   ],
-  '360400': [
+  360400: [
     {
       city: '九江市',
       text: '市辖区',
@@ -8395,7 +8395,7 @@ export const areaList = {
       value: '360483'
     }
   ],
-  '360500': [
+  360500: [
     {
       city: '新余市',
       text: '市辖区',
@@ -8412,7 +8412,7 @@ export const areaList = {
       value: '360521'
     }
   ],
-  '360600': [
+  360600: [
     {
       city: '鹰潭市',
       text: '市辖区',
@@ -8434,7 +8434,7 @@ export const areaList = {
       value: '360681'
     }
   ],
-  '360700': [
+  360700: [
     {
       city: '赣州市',
       text: '市辖区',
@@ -8531,7 +8531,7 @@ export const areaList = {
       value: '360781'
     }
   ],
-  '360800': [
+  360800: [
     {
       city: '吉安市',
       text: '市辖区',
@@ -8603,7 +8603,7 @@ export const areaList = {
       value: '360881'
     }
   ],
-  '360900': [
+  360900: [
     {
       city: '宜春市',
       text: '市辖区',
@@ -8660,7 +8660,7 @@ export const areaList = {
       value: '360983'
     }
   ],
-  '361000': [
+  361000: [
     {
       city: '抚州市',
       text: '市辖区',
@@ -8722,7 +8722,7 @@ export const areaList = {
       value: '361030'
     }
   ],
-  '361100': [
+  361100: [
     {
       city: '上饶市',
       text: '市辖区',
@@ -8789,7 +8789,7 @@ export const areaList = {
       value: '361181'
     }
   ],
-  '370100': [
+  370100: [
     {
       city: '济南市',
       text: '市辖区',
@@ -8846,7 +8846,7 @@ export const areaList = {
       value: '370181'
     }
   ],
-  '370200': [
+  370200: [
     {
       city: '青岛市',
       text: '市辖区',
@@ -8903,7 +8903,7 @@ export const areaList = {
       value: '370285'
     }
   ],
-  '370300': [
+  370300: [
     {
       city: '淄博市',
       text: '市辖区',
@@ -8950,7 +8950,7 @@ export const areaList = {
       value: '370323'
     }
   ],
-  '370400': [
+  370400: [
     {
       city: '枣庄市',
       text: '市辖区',
@@ -8987,7 +8987,7 @@ export const areaList = {
       value: '370481'
     }
   ],
-  '370500': [
+  370500: [
     {
       city: '东营市',
       text: '市辖区',
@@ -9019,7 +9019,7 @@ export const areaList = {
       value: '370523'
     }
   ],
-  '370600': [
+  370600: [
     {
       city: '烟台市',
       text: '市辖区',
@@ -9086,7 +9086,7 @@ export const areaList = {
       value: '370687'
     }
   ],
-  '370700': [
+  370700: [
     {
       city: '潍坊市',
       text: '市辖区',
@@ -9153,7 +9153,7 @@ export const areaList = {
       value: '370786'
     }
   ],
-  '370800': [
+  370800: [
     {
       city: '济宁市',
       text: '市辖区',
@@ -9215,7 +9215,7 @@ export const areaList = {
       value: '370883'
     }
   ],
-  '370900': [
+  370900: [
     {
       city: '泰安市',
       text: '市辖区',
@@ -9252,7 +9252,7 @@ export const areaList = {
       value: '370983'
     }
   ],
-  '371000': [
+  371000: [
     {
       city: '威海市',
       text: '市辖区',
@@ -9279,7 +9279,7 @@ export const areaList = {
       value: '371083'
     }
   ],
-  '371100': [
+  371100: [
     {
       city: '日照市',
       text: '市辖区',
@@ -9306,7 +9306,7 @@ export const areaList = {
       value: '371122'
     }
   ],
-  '371200': [
+  371200: [
     {
       city: '莱芜市',
       text: '市辖区',
@@ -9323,7 +9323,7 @@ export const areaList = {
       value: '371203'
     }
   ],
-  '371300': [
+  371300: [
     {
       city: '临沂市',
       text: '市辖区',
@@ -9390,7 +9390,7 @@ export const areaList = {
       value: '371329'
     }
   ],
-  '371400': [
+  371400: [
     {
       city: '德州市',
       text: '市辖区',
@@ -9452,7 +9452,7 @@ export const areaList = {
       value: '371482'
     }
   ],
-  '371500': [
+  371500: [
     {
       city: '聊城市',
       text: '市辖区',
@@ -9499,7 +9499,7 @@ export const areaList = {
       value: '371581'
     }
   ],
-  '371600': [
+  371600: [
     {
       city: '滨州市',
       text: '市辖区',
@@ -9541,7 +9541,7 @@ export const areaList = {
       value: '371626'
     }
   ],
-  '371700': [
+  371700: [
     {
       city: '菏泽市',
       text: '市辖区',
@@ -9593,7 +9593,7 @@ export const areaList = {
       value: '371728'
     }
   ],
-  '410100': [
+  410100: [
     {
       city: '郑州市',
       text: '市辖区',
@@ -9660,7 +9660,7 @@ export const areaList = {
       value: '410185'
     }
   ],
-  '410200': [
+  410200: [
     {
       city: '开封市',
       text: '市辖区',
@@ -9717,7 +9717,7 @@ export const areaList = {
       value: '410225'
     }
   ],
-  '410300': [
+  410300: [
     {
       city: '洛阳市',
       text: '市辖区',
@@ -9799,7 +9799,7 @@ export const areaList = {
       value: '410381'
     }
   ],
-  '410400': [
+  410400: [
     {
       city: '平顶山市',
       text: '市辖区',
@@ -9856,7 +9856,7 @@ export const areaList = {
       value: '410482'
     }
   ],
-  '410500': [
+  410500: [
     {
       city: '安阳市',
       text: '市辖区',
@@ -9908,7 +9908,7 @@ export const areaList = {
       value: '410581'
     }
   ],
-  '410600': [
+  410600: [
     {
       city: '鹤壁市',
       text: '市辖区',
@@ -9940,7 +9940,7 @@ export const areaList = {
       value: '410622'
     }
   ],
-  '410700': [
+  410700: [
     {
       city: '新乡市',
       text: '市辖区',
@@ -10007,7 +10007,7 @@ export const areaList = {
       value: '410782'
     }
   ],
-  '410800': [
+  410800: [
     {
       city: '焦作市',
       text: '市辖区',
@@ -10064,7 +10064,7 @@ export const areaList = {
       value: '410883'
     }
   ],
-  '410900': [
+  410900: [
     {
       city: '濮阳市',
       text: '市辖区',
@@ -10101,7 +10101,7 @@ export const areaList = {
       value: '410928'
     }
   ],
-  '411000': [
+  411000: [
     {
       city: '许昌市',
       text: '市辖区',
@@ -10138,7 +10138,7 @@ export const areaList = {
       value: '411082'
     }
   ],
-  '411100': [
+  411100: [
     {
       city: '漯河市',
       text: '市辖区',
@@ -10170,7 +10170,7 @@ export const areaList = {
       value: '411122'
     }
   ],
-  '411200': [
+  411200: [
     {
       city: '三门峡市',
       text: '市辖区',
@@ -10207,7 +10207,7 @@ export const areaList = {
       value: '411282'
     }
   ],
-  '411300': [
+  411300: [
     {
       city: '南阳市',
       text: '市辖区',
@@ -10279,7 +10279,7 @@ export const areaList = {
       value: '411381'
     }
   ],
-  '411400': [
+  411400: [
     {
       city: '商丘市',
       text: '市辖区',
@@ -10331,7 +10331,7 @@ export const areaList = {
       value: '411481'
     }
   ],
-  '411500': [
+  411500: [
     {
       city: '信阳市',
       text: '市辖区',
@@ -10388,7 +10388,7 @@ export const areaList = {
       value: '411528'
     }
   ],
-  '411600': [
+  411600: [
     {
       city: '周口市',
       text: '市辖区',
@@ -10445,7 +10445,7 @@ export const areaList = {
       value: '411681'
     }
   ],
-  '411700': [
+  411700: [
     {
       city: '驻马店市',
       text: '市辖区',
@@ -10502,14 +10502,14 @@ export const areaList = {
       value: '411729'
     }
   ],
-  '419000': [
+  419000: [
     {
       city: '省直辖县级行政区划',
       text: '济源市',
       value: '419001'
     }
   ],
-  '420100': [
+  420100: [
     {
       city: '武汉市',
       text: '市辖区',
@@ -10581,7 +10581,7 @@ export const areaList = {
       value: '420117'
     }
   ],
-  '420200': [
+  420200: [
     {
       city: '黄石市',
       text: '市辖区',
@@ -10618,7 +10618,7 @@ export const areaList = {
       value: '420281'
     }
   ],
-  '420300': [
+  420300: [
     {
       city: '十堰市',
       text: '市辖区',
@@ -10665,7 +10665,7 @@ export const areaList = {
       value: '420381'
     }
   ],
-  '420500': [
+  420500: [
     {
       city: '宜昌市',
       text: '市辖区',
@@ -10737,7 +10737,7 @@ export const areaList = {
       value: '420583'
     }
   ],
-  '420600': [
+  420600: [
     {
       city: '襄阳市',
       text: '市辖区',
@@ -10789,7 +10789,7 @@ export const areaList = {
       value: '420684'
     }
   ],
-  '420700': [
+  420700: [
     {
       city: '鄂州市',
       text: '市辖区',
@@ -10811,7 +10811,7 @@ export const areaList = {
       value: '420704'
     }
   ],
-  '420800': [
+  420800: [
     {
       city: '荆门市',
       text: '市辖区',
@@ -10843,7 +10843,7 @@ export const areaList = {
       value: '420881'
     }
   ],
-  '420900': [
+  420900: [
     {
       city: '孝感市',
       text: '市辖区',
@@ -10885,7 +10885,7 @@ export const areaList = {
       value: '420984'
     }
   ],
-  '421000': [
+  421000: [
     {
       city: '荆州市',
       text: '市辖区',
@@ -10932,7 +10932,7 @@ export const areaList = {
       value: '421087'
     }
   ],
-  '421100': [
+  421100: [
     {
       city: '黄冈市',
       text: '市辖区',
@@ -10989,7 +10989,7 @@ export const areaList = {
       value: '421182'
     }
   ],
-  '421200': [
+  421200: [
     {
       city: '咸宁市',
       text: '市辖区',
@@ -11026,7 +11026,7 @@ export const areaList = {
       value: '421281'
     }
   ],
-  '421300': [
+  421300: [
     {
       city: '随州市',
       text: '市辖区',
@@ -11048,7 +11048,7 @@ export const areaList = {
       value: '421381'
     }
   ],
-  '422800': [
+  422800: [
     {
       city: '恩施土家族苗族自治州',
       text: '恩施市',
@@ -11090,7 +11090,7 @@ export const areaList = {
       value: '422828'
     }
   ],
-  '429000': [
+  429000: [
     {
       city: '省直辖县级行政区划',
       text: '仙桃市',
@@ -11112,7 +11112,7 @@ export const areaList = {
       value: '429021'
     }
   ],
-  '430100': [
+  430100: [
     {
       city: '长沙市',
       text: '市辖区',
@@ -11164,7 +11164,7 @@ export const areaList = {
       value: '430181'
     }
   ],
-  '430200': [
+  430200: [
     {
       city: '株洲市',
       text: '市辖区',
@@ -11216,7 +11216,7 @@ export const areaList = {
       value: '430281'
     }
   ],
-  '430300': [
+  430300: [
     {
       city: '湘潭市',
       text: '市辖区',
@@ -11248,7 +11248,7 @@ export const areaList = {
       value: '430382'
     }
   ],
-  '430400': [
+  430400: [
     {
       city: '衡阳市',
       text: '市辖区',
@@ -11315,7 +11315,7 @@ export const areaList = {
       value: '430482'
     }
   ],
-  '430500': [
+  430500: [
     {
       city: '邵阳市',
       text: '市辖区',
@@ -11382,7 +11382,7 @@ export const areaList = {
       value: '430581'
     }
   ],
-  '430600': [
+  430600: [
     {
       city: '岳阳市',
       text: '市辖区',
@@ -11434,7 +11434,7 @@ export const areaList = {
       value: '430682'
     }
   ],
-  '430700': [
+  430700: [
     {
       city: '常德市',
       text: '市辖区',
@@ -11486,7 +11486,7 @@ export const areaList = {
       value: '430781'
     }
   ],
-  '430800': [
+  430800: [
     {
       city: '张家界市',
       text: '市辖区',
@@ -11513,7 +11513,7 @@ export const areaList = {
       value: '430822'
     }
   ],
-  '430900': [
+  430900: [
     {
       city: '益阳市',
       text: '市辖区',
@@ -11550,7 +11550,7 @@ export const areaList = {
       value: '430981'
     }
   ],
-  '431000': [
+  431000: [
     {
       city: '郴州市',
       text: '市辖区',
@@ -11612,7 +11612,7 @@ export const areaList = {
       value: '431081'
     }
   ],
-  '431100': [
+  431100: [
     {
       city: '永州市',
       text: '市辖区',
@@ -11674,7 +11674,7 @@ export const areaList = {
       value: '431129'
     }
   ],
-  '431200': [
+  431200: [
     {
       city: '怀化市',
       text: '市辖区',
@@ -11741,7 +11741,7 @@ export const areaList = {
       value: '431281'
     }
   ],
-  '431300': [
+  431300: [
     {
       city: '娄底市',
       text: '市辖区',
@@ -11773,7 +11773,7 @@ export const areaList = {
       value: '431382'
     }
   ],
-  '433100': [
+  433100: [
     {
       city: '湘西土家族苗族自治州',
       text: '吉首市',
@@ -11815,7 +11815,7 @@ export const areaList = {
       value: '433130'
     }
   ],
-  '440100': [
+  440100: [
     {
       city: '广州市',
       text: '市辖区',
@@ -11877,7 +11877,7 @@ export const areaList = {
       value: '440118'
     }
   ],
-  '440200': [
+  440200: [
     {
       city: '韶关市',
       text: '市辖区',
@@ -11934,7 +11934,7 @@ export const areaList = {
       value: '440282'
     }
   ],
-  '440300': [
+  440300: [
     {
       city: '深圳市',
       text: '市辖区',
@@ -11971,7 +11971,7 @@ export const areaList = {
       value: '440308'
     }
   ],
-  '440400': [
+  440400: [
     {
       city: '珠海市',
       text: '市辖区',
@@ -11993,7 +11993,7 @@ export const areaList = {
       value: '440404'
     }
   ],
-  '440500': [
+  440500: [
     {
       city: '汕头市',
       text: '市辖区',
@@ -12035,7 +12035,7 @@ export const areaList = {
       value: '440523'
     }
   ],
-  '440600': [
+  440600: [
     {
       city: '佛山市',
       text: '市辖区',
@@ -12067,7 +12067,7 @@ export const areaList = {
       value: '440608'
     }
   ],
-  '440700': [
+  440700: [
     {
       city: '江门市',
       text: '市辖区',
@@ -12109,7 +12109,7 @@ export const areaList = {
       value: '440785'
     }
   ],
-  '440800': [
+  440800: [
     {
       city: '湛江市',
       text: '市辖区',
@@ -12161,7 +12161,7 @@ export const areaList = {
       value: '440883'
     }
   ],
-  '440900': [
+  440900: [
     {
       city: '茂名市',
       text: '市辖区',
@@ -12193,7 +12193,7 @@ export const areaList = {
       value: '440983'
     }
   ],
-  '441200': [
+  441200: [
     {
       city: '肇庆市',
       text: '市辖区',
@@ -12240,7 +12240,7 @@ export const areaList = {
       value: '441284'
     }
   ],
-  '441300': [
+  441300: [
     {
       city: '惠州市',
       text: '市辖区',
@@ -12272,7 +12272,7 @@ export const areaList = {
       value: '441324'
     }
   ],
-  '441400': [
+  441400: [
     {
       city: '梅州市',
       text: '市辖区',
@@ -12319,7 +12319,7 @@ export const areaList = {
       value: '441481'
     }
   ],
-  '441500': [
+  441500: [
     {
       city: '汕尾市',
       text: '市辖区',
@@ -12346,7 +12346,7 @@ export const areaList = {
       value: '441581'
     }
   ],
-  '441600': [
+  441600: [
     {
       city: '河源市',
       text: '市辖区',
@@ -12383,7 +12383,7 @@ export const areaList = {
       value: '441625'
     }
   ],
-  '441700': [
+  441700: [
     {
       city: '阳江市',
       text: '市辖区',
@@ -12410,7 +12410,7 @@ export const areaList = {
       value: '441781'
     }
   ],
-  '441800': [
+  441800: [
     {
       city: '清远市',
       text: '市辖区',
@@ -12457,9 +12457,9 @@ export const areaList = {
       value: '441882'
     }
   ],
-  '441900': [],
-  '442000': [],
-  '445100': [
+  441900: [],
+  442000: [],
+  445100: [
     {
       city: '潮州市',
       text: '市辖区',
@@ -12481,7 +12481,7 @@ export const areaList = {
       value: '445122'
     }
   ],
-  '445200': [
+  445200: [
     {
       city: '揭阳市',
       text: '市辖区',
@@ -12513,7 +12513,7 @@ export const areaList = {
       value: '445281'
     }
   ],
-  '445300': [
+  445300: [
     {
       city: '云浮市',
       text: '市辖区',
@@ -12545,7 +12545,7 @@ export const areaList = {
       value: '445381'
     }
   ],
-  '450100': [
+  450100: [
     {
       city: '南宁市',
       text: '市辖区',
@@ -12612,7 +12612,7 @@ export const areaList = {
       value: '450127'
     }
   ],
-  '450200': [
+  450200: [
     {
       city: '柳州市',
       text: '市辖区',
@@ -12669,7 +12669,7 @@ export const areaList = {
       value: '450226'
     }
   ],
-  '450300': [
+  450300: [
     {
       city: '桂林市',
       text: '市辖区',
@@ -12761,7 +12761,7 @@ export const areaList = {
       value: '450332'
     }
   ],
-  '450400': [
+  450400: [
     {
       city: '梧州市',
       text: '市辖区',
@@ -12803,7 +12803,7 @@ export const areaList = {
       value: '450481'
     }
   ],
-  '450500': [
+  450500: [
     {
       city: '北海市',
       text: '市辖区',
@@ -12830,7 +12830,7 @@ export const areaList = {
       value: '450521'
     }
   ],
-  '450600': [
+  450600: [
     {
       city: '防城港市',
       text: '市辖区',
@@ -12857,7 +12857,7 @@ export const areaList = {
       value: '450681'
     }
   ],
-  '450700': [
+  450700: [
     {
       city: '钦州市',
       text: '市辖区',
@@ -12884,7 +12884,7 @@ export const areaList = {
       value: '450722'
     }
   ],
-  '450800': [
+  450800: [
     {
       city: '贵港市',
       text: '市辖区',
@@ -12916,7 +12916,7 @@ export const areaList = {
       value: '450881'
     }
   ],
-  '450900': [
+  450900: [
     {
       city: '玉林市',
       text: '市辖区',
@@ -12958,7 +12958,7 @@ export const areaList = {
       value: '450981'
     }
   ],
-  '451000': [
+  451000: [
     {
       city: '百色市',
       text: '市辖区',
@@ -13025,7 +13025,7 @@ export const areaList = {
       value: '451081'
     }
   ],
-  '451100': [
+  451100: [
     {
       city: '贺州市',
       text: '市辖区',
@@ -13057,7 +13057,7 @@ export const areaList = {
       value: '451123'
     }
   ],
-  '451200': [
+  451200: [
     {
       city: '河池市',
       text: '市辖区',
@@ -13119,7 +13119,7 @@ export const areaList = {
       value: '451281'
     }
   ],
-  '451300': [
+  451300: [
     {
       city: '来宾市',
       text: '市辖区',
@@ -13156,7 +13156,7 @@ export const areaList = {
       value: '451381'
     }
   ],
-  '451400': [
+  451400: [
     {
       city: '崇左市',
       text: '市辖区',
@@ -13198,7 +13198,7 @@ export const areaList = {
       value: '451481'
     }
   ],
-  '460100': [
+  460100: [
     {
       city: '海口市',
       text: '市辖区',
@@ -13225,7 +13225,7 @@ export const areaList = {
       value: '460108'
     }
   ],
-  '460200': [
+  460200: [
     {
       city: '三亚市',
       text: '市辖区',
@@ -13252,9 +13252,9 @@ export const areaList = {
       value: '460205'
     }
   ],
-  '460300': [],
-  '460400': [],
-  '469000': [
+  460300: [],
+  460400: [],
+  469000: [
     {
       city: '省直辖县级行政区划',
       text: '五指山市',
@@ -13331,7 +13331,7 @@ export const areaList = {
       value: '469030'
     }
   ],
-  '500100': [
+  500100: [
     {
       city: '市辖区',
       text: '万州区',
@@ -13453,7 +13453,7 @@ export const areaList = {
       value: '500154'
     }
   ],
-  '500200': [
+  500200: [
     {
       city: '县',
       text: '梁平县',
@@ -13525,7 +13525,7 @@ export const areaList = {
       value: '500243'
     }
   ],
-  '510100': [
+  510100: [
     {
       city: '成都市',
       text: '市辖区',
@@ -13632,7 +13632,7 @@ export const areaList = {
       value: '510185'
     }
   ],
-  '510300': [
+  510300: [
     {
       city: '自贡市',
       text: '市辖区',
@@ -13669,7 +13669,7 @@ export const areaList = {
       value: '510322'
     }
   ],
-  '510400': [
+  510400: [
     {
       city: '攀枝花市',
       text: '市辖区',
@@ -13701,7 +13701,7 @@ export const areaList = {
       value: '510422'
     }
   ],
-  '510500': [
+  510500: [
     {
       city: '泸州市',
       text: '市辖区',
@@ -13743,7 +13743,7 @@ export const areaList = {
       value: '510525'
     }
   ],
-  '510600': [
+  510600: [
     {
       city: '德阳市',
       text: '市辖区',
@@ -13780,7 +13780,7 @@ export const areaList = {
       value: '510683'
     }
   ],
-  '510700': [
+  510700: [
     {
       city: '绵阳市',
       text: '市辖区',
@@ -13832,7 +13832,7 @@ export const areaList = {
       value: '510781'
     }
   ],
-  '510800': [
+  510800: [
     {
       city: '广元市',
       text: '市辖区',
@@ -13874,7 +13874,7 @@ export const areaList = {
       value: '510824'
     }
   ],
-  '510900': [
+  510900: [
     {
       city: '遂宁市',
       text: '市辖区',
@@ -13906,7 +13906,7 @@ export const areaList = {
       value: '510923'
     }
   ],
-  '511000': [
+  511000: [
     {
       city: '内江市',
       text: '市辖区',
@@ -13938,7 +13938,7 @@ export const areaList = {
       value: '511028'
     }
   ],
-  '511100': [
+  511100: [
     {
       city: '乐山市',
       text: '市辖区',
@@ -14000,7 +14000,7 @@ export const areaList = {
       value: '511181'
     }
   ],
-  '511300': [
+  511300: [
     {
       city: '南充市',
       text: '市辖区',
@@ -14052,7 +14052,7 @@ export const areaList = {
       value: '511381'
     }
   ],
-  '511400': [
+  511400: [
     {
       city: '眉山市',
       text: '市辖区',
@@ -14089,7 +14089,7 @@ export const areaList = {
       value: '511425'
     }
   ],
-  '511500': [
+  511500: [
     {
       city: '宜宾市',
       text: '市辖区',
@@ -14146,7 +14146,7 @@ export const areaList = {
       value: '511529'
     }
   ],
-  '511600': [
+  511600: [
     {
       city: '广安市',
       text: '市辖区',
@@ -14183,7 +14183,7 @@ export const areaList = {
       value: '511681'
     }
   ],
-  '511700': [
+  511700: [
     {
       city: '达州市',
       text: '市辖区',
@@ -14225,7 +14225,7 @@ export const areaList = {
       value: '511781'
     }
   ],
-  '511800': [
+  511800: [
     {
       city: '雅安市',
       text: '市辖区',
@@ -14272,7 +14272,7 @@ export const areaList = {
       value: '511827'
     }
   ],
-  '511900': [
+  511900: [
     {
       city: '巴中市',
       text: '市辖区',
@@ -14304,7 +14304,7 @@ export const areaList = {
       value: '511923'
     }
   ],
-  '512000': [
+  512000: [
     {
       city: '资阳市',
       text: '市辖区',
@@ -14326,7 +14326,7 @@ export const areaList = {
       value: '512022'
     }
   ],
-  '513200': [
+  513200: [
     {
       city: '阿坝藏族羌族自治州',
       text: '马尔康市',
@@ -14393,7 +14393,7 @@ export const areaList = {
       value: '513233'
     }
   ],
-  '513300': [
+  513300: [
     {
       city: '甘孜藏族自治州',
       text: '康定市',
@@ -14485,7 +14485,7 @@ export const areaList = {
       value: '513338'
     }
   ],
-  '513400': [
+  513400: [
     {
       city: '凉山彝族自治州',
       text: '西昌市',
@@ -14572,7 +14572,7 @@ export const areaList = {
       value: '513437'
     }
   ],
-  '520100': [
+  520100: [
     {
       city: '贵阳市',
       text: '市辖区',
@@ -14629,7 +14629,7 @@ export const areaList = {
       value: '520181'
     }
   ],
-  '520200': [
+  520200: [
     {
       city: '六盘水市',
       text: '钟山区',
@@ -14651,7 +14651,7 @@ export const areaList = {
       value: '520222'
     }
   ],
-  '520300': [
+  520300: [
     {
       city: '遵义市',
       text: '市辖区',
@@ -14728,7 +14728,7 @@ export const areaList = {
       value: '520382'
     }
   ],
-  '520400': [
+  520400: [
     {
       city: '安顺市',
       text: '市辖区',
@@ -14765,7 +14765,7 @@ export const areaList = {
       value: '520425'
     }
   ],
-  '520500': [
+  520500: [
     {
       city: '毕节市',
       text: '市辖区',
@@ -14812,7 +14812,7 @@ export const areaList = {
       value: '520527'
     }
   ],
-  '520600': [
+  520600: [
     {
       city: '铜仁市',
       text: '市辖区',
@@ -14869,7 +14869,7 @@ export const areaList = {
       value: '520628'
     }
   ],
-  '522300': [
+  522300: [
     {
       city: '黔西南布依族苗族自治州',
       text: '兴义市',
@@ -14911,7 +14911,7 @@ export const areaList = {
       value: '522328'
     }
   ],
-  '522600': [
+  522600: [
     {
       city: '黔东南苗族侗族自治州',
       text: '凯里市',
@@ -14993,7 +14993,7 @@ export const areaList = {
       value: '522636'
     }
   ],
-  '522700': [
+  522700: [
     {
       city: '黔南布依族苗族自治州',
       text: '都匀市',
@@ -15055,7 +15055,7 @@ export const areaList = {
       value: '522732'
     }
   ],
-  '530100': [
+  530100: [
     {
       city: '昆明市',
       text: '市辖区',
@@ -15132,7 +15132,7 @@ export const areaList = {
       value: '530181'
     }
   ],
-  '530300': [
+  530300: [
     {
       city: '曲靖市',
       text: '市辖区',
@@ -15184,7 +15184,7 @@ export const areaList = {
       value: '530381'
     }
   ],
-  '530400': [
+  530400: [
     {
       city: '玉溪市',
       text: '市辖区',
@@ -15236,7 +15236,7 @@ export const areaList = {
       value: '530428'
     }
   ],
-  '530500': [
+  530500: [
     {
       city: '保山市',
       text: '市辖区',
@@ -15268,7 +15268,7 @@ export const areaList = {
       value: '530581'
     }
   ],
-  '530600': [
+  530600: [
     {
       city: '昭通市',
       text: '市辖区',
@@ -15330,7 +15330,7 @@ export const areaList = {
       value: '530630'
     }
   ],
-  '530700': [
+  530700: [
     {
       city: '丽江市',
       text: '市辖区',
@@ -15362,7 +15362,7 @@ export const areaList = {
       value: '530724'
     }
   ],
-  '530800': [
+  530800: [
     {
       city: '普洱市',
       text: '市辖区',
@@ -15419,7 +15419,7 @@ export const areaList = {
       value: '530829'
     }
   ],
-  '530900': [
+  530900: [
     {
       city: '临沧市',
       text: '市辖区',
@@ -15466,7 +15466,7 @@ export const areaList = {
       value: '530927'
     }
   ],
-  '532300': [
+  532300: [
     {
       city: '楚雄彝族自治州',
       text: '楚雄市',
@@ -15518,7 +15518,7 @@ export const areaList = {
       value: '532331'
     }
   ],
-  '532500': [
+  532500: [
     {
       city: '红河哈尼族彝族自治州',
       text: '个旧市',
@@ -15585,7 +15585,7 @@ export const areaList = {
       value: '532532'
     }
   ],
-  '532600': [
+  532600: [
     {
       city: '文山壮族苗族自治州',
       text: '文山市',
@@ -15627,7 +15627,7 @@ export const areaList = {
       value: '532628'
     }
   ],
-  '532800': [
+  532800: [
     {
       city: '西双版纳傣族自治州',
       text: '景洪市',
@@ -15644,7 +15644,7 @@ export const areaList = {
       value: '532823'
     }
   ],
-  '532900': [
+  532900: [
     {
       city: '大理白族自治州',
       text: '大理市',
@@ -15706,7 +15706,7 @@ export const areaList = {
       value: '532932'
     }
   ],
-  '533100': [
+  533100: [
     {
       city: '德宏傣族景颇族自治州',
       text: '瑞丽市',
@@ -15733,7 +15733,7 @@ export const areaList = {
       value: '533124'
     }
   ],
-  '533300': [
+  533300: [
     {
       city: '怒江傈僳族自治州',
       text: '泸水市',
@@ -15755,7 +15755,7 @@ export const areaList = {
       value: '533325'
     }
   ],
-  '533400': [
+  533400: [
     {
       city: '迪庆藏族自治州',
       text: '香格里拉市',
@@ -15772,7 +15772,7 @@ export const areaList = {
       value: '533423'
     }
   ],
-  '540100': [
+  540100: [
     {
       city: '拉萨市',
       text: '市辖区',
@@ -15819,7 +15819,7 @@ export const areaList = {
       value: '540127'
     }
   ],
-  '540200': [
+  540200: [
     {
       city: '日喀则市',
       text: '桑珠孜区',
@@ -15911,7 +15911,7 @@ export const areaList = {
       value: '540237'
     }
   ],
-  '540300': [
+  540300: [
     {
       city: '昌都市',
       text: '卡若区',
@@ -15968,7 +15968,7 @@ export const areaList = {
       value: '540330'
     }
   ],
-  '540400': [
+  540400: [
     {
       city: '林芝市',
       text: '巴宜区',
@@ -16005,7 +16005,7 @@ export const areaList = {
       value: '540426'
     }
   ],
-  '540500': [
+  540500: [
     {
       city: '山南市',
       text: '市辖区',
@@ -16072,7 +16072,7 @@ export const areaList = {
       value: '540531'
     }
   ],
-  '542400': [
+  542400: [
     {
       city: '那曲地区',
       text: '那曲县',
@@ -16129,7 +16129,7 @@ export const areaList = {
       value: '542431'
     }
   ],
-  '542500': [
+  542500: [
     {
       city: '阿里地区',
       text: '普兰县',
@@ -16166,7 +16166,7 @@ export const areaList = {
       value: '542527'
     }
   ],
-  '610100': [
+  610100: [
     {
       city: '西安市',
       text: '市辖区',
@@ -16238,7 +16238,7 @@ export const areaList = {
       value: '610125'
     }
   ],
-  '610200': [
+  610200: [
     {
       city: '铜川市',
       text: '市辖区',
@@ -16265,7 +16265,7 @@ export const areaList = {
       value: '610222'
     }
   ],
-  '610300': [
+  610300: [
     {
       city: '宝鸡市',
       text: '市辖区',
@@ -16332,7 +16332,7 @@ export const areaList = {
       value: '610331'
     }
   ],
-  '610400': [
+  610400: [
     {
       city: '咸阳市',
       text: '市辖区',
@@ -16409,7 +16409,7 @@ export const areaList = {
       value: '610481'
     }
   ],
-  '610500': [
+  610500: [
     {
       city: '渭南市',
       text: '市辖区',
@@ -16471,7 +16471,7 @@ export const areaList = {
       value: '610582'
     }
   ],
-  '610600': [
+  610600: [
     {
       city: '延安市',
       text: '市辖区',
@@ -16543,7 +16543,7 @@ export const areaList = {
       value: '610632'
     }
   ],
-  '610700': [
+  610700: [
     {
       city: '汉中市',
       text: '市辖区',
@@ -16605,7 +16605,7 @@ export const areaList = {
       value: '610730'
     }
   ],
-  '610800': [
+  610800: [
     {
       city: '榆林市',
       text: '市辖区',
@@ -16672,7 +16672,7 @@ export const areaList = {
       value: '610831'
     }
   ],
-  '610900': [
+  610900: [
     {
       city: '安康市',
       text: '市辖区',
@@ -16729,7 +16729,7 @@ export const areaList = {
       value: '610929'
     }
   ],
-  '611000': [
+  611000: [
     {
       city: '商洛市',
       text: '市辖区',
@@ -16771,7 +16771,7 @@ export const areaList = {
       value: '611026'
     }
   ],
-  '620100': [
+  620100: [
     {
       city: '兰州市',
       text: '市辖区',
@@ -16818,14 +16818,14 @@ export const areaList = {
       value: '620123'
     }
   ],
-  '620200': [
+  620200: [
     {
       city: '嘉峪关市',
       text: '市辖区',
       value: '620201'
     }
   ],
-  '620300': [
+  620300: [
     {
       city: '金昌市',
       text: '市辖区',
@@ -16842,7 +16842,7 @@ export const areaList = {
       value: '620321'
     }
   ],
-  '620400': [
+  620400: [
     {
       city: '白银市',
       text: '市辖区',
@@ -16874,7 +16874,7 @@ export const areaList = {
       value: '620423'
     }
   ],
-  '620500': [
+  620500: [
     {
       city: '天水市',
       text: '市辖区',
@@ -16916,7 +16916,7 @@ export const areaList = {
       value: '620525'
     }
   ],
-  '620600': [
+  620600: [
     {
       city: '武威市',
       text: '市辖区',
@@ -16943,7 +16943,7 @@ export const areaList = {
       value: '620623'
     }
   ],
-  '620700': [
+  620700: [
     {
       city: '张掖市',
       text: '市辖区',
@@ -16980,7 +16980,7 @@ export const areaList = {
       value: '620725'
     }
   ],
-  '620800': [
+  620800: [
     {
       city: '平凉市',
       text: '市辖区',
@@ -17022,7 +17022,7 @@ export const areaList = {
       value: '620826'
     }
   ],
-  '620900': [
+  620900: [
     {
       city: '酒泉市',
       text: '市辖区',
@@ -17064,7 +17064,7 @@ export const areaList = {
       value: '620982'
     }
   ],
-  '621000': [
+  621000: [
     {
       city: '庆阳市',
       text: '市辖区',
@@ -17111,7 +17111,7 @@ export const areaList = {
       value: '621027'
     }
   ],
-  '621100': [
+  621100: [
     {
       city: '定西市',
       text: '市辖区',
@@ -17153,7 +17153,7 @@ export const areaList = {
       value: '621126'
     }
   ],
-  '621200': [
+  621200: [
     {
       city: '陇南市',
       text: '市辖区',
@@ -17205,7 +17205,7 @@ export const areaList = {
       value: '621228'
     }
   ],
-  '622900': [
+  622900: [
     {
       city: '临夏回族自治州',
       text: '临夏市',
@@ -17247,7 +17247,7 @@ export const areaList = {
       value: '622927'
     }
   ],
-  '623000': [
+  623000: [
     {
       city: '甘南藏族自治州',
       text: '合作市',
@@ -17289,7 +17289,7 @@ export const areaList = {
       value: '623027'
     }
   ],
-  '630100': [
+  630100: [
     {
       city: '西宁市',
       text: '市辖区',
@@ -17331,7 +17331,7 @@ export const areaList = {
       value: '630123'
     }
   ],
-  '630200': [
+  630200: [
     {
       city: '海东市',
       text: '乐都区',
@@ -17363,7 +17363,7 @@ export const areaList = {
       value: '630225'
     }
   ],
-  '632200': [
+  632200: [
     {
       city: '海北藏族自治州',
       text: '门源回族自治县',
@@ -17385,7 +17385,7 @@ export const areaList = {
       value: '632224'
     }
   ],
-  '632300': [
+  632300: [
     {
       city: '黄南藏族自治州',
       text: '同仁县',
@@ -17407,7 +17407,7 @@ export const areaList = {
       value: '632324'
     }
   ],
-  '632500': [
+  632500: [
     {
       city: '海南藏族自治州',
       text: '共和县',
@@ -17434,7 +17434,7 @@ export const areaList = {
       value: '632525'
     }
   ],
-  '632600': [
+  632600: [
     {
       city: '果洛藏族自治州',
       text: '玛沁县',
@@ -17466,7 +17466,7 @@ export const areaList = {
       value: '632626'
     }
   ],
-  '632700': [
+  632700: [
     {
       city: '玉树藏族自治州',
       text: '玉树市',
@@ -17498,7 +17498,7 @@ export const areaList = {
       value: '632726'
     }
   ],
-  '632800': [
+  632800: [
     {
       city: '海西蒙古族藏族自治州',
       text: '格尔木市',
@@ -17525,7 +17525,7 @@ export const areaList = {
       value: '632823'
     }
   ],
-  '640100': [
+  640100: [
     {
       city: '银川市',
       text: '市辖区',
@@ -17562,7 +17562,7 @@ export const areaList = {
       value: '640181'
     }
   ],
-  '640200': [
+  640200: [
     {
       city: '石嘴山市',
       text: '市辖区',
@@ -17584,7 +17584,7 @@ export const areaList = {
       value: '640221'
     }
   ],
-  '640300': [
+  640300: [
     {
       city: '吴忠市',
       text: '市辖区',
@@ -17616,7 +17616,7 @@ export const areaList = {
       value: '640381'
     }
   ],
-  '640400': [
+  640400: [
     {
       city: '固原市',
       text: '市辖区',
@@ -17648,7 +17648,7 @@ export const areaList = {
       value: '640425'
     }
   ],
-  '640500': [
+  640500: [
     {
       city: '中卫市',
       text: '市辖区',
@@ -17670,7 +17670,7 @@ export const areaList = {
       value: '640522'
     }
   ],
-  '650100': [
+  650100: [
     {
       city: '乌鲁木齐市',
       text: '市辖区',
@@ -17717,7 +17717,7 @@ export const areaList = {
       value: '650121'
     }
   ],
-  '650200': [
+  650200: [
     {
       city: '克拉玛依市',
       text: '市辖区',
@@ -17744,7 +17744,7 @@ export const areaList = {
       value: '650205'
     }
   ],
-  '650400': [
+  650400: [
     {
       city: '吐鲁番市',
       text: '高昌区',
@@ -17761,7 +17761,7 @@ export const areaList = {
       value: '650422'
     }
   ],
-  '650500': [
+  650500: [
     {
       city: '哈密市',
       text: '伊州区',
@@ -17778,7 +17778,7 @@ export const areaList = {
       value: '650522'
     }
   ],
-  '652300': [
+  652300: [
     {
       city: '昌吉回族自治州',
       text: '昌吉市',
@@ -17815,7 +17815,7 @@ export const areaList = {
       value: '652328'
     }
   ],
-  '652700': [
+  652700: [
     {
       city: '博尔塔拉蒙古自治州',
       text: '博乐市',
@@ -17837,7 +17837,7 @@ export const areaList = {
       value: '652723'
     }
   ],
-  '652800': [
+  652800: [
     {
       city: '巴音郭楞蒙古自治州',
       text: '库尔勒市',
@@ -17884,7 +17884,7 @@ export const areaList = {
       value: '652829'
     }
   ],
-  '652900': [
+  652900: [
     {
       city: '阿克苏地区',
       text: '阿克苏市',
@@ -17931,7 +17931,7 @@ export const areaList = {
       value: '652929'
     }
   ],
-  '653000': [
+  653000: [
     {
       city: '克孜勒苏柯尔克孜自治州',
       text: '阿图什市',
@@ -17953,7 +17953,7 @@ export const areaList = {
       value: '653024'
     }
   ],
-  '653100': [
+  653100: [
     {
       city: '喀什地区',
       text: '喀什市',
@@ -18015,7 +18015,7 @@ export const areaList = {
       value: '653131'
     }
   ],
-  '653200': [
+  653200: [
     {
       city: '和田地区',
       text: '和田市',
@@ -18057,7 +18057,7 @@ export const areaList = {
       value: '653227'
     }
   ],
-  '654000': [
+  654000: [
     {
       city: '伊犁哈萨克自治州',
       text: '伊宁市',
@@ -18114,7 +18114,7 @@ export const areaList = {
       value: '654028'
     }
   ],
-  '654200': [
+  654200: [
     {
       city: '塔城地区',
       text: '塔城市',
@@ -18151,7 +18151,7 @@ export const areaList = {
       value: '654226'
     }
   ],
-  '654300': [
+  654300: [
     {
       city: '阿勒泰地区',
       text: '阿勒泰市',
@@ -18188,7 +18188,7 @@ export const areaList = {
       value: '654326'
     }
   ],
-  '659000': [
+  659000: [
     {
       city: '自治区直辖县级行政区划',
       text: '石河子市',

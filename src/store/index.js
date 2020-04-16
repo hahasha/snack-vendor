@@ -6,7 +6,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    cartList: store.get('cartList') ? store.get('cartList') : []
+    cartList: store.get('cartList') ? store.get('cartList') : [],
+    addressList: store.get('addressList') ? store.get('addressList') : []
   },
   mutations: {
     updateCart (state, product) {
@@ -25,6 +26,19 @@ export default new Vuex.Store({
       state.cartList.forEach(item => {
         item[key] = value
       })
+    },
+    addAddress (state, address) {
+      console.log(state.addressList)
+      state.addressList.push(Object.assign(address, { id: state.addressList.length, isDelete: false }))
+      console.log(state.addressList)
+      store.set('addressList', state.addressList)
+    },
+    updateAddress (state, address) {
+      const index = state.addressList.findIndex(item => { return item.id === address.id })
+      if (index !== -1) {
+        state.addressList.splice(index, 1, address)
+      }
+      store.set('addressList', state.addressList)
     }
   },
   actions: {
