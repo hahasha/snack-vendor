@@ -30,8 +30,8 @@
           <cube-form-item :field="fields[5]"></cube-form-item>
       </cube-form-group>
       <cube-form-group>
-          <cube-button class="btn" type="reset">重置</cube-button>
           <cube-button class="btn" type="submit">保存</cube-button>
+          <cube-button class="btn btn-delete" v-show="this.operate.type === 'edit'" @click="deleteHandler">删除收货地址</cube-button>
       </cube-form-group>
   </cube-form>
 </template>
@@ -133,9 +133,11 @@ export default {
     }
   },
   created () {
-    if (this.operate.type === EVENT_EDIT) {
+    if (this.operate.type === EVENT_EDIT && this.operate.data) {
+      const { id, isDelete } = this.operate.data
       this.model = this.operate.data
-      this.model.id = this.operate.data.id
+      this.model.id = id
+      this.model.isDelete = isDelete
     }
   },
   mounted () {
@@ -175,6 +177,11 @@ export default {
         this.updateAddress(this.model)
         this.$router.push('address')
       }
+    },
+    deleteHandler () {
+      this.model.isDelete = true
+      this.updateAddress(this.model)
+      this.$router.push('address')
     },
     ...mapMutations([
       'addAddress',
@@ -242,4 +249,6 @@ export default {
     border-bottom 1px solid #eee
   .btn:first-of-type
     border-top 10px solid #f4f4f4
+  .btn.btn-delete
+    color #f41d1d
 </style>

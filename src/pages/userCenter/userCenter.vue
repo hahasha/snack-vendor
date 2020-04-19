@@ -2,18 +2,25 @@
     <div class="container">
         <topBar :nav="nav"></topBar>
         <div class="shopcart-container">
-          <div class="user-info-wrap">
-            <span class="iconfont icon-avater"></span>
-            <span class="username">sasa</span>
+          <div class="user-info-wrap" v-if="userInfo" @click="editUser">
+            <img class="avatar" v-if="userInfo.avatar_url" :src="userInfo.avatar_url" alt="" >
+            <span class="iconfont icon-avatar" v-else></span>
+            <span class="text">{{userInfo.name}}</span>
             <span class="edit">编辑</span>
+          </div>
+          <div class="user-info-wrap" v-else>
+            <span class="iconfont icon-avatar"></span>
+            <span class="text" @click="login">登录 / 注册</span>
           </div>
           <div class="setting-wrap" @click.stop="clickHandler">
             <div class="set-item" data-type="address">我的收货地址<span class="arrow cubeic-arrow"></span></div>
             <div class="set-item" data-type="collections">我的收藏<span class="arrow cubeic-arrow"></span></div>
             <div class="set-item" data-type="orders">我的订单<span class="arrow cubeic-arrow"></span></div>
             <div class="set-item" data-type="aboutUs">关于我们<span class="arrow cubeic-arrow"></span></div>
-            <div class="set-item switch" @click="switchAcount">切换账户</div>
-            <div class="set-item logout" @click="logout">退出登录</div>
+          </div>
+          <div class="operate-wrap">
+            <div class="operate-item switch" @click="switchUser" v-show="userInfo">切换账户</div>
+            <div class="operate-item logout" @click="logout" v-show="userInfo">退出登录</div>
           </div>
         </div>
         <tab></tab>
@@ -23,6 +30,7 @@
 <script>
 import topBar from '@/components/top-bar/top-bar'
 import Tab from '@/components/tab/tab'
+import { mapMutations } from 'vuex'
 export default {
   data () {
     return {
@@ -31,15 +39,44 @@ export default {
       }
     }
   },
+  computed: {
+    userInfo () {
+      return this.$store.state.currentUser
+    }
+  },
   methods: {
+    login () {
+      this.$router.push('login')
+    },
     clickHandler (e) {
       const type = e.target.dataset.type
       this.$router.push(type)
     },
-    switchAcount () {
-    },
+    switchUser () {},
     logout () {
-    }
+      this.$createDialog({
+        type: 'confirm',
+        icon: 'cubeic-alert',
+        title: '是否退出登录',
+        confirmBtn: {
+          text: '退出',
+          active: true
+        },
+        cancelBtn: {
+          text: '取消',
+          active: false
+        },
+        onConfirm: () => {
+          this.switchAccount(null)
+        }
+      }).show()
+    },
+    editUser () {
+      this.$router.push('editUserInfo')
+    },
+    ...mapMutations([
+      'switchAccount'
+    ])
   },
   components: {
     topBar,
@@ -64,9 +101,11 @@ export default {
       font-size 16px
       display flex
       align-items center
-      .icon-avater
+      .icon-avatar
         font-size 30px
         margin-right 10px
+      .text
+        font-size 14px
       .edit
         font-size 12px
         display inline-block
@@ -75,9 +114,9 @@ export default {
         border-radius 6px
         position absolute
         right 20px
-    .setting-wrap
+    .setting-wrap, .operate-wrap
       width 100%
-      .set-item
+      .set-item, .operate-item
         width 100%
         height 50px
         padding 0 10px

@@ -6,6 +6,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    currentUser: null,
+    userList: store.get('userList') ? store.get('userList') : [],
     cartList: store.get('cartList') ? store.get('cartList') : [],
     addressList: store.get('addressList') ? store.get('addressList') : []
   },
@@ -39,6 +41,22 @@ export default new Vuex.Store({
         state.addressList.splice(index, 1, address)
       }
       store.set('addressList', state.addressList)
+    },
+    addUser (state, user) {
+      state.userList.push(Object.assign(user, { id: state.userList.length, avatar_url: '' }))
+      state.currentUser = user
+      store.set('userList', state.userList)
+    },
+    updateUser (state, user) {
+      const index = state.userList.findIndex(item => { return item.id === user.id })
+      if (index !== -1) {
+        state.userList.splice(index, 1, user)
+      }
+      state.currentUser = user
+      store.set('userList', state.userList)
+    },
+    switchAccount (state, user) {
+      state.currentUser = user
     }
   },
   actions: {

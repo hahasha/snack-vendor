@@ -3,7 +3,7 @@
         <topBar :nav="nav"></topBar>
         <div class="about-us-container">
             <div class="avatar-wrap">
-                <span class="iconfont icon-avater"></span>
+                <span class="iconfont icon-avatar"></span>
             </div>
             <div class="version">V0.1.1</div>
             <div class="author">Created By sasa</div>

@@ -11,6 +11,10 @@ import collections from '@/pages/collections/collections'
 import address from '@/pages/address/address'
 import addAddress from '@/pages/addAddress/addAddress'
 import editAddress from '@/pages/editAddress/editAddress'
+import login from '@/pages/login/login'
+import editUserInfo from '@/pages/editUserInfo/editUserInfo'
+import resetPassword from '@/pages/resetPassword/resetPassword'
+import modifyName from '@/pages/modifyName/modifyName'
 
 Vue.use(VueRouter)
 
@@ -69,6 +73,26 @@ const routes = [
     name: 'product',
     path: '/product/:id',
     component: product
+  },
+  {
+    name: 'login',
+    path: '/login',
+    component: login
+  },
+  {
+    name: 'editUserInfo',
+    path: '/editUserInfo',
+    component: editUserInfo
+  },
+  {
+    name: 'resetPassword',
+    path: '/resetPassword',
+    component: resetPassword
+  },
+  {
+    name: 'modifyName',
+    path: '/modifyName',
+    component: modifyName
   }
 ]
 

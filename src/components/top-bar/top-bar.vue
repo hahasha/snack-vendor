@@ -43,7 +43,6 @@ export default {
     background-color #ab956c
     color #fff
     font-size 14px
-    letter-spacing 1px
     .nav
       position relative
     .nav .back
