@@ -37,7 +37,7 @@
                 <span class="total-count">全选({{totalCount}})</span>
               </div>
               <span class="total-price">合计：¥{{totalPrice}}</span>
-              <span class="place-order">去结算</span>
+              <span class="place-order" @click="placeOrder">去结算</span>
             </div>
         </div>
         <div class="shopcart-container" v-else>
@@ -120,6 +120,9 @@ export default {
           isChecked: true
         })
       }
+    },
+    placeOrder () {
+      this.$router.push('confirmOrder')
     },
     ...mapMutations([
       'updateCart',

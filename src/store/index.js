@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { store } from '@/assets/js/util.js'
+import { store, randomNum } from '@/assets/js/util.js'
 
 Vue.use(Vuex)
 
@@ -9,7 +9,8 @@ export default new Vuex.Store({
     currentUser: null,
     userList: store.get('userList') ? store.get('userList') : [],
     cartList: store.get('cartList') ? store.get('cartList') : [],
-    addressList: store.get('addressList') ? store.get('addressList') : []
+    addressList: store.get('addressList') ? store.get('addressList') : [],
+    orderList: store.get('orderList') ? store.get('orderList') : []
   },
   mutations: {
     updateCart (state, product) {
@@ -57,6 +58,16 @@ export default new Vuex.Store({
     },
     switchAccount (state, user) {
       state.currentUser = user
+    },
+    saveOrder (state, order) {
+      state.orderList.push(Object.assign(order, {
+        id: state.orderList.length,
+        order_num: randomNum(),
+        status: 1,
+        create_time: (new Date()).getTime()
+      }))
+      store.set('orderList', state.orderList)
+      store.remove('cartList')
     }
   },
   actions: {

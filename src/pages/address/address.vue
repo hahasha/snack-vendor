@@ -10,7 +10,7 @@
                     <span class="iconfont icon-address-school" v-else-if="item.label==='学校'"></span>
                     <span class="iconfont icon-default" v-else>{{item.name.slice(-1)}}</span>
                 </div>
-                <div class="info-wrap">
+                <div class="info-wrap" @click="selectHandler(item)">
                     <p class="user-info">
                         <span class="name">{{item.name}}</span>
                         <span class="tel">{{item.tel}}</span>
@@ -60,6 +60,17 @@ export default {
           data: item
         }
       })
+    },
+    selectHandler (item) {
+      if (this.$route.params.type === 'select') { // 进行的是确认订单时选择地址的操作
+        this.$router.push({
+          name: 'confirmOrder',
+          params: {
+            status: 'selected',
+            selectedAddress: item
+          }
+        })
+      }
     }
   },
   components: {

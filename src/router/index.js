@@ -15,6 +15,9 @@ import login from '@/pages/login/login'
 import editUserInfo from '@/pages/editUserInfo/editUserInfo'
 import resetPassword from '@/pages/resetPassword/resetPassword'
 import modifyName from '@/pages/modifyName/modifyName'
+import confirmOrder from '@/pages/confirmOrder/confirmOrder'
+import orderDetail from '@/pages/orderDetail/orderDetail'
+import theme from '@/pages/theme/theme'
 
 Vue.use(VueRouter)
 
@@ -93,6 +96,21 @@ const routes = [
     name: 'modifyName',
     path: '/modifyName',
     component: modifyName
+  },
+  {
+    name: 'confirmOrder',
+    path: '/confirmOrder',
+    component: confirmOrder
+  },
+  {
+    name: 'orderDetail',
+    path: '/orderDetail',
+    component: orderDetail
+  },
+  {
+    name: 'theme',
+    path: '/theme',
+    component: theme
   }
 ]
 

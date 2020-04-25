@@ -12,7 +12,7 @@
           <div class="theme-wrap">
               <h2 class="title">精选主题</h2>
               <div class="theme-content">
-                  <div class="theme-item" v-for="(item, index) in themes" :key="index">
+                  <div class="theme-item" v-for="(item, index) in themes" :key="index" @click="themeClickHandler(item.id)">
                       <img :src="item.img_url" alt="">
                   </div>
               </div>
@@ -92,6 +92,14 @@ export default {
     },
     clickHandler (item) {
       this.$router.push(`product/${item.id}`)
+    },
+    themeClickHandler (id) {
+      this.$router.push({
+        name: 'theme',
+        query: {
+          theme_id: id
+        }
+      })
     }
   },
   components: {

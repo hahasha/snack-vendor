@@ -69,7 +69,7 @@ export default {
         // 如果当前用户存在,再判断密码是否正确
         if (this.userList[index].password === this.model.password) {
           this.switchAccount(this.userList[index])
-          this.$router.push('userCenter')
+          this.$router.go(-1)
         } else {
           this.$createDialog({
             type: 'alert',
@@ -80,7 +80,7 @@ export default {
       } else {
         this.addUser(this.model)
         this.switchAccount(this.userList[this.userList.length - 1])
-        this.$router.push('userCenter')
+        this.$router.go(-1)
       }
     },
     ...mapMutations([
