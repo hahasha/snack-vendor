@@ -1,5 +1,6 @@
 const path = require('path')
 const appData = require('./public/data.json')
+const webpack = require('webpack')
 
 function resolve (dir) {
   return path.join(__dirname, dir)
@@ -64,5 +65,9 @@ module.exports = {
       .set('pages', resolve('src/pages'))
       .set('assets', resolve('src/assets'))
       .set('api', resolve('src/api'))
+
+    config.plugin('context')
+      .use(webpack.ContextReplacementPlugin,
+        [/moment[/\\]locale$/, /zh-cn/])
   }
 }
