@@ -8,7 +8,7 @@
             <span class="iconfont icon-cart"></span>
         </div>
         <div class="head-img-wrap">
-            <img :src="productInfo.img_url" alt="">
+            <img :src="productInfo.main_img_url" alt="">
         </div>
         <div class="operate-wrap">
             <div class="like" @click="collect">
@@ -43,11 +43,8 @@
                 <div class="detail-wrap none" v-else>暂无详细信息</div>
             </cube-tab-panel>
             <cube-tab-panel label="产品参数">
-                <div class="attr-wrap">
-                  <div class="attr-item"><span>品名</span>{{attrs.name}}</div>
-                  <div class="attr-item"><span>口味</span>{{attrs.taste}}</div>
-                  <div class="attr-item"><span>产地</span>{{attrs.origin}}</div>
-                  <div class="attr-item"><span>保质期</span>{{attrs.shelf_life}}</div>
+                <div class="attr-wrap" v-for="(item, index) in attrs" :key="index">
+                  <div class="attr-item"><span>{{item.name}}</span>{{item.detail}}</div>
                 </div>
             </cube-tab-panel>
             <cube-tab-panel label="售后保证">
@@ -61,6 +58,7 @@
 
 <script>
 import { getProductById } from '@/api/api'
+import { baseImgUrl } from '@/api/http'
 import topBar from '@/components/top-bar/top-bar'
 import Bubble from '@/components/bubble/bubble'
 import { mapMutations } from 'vuex'
@@ -90,7 +88,7 @@ export default {
       return this.productInfo.stock && this.productInfo.stock > 0 ? '有货' : '缺货'
     },
     attrs () {
-      return this.productInfo.attrs ? this.productInfo.attrs : {}
+      return this.productInfo.attr ? this.productInfo.attr : {}
     },
     details () {
       return this.productInfo.details && this.productInfo.details.length > 0 ? this.productInfo.details : ''
@@ -111,7 +109,9 @@ export default {
       getProductById({
         id: this.currentId
       }).then((data) => {
-        this.productInfo = data
+        const list = data.data[0]
+        list.main_img_url = baseImgUrl + list.main_img_url
+        this.productInfo = list
       })
     },
     collect () {

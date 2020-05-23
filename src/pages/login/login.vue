@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { loginOrRegister } from '@/api/api'
 import topBar from '@/components/top-bar/top-bar'
 import { mapMutations } from 'vuex'
 export default {
@@ -64,24 +65,42 @@ export default {
   },
   methods: {
     submitHandler () {
-      const index = this.userList.findIndex(item => { return item.name === this.model.name })
-      if (index !== -1) {
-        // 如果当前用户存在,再判断密码是否正确
-        if (this.userList[index].password === this.model.password) {
-          this.switchAccount(this.userList[index])
-          this.$router.go(-1)
-        } else {
+      // const index = this.userList.findIndex(item => { return item.name === this.model.name })
+      // if (index !== -1) {
+      //   // 如果当前用户存在,再判断密码是否正确
+      //   if (this.userList[index].password === this.model.password) {
+      //     this.switchAccount(this.userList[index])
+      //     this.$router.go(-1)
+      //   } else {
+      //     this.$createDialog({
+      //       type: 'alert',
+      //       content: '密码错误',
+      //       icon: 'cubeic-alert'
+      //     }).show()
+      //   }
+      // } else {
+      //   this.addUser(this.model)
+      //   this.switchAccount(this.userList[this.userList.length - 1])
+      //   this.$router.go(-1)
+      // }
+      var userParam = {
+        username: this.model.name,
+        password: this.model.password
+      }
+      console.log(userParam)
+      loginOrRegister(userParam).then((res) => {
+        console.log(res)
+        if (res.code !== 0) {
           this.$createDialog({
             type: 'alert',
             content: '密码错误',
             icon: 'cubeic-alert'
           }).show()
+        } else {
+          this.switchAccount(res.data.userdata)
+          this.$router.go(-1)
         }
-      } else {
-        this.addUser(this.model)
-        this.switchAccount(this.userList[this.userList.length - 1])
-        this.$router.go(-1)
-      }
+      })
     },
     ...mapMutations([
       'addUser',

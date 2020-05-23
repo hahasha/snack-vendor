@@ -5,15 +5,15 @@
           <cube-slide :data="slides">
             <cube-slide-item v-for="(item, index) in slides" :key="index">
               <a href="">
-                <img :src="item.img_url" alt="">
+                <img :src="item.url" alt="">
               </a>
             </cube-slide-item>
           </cube-slide>
           <div class="theme-wrap">
               <h2 class="title">精选主题</h2>
               <div class="theme-content">
-                  <div class="theme-item" v-for="(item, index) in themes" :key="index" @click="themeClickHandler(item.id)">
-                      <img :src="item.img_url" alt="">
+                  <div class="theme-item" v-for="(item, index) in themes" :key="index" @click="themeClickHandler(item)">
+                      <img :src="item.topic_img_url" alt="">
                   </div>
               </div>
           </div>
@@ -21,11 +21,10 @@
               <h2 class="title">最近新品</h2>
               <div class="product-content">
                   <div class="product" v-for="(item, index) in newProducts" :key="index" @click="clickHandler(item)">
-                      <img :src="item.img_url" alt="">
+                      <img :src="item.main_img_url" alt="">
                       <div class="desc">
                           <p class="name-wrap">
                               <span class="name">{{item.name}}</span>
-                              <span class="spec">{{item.spec}}</span>
                           </p>
                           <span class="price">¥{{item.price}}</span>
                       </div>
@@ -38,18 +37,19 @@
 </template>
 
 <script>
-import { getSliders, getThemes, getProducts } from '@/api/api'
+import { getSliders, getThemes, getproductTop } from '@/api/api'
+import { baseImgUrl } from '@/api/http'
 import topBar from '@/components/top-bar/top-bar'
 import Tab from '@/components/tab/tab'
-const NEW_PRODUCT_COUNT = 3
+const NEW_PRODUCT_COUNT = 5
 
-function compareFn (key) {
-  return function (a, b) {
-    const value1 = a[key]
-    const value2 = b[key]
-    return value2 - value1
-  }
-}
+// function compareFn (key) {
+//   return function (a, b) {
+//     const value1 = a[key]
+//     const value2 = b[key]
+//     return value2 - value1
+//   }
+// }
 
 export default {
   data () {
@@ -65,39 +65,74 @@ export default {
   created () {
     this.getSliders()
     this.getThemes()
-    this.getProducts()
+    this.getproductTop()
   },
   methods: {
     getSliders () {
-      getSliders().then((slides) => {
-        this.slides = slides
+      var idParam = { id: 1 }
+      getSliders(idParam).then((res) => {
+        if (res.code === 0) {
+          var list = res.data.list
+          list.forEach((item, index) => {
+            item.url = baseImgUrl + item.url
+          })
+          this.slides = list
+        } else {
+          alert('result is null')
+          console.log(res)
+        }
+        // this.slides = slides
       })
     },
     getThemes () {
-      getThemes().then((themes) => {
-        this.themes = themes
+      getThemes().then((res) => {
+        if (res.code === 0) {
+          var list = res.data
+          list.forEach((item, index) => {
+            item.topic_img_url = baseImgUrl + item.topic_img_url
+            item.head_img_url = baseImgUrl + item.head_img_url
+          })
+          this.themes = list
+        } else {
+          alert('result is null')
+          console.log(res)
+        }
+        // this.themes = themes
       })
     },
-    getProducts () {
-      getProducts().then((products) => {
-        const sortedArr = products.sort(compareFn('create_time'))
-        let count = 0
-        sortedArr.forEach(item => {
-          if (count < NEW_PRODUCT_COUNT) {
-            this.newProducts.push(item)
-          }
-          count++
-        })
+    // 新品
+    getproductTop () {
+      var params = { num: NEW_PRODUCT_COUNT }
+      getproductTop(params).then((res) => {
+        if (res.code === 0) {
+          var list = res.data
+          list.forEach((item, index) => {
+            item.main_img_url = baseImgUrl + item.main_img_url
+            item.head_img_url = baseImgUrl + item.head_img_url
+          })
+          this.newProducts = list
+        } else {
+          alert('result is null')
+          console.log(res)
+        }
+        // const sortedArr = products.sort(compareFn('create_time'))
+        // let count = 0
+        // sortedArr.forEach(item => {
+        //   if (count < NEW_PRODUCT_COUNT) {
+        //     this.newProducts.push(item)
+        //   }
+        //   count++
+        // })
       })
     },
     clickHandler (item) {
       this.$router.push(`product/${item.id}`)
     },
-    themeClickHandler (id) {
+    themeClickHandler (item) {
       this.$router.push({
         name: 'theme',
         query: {
-          theme_id: id
+          item: item
         }
       })
     }
@@ -163,7 +198,7 @@ export default {
     .product .desc
         width 100%
         position absolute
-        bottom 10px
+        bottom 0px
         font-size 14px
         text-align center
     .product .desc .name-wrap

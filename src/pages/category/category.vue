@@ -5,8 +5,8 @@
       <div class="left-panel">
           <cube-scroll>
               <cube-tab-bar v-model="currrentIndex">
-                <cube-tab v-for="(item, index) in categories" :key="index" :label="item.title" :value="item.id">
-                  {{item.title}}
+                <cube-tab v-for="(item, index) in categories" :key="index" :label="item.category_name" :value="index">
+                  {{item.category_name}}
                 </cube-tab>
               </cube-tab-bar>
           </cube-scroll>
@@ -14,16 +14,15 @@
       <div class="right-panel">
           <cube-scroll ref="scroll">
               <div class="head-img-wrap" >
-                  <img :src="c_category.head_img_url" alt="">
+                  <img :src="c_category.url" alt="">
               </div>
               <ul class="product-wrap">
                   <li class="product" v-for="(item, index) in c_products" :key="index" @click="clickHandler(item)">
                       <div class="img-wrap">
-                          <img :src="item.img_url" alt="">
+                          <img :src="item.main_img_url" alt="">
                       </div>
                       <p class="desc">
-                          <span class="name">{{item.name}}</span>
-                          <span class="spec">{{item.spec}}</span>
+                          <span class="name">{{item.product_name}}</span>
                       </p>
                   </li>
               </ul>
@@ -35,7 +34,8 @@
 </template>
 
 <script>
-import { getCategories, getProducts } from '@/api/api'
+import { getCategories } from '@/api/api'
+import { baseImgUrl } from '@/api/http'
 import topBar from '@/components/top-bar/top-bar'
 import Tab from '@/components/tab/tab'
 export default {
@@ -44,37 +44,46 @@ export default {
       nav: {
         title: '分类'
       },
-      currrentIndex: 1,
+      currrentIndex: 0,
       categories: [],
       products: []
     }
   },
   computed: {
     c_products () {
-      return this.products.filter((item) => item.category_id === this.currrentIndex)
+      return this.c_category.products
     },
     c_category () {
-      return this.categories.length > 0 ? this.categories[this.currrentIndex - 1] : {}
+      return this.categories.length > 0 ? this.categories[this.currrentIndex] : {}
     }
   },
   created () {
     this.getCategories()
-    this.getProducts()
+    // this.getProducts()
   },
   methods: {
     getCategories () {
       getCategories().then((categories) => {
-        this.categories = categories
+        console.log(categories)
+        if (categories.code === 0) {
+          categories.data.forEach(item => {
+            item.url = baseImgUrl + item.url
+            item.products.forEach(pitem => {
+              pitem.main_img_url = baseImgUrl + pitem.main_img_url
+            })
+          })
+          this.categories = categories.data
+        }
       })
     },
-    getProducts () {
-      getProducts().then((products) => {
-        this.products = products
-      })
-    },
+    // getProducts () {
+    //   getProducts().then((products) => {
+    //     this.products = products
+    //   })
+    // },
     clickHandler (item) {
       this.$router.push({
-        path: `product/${item.id}`
+        path: `product/${item.product_id}`
       })
     }
   },

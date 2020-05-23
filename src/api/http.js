@@ -1,18 +1,30 @@
 import axios from 'axios'
+import QS from 'qs'
 
-const ERR_OK = 0
-
-export function get (url) {
-  return function (params) {
-    return axios.get(url, {
+export function get (url, params) {
+  return new Promise((resolve, reject) => {
+    axios.get(url, {
       params
-    }).then((res) => {
-      const { errno, data } = res.data
-      if (errno === ERR_OK) {
-        return data
-      }
-    }).catch((err) => {
-      console.log(err)
     })
-  }
+      .then(res => {
+        resolve(res.data)
+      })
+      .catch(err => {
+        reject(err.data)
+      })
+  })
 }
+
+export function post (url, params) {
+  return new Promise((resolve, reject) => {
+    axios.post(url, QS.stringify(params))
+      .then(res => {
+        resolve(res.data)
+      })
+      .catch(err => {
+        reject(err.data)
+      })
+  })
+}
+
+export const baseImgUrl = 'http://localhost:3000/images'

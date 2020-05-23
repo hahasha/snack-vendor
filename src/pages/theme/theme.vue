@@ -3,16 +3,15 @@
     <topBar :nav="nav"></topBar>
     <div class="theme-container">
       <div class="head-img-wrap">
-        <img :src="theme.img_url" alt="">
+        <img :src="head_img" alt="">
       </div>
       <ul class="product-list">
         <li class="product" v-for="(item, index) in products" :key="index" @click="clickHandler(item)">
           <div class="img-wrap">
-            <img :src="item.img_url" alt="" class="wrap">
+            <img :src="item.main_img_url" alt="" class="wrap">
           </div>
           <div class="info-wrap">
             <span class="name">{{item.name}}</span>
-            <span class="spec">{{item.spec}}</span>
           </div>
           <span class="price">¥{{item.price}}</span>
         </li>
@@ -23,7 +22,8 @@
 
 <script>
 import topBar from '@/components/top-bar/top-bar'
-import { getThemes, getProducts } from '@/api/api'
+import { getThemeProduct } from '@/api/api'
+import { baseImgUrl } from '@/api/http'
 export default {
   data () {
     return {
@@ -32,28 +32,33 @@ export default {
         back: true
       },
       theme: {},
+      head_img: '',
       products: []
     }
   },
   created () {
-    const id = Number(this.$route.query.theme_id)
+    const theme = this.$route.query.item
+    const id = Number(theme.theme_id)
+    this.head_img = theme.head_img_url
+    this.nav.title = theme.theme_name
     this.getTheme(id)
-    this.getProducts(id)
+    console.log(this.$route.query)
   },
   methods: {
     getTheme (id) {
-      getThemes().then((themes) => {
-        this.theme = themes.filter(item => item.id === id)[0]
-        this.setTitle()
+      var params = { id }
+      getThemeProduct(params).then((res) => {
+        if (res.code === 0) {
+          var list = res.data
+          list.forEach((item, index) => {
+            item.main_img_url = baseImgUrl + item.main_img_url
+          })
+          this.products = list
+        } else {
+          alert('result is null')
+          console.log(res)
+        }
       })
-    },
-    getProducts (id) {
-      getProducts().then((products) => {
-        this.products = products.filter(item => item.theme_id === id)
-      })
-    },
-    setTitle () {
-      this.nav.title = this.theme.text
     },
     clickHandler (item) {
       this.$router.push(`product/${item.id}`)
