@@ -1,58 +1,63 @@
 <template>
 <div class="container">
   <topBar :nav="nav"></topBar>
-  <div class="product-container">
-    <div class="head-wrap">
-        <div class="icon-cart-wrap" @click="goCart">
-            <bubble :num="cartCount"></bubble>
-            <span class="iconfont icon-cart"></span>
-        </div>
-        <div class="head-img-wrap">
-            <img :src="productInfo.main_img_url" alt="">
-        </div>
-        <div class="operate-wrap">
-            <div class="like" @click="collect">
-                <div v-if="like">
-                  <span>已收藏</span>
-                  <span class="iconfont icon-star-active"></span>
-                </div>
-                <div else>
-                  <span>收藏</span>
-                  <span class="iconfont icon-star"></span>
-                </div>
-            </div>
-            <div class="cart" @click="addCart">
-                <span>加入购物车</span>
-                <span class="iconfont icon-cart"></span>
-            </div>
-        </div>
-        <div class="info-wrap">
-            <span class="stock">{{showStock}}</span>
-            <span class="price">¥{{productInfo.price}}</span>
-        </div>
-    </div>
-    <div class="tab-wrap">
-        <cube-tab-bar v-model="selectedTab" :data="tabs" show-slider></cube-tab-bar>
-        <cube-tab-panels v-model="selectedTab">
-            <cube-tab-panel label="商品详情" >
-                <div class="detail-wrap" v-if="details">
-                    <div v-for="(item, index) in details" :key="index">
-                        <img :src="item.d_img_url" alt="">
+  <cube-scroll>
+    <div class="product-container">
+      <div class="head-wrap">
+          <div class="icon-cart-wrap" @click="goCart">
+              <bubble :num="cartCount"></bubble>
+              <span class="iconfont icon-cart"></span>
+          </div>
+          <div class="head-img-wrap">
+              <img :src="productInfo.main_img_url | toFullPath" alt="">
+          </div>
+          <div class="operate-wrap">
+              <div class="like" @click="collect">
+                  <div v-if="like">
+                    <span>已收藏</span>
+                    <span class="iconfont icon-star-active"></span>
+                  </div>
+                  <div else>
+                    <span>收藏</span>
+                    <span class="iconfont icon-star"></span>
+                  </div>
+              </div>
+              <div class="cart" @click="addCart">
+                  <span>加入购物车</span>
+                  <span class="iconfont icon-cart"></span>
+              </div>
+          </div>
+          <div class="info-wrap">
+              <span class="stock">{{showStock}}</span>
+              <span class="price">¥{{productInfo.price}}</span>
+          </div>
+      </div>
+      <div class="tab-wrap">
+          <cube-tab-bar v-model="selectedTab" :data="tabs" show-slider></cube-tab-bar>
+          <cube-tab-panels v-model="selectedTab">
+              <cube-tab-panel label="商品详情" >
+                  <div class="detail-wrap" v-if="isEmpty(productInfo.details)">
+                      <div v-for="item in productInfo.details" :key="item.id">
+                          <img :src="item.url | toFullPath" alt="">
+                      </div>
+                  </div>
+                  <div class="detail-wrap none" v-else>暂无详细信息</div>
+              </cube-tab-panel>
+              <cube-tab-panel label="产品参数">
+                  <div class="attr-wrap" v-if="isEmpty(productInfo.properties)">
+                    <div v-for="item in productInfo.properties" :key="item.id">
+                      <div class="attr-item"><span>{{item.name}}</span>{{item.detail}}</div>
                     </div>
-                </div>
-                <div class="detail-wrap none" v-else>暂无详细信息</div>
-            </cube-tab-panel>
-            <cube-tab-panel label="产品参数">
-                <div class="attr-wrap" v-for="(item, index) in attrs" :key="index">
-                  <div class="attr-item"><span>{{item.name}}</span>{{item.detail}}</div>
-                </div>
-            </cube-tab-panel>
-            <cube-tab-panel label="售后保证">
-                <div class="after-sale-wrap">{{productInfo.after_sale}}</div>
-            </cube-tab-panel>
-        </cube-tab-panels>
+                  </div>
+                  <div class="detail-wrap none" v-else>暂无详细信息</div>
+              </cube-tab-panel>
+              <cube-tab-panel label="售后保证">
+                  <div class="after-sale-wrap">七天无理由退换</div>
+              </cube-tab-panel>
+          </cube-tab-panels>
+      </div>
     </div>
-  </div>
+  </cube-scroll>
 </div>
 </template>
 
@@ -61,7 +66,7 @@ import { getProductById } from '@/api/api'
 import { baseImgUrl } from '@/api/http'
 import topBar from '@/components/top-bar/top-bar'
 import Bubble from '@/components/bubble/bubble'
-import { mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 export default {
   data () {
     return {
@@ -70,7 +75,6 @@ export default {
         back: true
       },
       like: false,
-      cartCount: 0,
       productInfo: {},
       selectedTab: '商品详情',
       tabs: [{
@@ -84,34 +88,45 @@ export default {
     }
   },
   computed: {
+    ...mapGetters([
+      'cartList'
+    ]),
+    cartCount () {
+      const product = this.cartList.filter(item => item.id === this.currentId)[0]
+      if (this.isEmpty(product)) {
+        return 0
+      } else {
+        return product.count
+      }
+    },
     showStock () {
       return this.productInfo.stock && this.productInfo.stock > 0 ? '有货' : '缺货'
-    },
-    attrs () {
-      return this.productInfo.attr ? this.productInfo.attr : {}
-    },
-    details () {
-      return this.productInfo.details && this.productInfo.details.length > 0 ? this.productInfo.details : ''
-    },
-    cartList () {
-      return this.$store.state.cartList
     }
   },
   created () {
     this.getProductInfo()
-    const index = this.cartList.findIndex(item => { return item.id === this.currentId })
-    if (index !== -1) {
-      this.cartCount = this.cartList[index].isDelete ? 0 : this.cartList[index].count
+  },
+  filters: {
+    toFullPath (value) {
+      if (!value) return ''
+      return baseImgUrl + value
     }
   },
   methods: {
+    isEmpty (e) {
+      var t
+      for (t in e) {
+        return !1
+      }
+      return !0
+    },
     getProductInfo () {
       getProductById({
         id: this.currentId
-      }).then((data) => {
-        const list = data.data[0]
-        list.main_img_url = baseImgUrl + list.main_img_url
-        this.productInfo = list
+      }).then((res) => {
+        if (res.errcode === 0) {
+          this.productInfo = res.product
+        }
       })
     },
     collect () {
@@ -121,16 +136,15 @@ export default {
       this.cartCount++
       this.updateCart(Object.assign(this.productInfo, {
         count: this.cartCount,
-        isDelete: false,
         isChecked: false
       }))
     },
     goCart () {
       this.$router.push('/shopCart')
     },
-    ...mapMutations([
-      'updateCart'
-    ])
+    ...mapMutations({
+      updateCart: 'UPDATE_CART'
+    })
   },
   components: {
     topBar,
@@ -140,9 +154,11 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.container
+  height 100%
 .product-container
     margin-top 46px
-    height 100%
+    height calc(100% - 46px)
     background-color #f9f9f9
     .head-wrap
         padding 40px 20px 20px 20px
@@ -156,7 +172,7 @@ export default {
         font-size 24px
     .head-img-wrap
         width 200px
-        height 160px
+        height 180px
         margin 0 auto
     .head-img-wrap img
         width 100%

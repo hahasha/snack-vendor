@@ -1,7 +1,6 @@
-export const store = {
+export const storage = {
   get (key) {
-    const data = JSON.parse(localStorage.getItem(key))
-    return data
+    return JSON.parse(localStorage.getItem(key))
   },
   set (key, value) {
     if (!this.get(key)) {
@@ -18,11 +17,10 @@ export const store = {
   }
 }
 
-export function randomNum () {
-  let randomNum = ''
-  for (let i = 0; i < 6; i++) { // 在时间戳后面添加num位随机数
-    randomNum += Math.floor(Math.random() * 10)
+export function isEmpty (e) {
+  var t
+  for (t in e) {
+    return !1
   }
-  randomNum = new Date().getTime() + randomNum
-  return randomNum
+  return !0
 }

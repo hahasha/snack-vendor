@@ -1,55 +1,54 @@
 <template>
     <div class="container">
       <topBar :nav="nav"></topBar>
-      <div class="home-container">
-          <cube-slide :data="slides">
-            <cube-slide-item v-for="(item, index) in slides" :key="index">
-              <a href="">
-                <img :src="item.url" alt="">
-              </a>
-            </cube-slide-item>
-          </cube-slide>
-          <div class="theme-wrap">
-              <h2 class="title">精选主题</h2>
-              <div class="theme-content">
-                  <div class="theme-item" v-for="(item, index) in themes" :key="index" @click="themeClickHandler(item)">
-                      <img :src="item.topic_img_url" alt="">
-                  </div>
-              </div>
-          </div>
-          <div class="new-product-wrap">
-              <h2 class="title">最近新品</h2>
-              <div class="product-content">
-                  <div class="product" v-for="(item, index) in newProducts" :key="index" @click="clickHandler(item)">
-                      <img :src="item.main_img_url" alt="">
-                      <div class="desc">
-                          <p class="name-wrap">
-                              <span class="name">{{item.name}}</span>
-                          </p>
-                          <span class="price">¥{{item.price}}</span>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
+        <div class="home-container">
+          <cube-scroll
+            ref="scroll"
+            :options="options"
+            :data="newProducts"
+            @pulling-up="onPullingUp"
+          >
+            <cube-slide :data="banners">
+              <cube-slide-item v-for="item in banners" :key="item.id">
+                <a href="">
+                  <img :src="item.imgUrl" alt="">
+                </a>
+              </cube-slide-item>
+            </cube-slide>
+            <div class="theme-wrap">
+                <h2 class="title">精选主题</h2>
+                <div class="theme-content">
+                    <div class="theme-item" v-for="item in themes" :key="item.id" @click="themeClickHandler(item)">
+                        <img :src="item.topicImgUrl" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="new-product-wrap">
+                <h2 class="title">最近新品</h2>
+                <div class="product-content">
+                    <div class="product" v-for="(item, index) in newProducts" :key="index" @click="clickHandler(item)">
+                        <img :src="item.mainImgUrl" alt="">
+                        <div class="desc">
+                            <p class="name-wrap">
+                                <span class="name">{{item.name}}</span>
+                            </p>
+                            <span class="price">¥{{item.price}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </cube-scroll>
+        </div>
       <tab></tab>
     </div>
 </template>
 
 <script>
-import { getSliders, getThemes, getproductTop } from '@/api/api'
+import { getBanners, getThemes, getNewProducts } from '@/api/api'
 import { baseImgUrl } from '@/api/http'
 import topBar from '@/components/top-bar/top-bar'
 import Tab from '@/components/tab/tab'
-const NEW_PRODUCT_COUNT = 5
-
-// function compareFn (key) {
-//   return function (a, b) {
-//     const value1 = a[key]
-//     const value2 = b[key]
-//     return value2 - value1
-//   }
-// }
+const COUNT = 6 // 新品每次请求的数量
 
 export default {
   data () {
@@ -57,72 +56,91 @@ export default {
       nav: {
         title: '首页'
       },
-      slides: [],
+      banners: [],
       themes: [],
-      newProducts: []
+      newProducts: [],
+      page: 1,
+      loadMore: true, // 用来判断是否加载完所有数据
+      pullUpLoadThreshold: 0,
+      pullUpLoadMoreTxt: '加载更多',
+      pullUpLoadNoMoreTxt: '没有更多数据了'
+    }
+  },
+  computed: {
+    options () {
+      return {
+        pullUpLoad: this.pullUpLoadObj,
+        scrollbar: true
+      }
+    },
+    pullUpLoadObj () {
+      return {
+        threshold: parseInt(this.pullUpLoadThreshold),
+        txt: {
+          more: this.pullUpLoadMoreTxt,
+          noMore: this.pullUpLoadNoMoreTxt
+        }
+      }
     }
   },
   created () {
-    this.getSliders()
+    this.getBanners()
     this.getThemes()
-    this.getproductTop()
+    this.getNewProducts()
   },
   methods: {
-    getSliders () {
-      var idParam = { id: 1 }
-      getSliders(idParam).then((res) => {
-        if (res.code === 0) {
-          var list = res.data.list
-          list.forEach((item, index) => {
-            item.url = baseImgUrl + item.url
-          })
-          this.slides = list
+    onPullingUp () {
+      setTimeout(() => {
+        if (this.loadMore) {
+          // 如果有新数据
+          this.page = this.page + 1
+          this.getNewProducts()
         } else {
-          alert('result is null')
-          console.log(res)
+          // 如果没有新数据
+          this.$refs.scroll.forceUpdate()
         }
-        // this.slides = slides
+      }, 1000)
+    },
+    getBanners () {
+      getBanners({
+        id: 1
+      }).then((res) => {
+        if (res.errcode === 0) {
+          const items = res.banners[0].items
+          items.forEach(item => {
+            item.imgUrl = baseImgUrl + item.img.url
+            this.banners.push(item)
+          })
+        }
       })
     },
     getThemes () {
       getThemes().then((res) => {
-        if (res.code === 0) {
-          var list = res.data
-          list.forEach((item, index) => {
-            item.topic_img_url = baseImgUrl + item.topic_img_url
-            item.head_img_url = baseImgUrl + item.head_img_url
+        if (res.errcode === 0) {
+          res.themes.forEach(item => {
+            item.topicImgUrl = baseImgUrl + item.topic_img.url
+            item.headImgUrl = baseImgUrl + item.head_img.url
+            this.themes.push(item)
           })
-          this.themes = list
-        } else {
-          alert('result is null')
-          console.log(res)
         }
-        // this.themes = themes
       })
     },
-    // 新品
-    getproductTop () {
-      var params = { num: NEW_PRODUCT_COUNT }
-      getproductTop(params).then((res) => {
-        if (res.code === 0) {
-          var list = res.data
-          list.forEach((item, index) => {
-            item.main_img_url = baseImgUrl + item.main_img_url
-            item.head_img_url = baseImgUrl + item.head_img_url
+    getNewProducts () {
+      getNewProducts({
+        page: this.page,
+        limit: COUNT
+      }).then((res) => {
+        if (res.errcode === 0) {
+          const newList = res.products.rows
+          const count = res.products.count
+          newList.forEach(item => {
+            item.mainImgUrl = baseImgUrl + item.main_img_url
           })
-          this.newProducts = list
-        } else {
-          alert('result is null')
-          console.log(res)
+          this.newProducts = this.newProducts.concat(newList)
+          if (newList.length < COUNT || this.newProducts.length === count) {
+            this.loadMore = false
+          }
         }
-        // const sortedArr = products.sort(compareFn('create_time'))
-        // let count = 0
-        // sortedArr.forEach(item => {
-        //   if (count < NEW_PRODUCT_COUNT) {
-        //     this.newProducts.push(item)
-        //   }
-        //   count++
-        // })
       })
     },
     clickHandler (item) {
@@ -145,8 +163,15 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.container
+  height 100%
 .home-container
-    margin 46px 0 60px 0
+  height 100%
+  padding 46px 0 50px 0
+  box-sizing border-box
+>>> .cube-pullup-wrapper
+  font-size 14px
+  color #999
 .cube-slide
     height 5.6rem
     >>> .cube-slide-item > a > img

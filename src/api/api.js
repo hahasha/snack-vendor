@@ -1,22 +1,16 @@
 import { get, post } from './http'
 
-// const getSliders = get('/api/slides')
-const getSliders = params => get('http://localhost:3000/banners', params)
-const getThemes = params => get('http://localhost:3000/product/theme', params)
-const getproductTop = params => get('http://localhost:3000/product/productTop', params)
-const getThemeProduct = params => get('http://localhost:3000/product/themeById', params)
-const getCategories = params => get('http://localhost:3000/product/category', params)
-const getProducts = params => get('http://localhost:3000/product/products', params)
-const getProductById = params => get('http://localhost:3000/product/productById', params)
-const loginOrRegister = params => post('http://localhost:3000/login', params)
+// 获取轮播图
+export const getBanners = params => get('/v1/banner', params)
+// 获取主题
+export const getThemes = params => get('/v1/theme', params)
+// 获取新品
+export const getNewProducts = params => get('/v1/product/new', params)
+// 获取分类详情
+export const getCategories = params => get('/v1/category/detail', params)
+// 获取商品详情
+export const getProductById = params => get('/v1/product/detail', params)
 
-export {
-  getSliders,
-  getThemes,
-  getproductTop,
-  getThemeProduct,
-  getCategories,
-  getProducts,
-  getProductById,
-  loginOrRegister
-}
+export const getThemeProduct = params => get('http://localhost:3000/product/themeById', params)
+export const getProducts = params => get('http://localhost:3000/product/products', params)
+export const loginOrRegister = params => post('http://localhost:3000/login', params)

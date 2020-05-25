@@ -1,9 +1,12 @@
 import axios from 'axios'
 import QS from 'qs'
 
+const baseUrl = 'http://localhost:3000'
+const baseImgUrl = 'http://localhost:3000/static/images'
+
 export function get (url, params) {
   return new Promise((resolve, reject) => {
-    axios.get(url, {
+    axios.get(baseUrl + url, {
       params
     })
       .then(res => {
@@ -27,4 +30,7 @@ export function post (url, params) {
   })
 }
 
-export const baseImgUrl = 'http://localhost:3000/images'
+export {
+  baseImgUrl,
+  baseUrl
+}

@@ -9,13 +9,18 @@
 <script>
 export default {
   name: 'popup',
+  data () {
+    return {
+      id: 0
+    }
+  },
   methods: {
     show () {
       this.$emit('show')
       this.$refs.popup.show()
       setTimeout(() => {
         this.$refs.popup.hide()
-      }, 3000)
+      }, 2000)
     }
   }
 }
@@ -30,7 +35,6 @@ export default {
         transition opacity .5s
     .fade-leave
         opacity 1
-// >>> .cube-popup-center .cube-popup-content
     .content
         font-size 14px
         color #666

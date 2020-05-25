@@ -3,31 +3,30 @@
     <topBar :nav="nav"></topBar>
     <div class="category-container">
       <div class="left-panel">
-          <cube-scroll>
-              <cube-tab-bar v-model="currrentIndex">
-                <cube-tab v-for="(item, index) in categories" :key="index" :label="item.category_name" :value="index">
-                  {{item.category_name}}
-                </cube-tab>
-              </cube-tab-bar>
-          </cube-scroll>
+        <cube-scroll>
+          <cube-tab-bar v-model="selectedLabel" @change="changeHandler">
+            <cube-tab v-for="item in categories" :key="item.name" :label="item.name">
+            </cube-tab>
+          </cube-tab-bar>
+        </cube-scroll>
       </div>
-      <div class="right-panel">
-          <cube-scroll ref="scroll">
-              <div class="head-img-wrap" >
-                  <img :src="c_category.url" alt="">
-              </div>
-              <ul class="product-wrap">
-                  <li class="product" v-for="(item, index) in c_products" :key="index" @click="clickHandler(item)">
-                      <div class="img-wrap">
-                          <img :src="item.main_img_url" alt="">
-                      </div>
-                      <p class="desc">
-                          <span class="name">{{item.product_name}}</span>
-                      </p>
-                  </li>
-              </ul>
+      <transition name="fade">
+        <div class="right-panel" v-if="currentData" :key="currentData.id">
+          <cube-scroll class="scroll-wrap">
+            <img class="head-img" :src="currentData.headImgUrl" alt="">
+            <ul class="product-list">
+              <li class="product"
+                v-for="item in currentData.products"
+                :key="item.id"
+                @click="clickHandler(item)"
+                >
+                <img class="main-img" :src="item.mainImgUrl" alt="">
+                <p class="name">{{item.name}}</p>
+              </li>
+            </ul>
           </cube-scroll>
-      </div>
+        </div>
+      </transition>
     </div>
     <tab></tab>
   </div>
@@ -44,46 +43,40 @@ export default {
       nav: {
         title: '分类'
       },
-      currrentIndex: 0,
-      categories: [],
-      products: []
+      selectedLabel: '', // 当前导航active的key
+      categories: []
     }
   },
   computed: {
-    c_products () {
-      return this.c_category.products
-    },
-    c_category () {
-      return this.categories.length > 0 ? this.categories[this.currrentIndex] : {}
+    currentData () {
+      return this.categories.filter(item => item.name === this.selectedLabel)[0]
     }
   },
   created () {
     this.getCategories()
-    // this.getProducts()
   },
   methods: {
+    changeHandler (label) {
+      this.selectedLabel = label
+    },
     getCategories () {
-      getCategories().then((categories) => {
-        console.log(categories)
-        if (categories.code === 0) {
-          categories.data.forEach(item => {
-            item.url = baseImgUrl + item.url
-            item.products.forEach(pitem => {
-              pitem.main_img_url = baseImgUrl + pitem.main_img_url
+      getCategories().then(res => {
+        if (res.errcode === 0) {
+          const categories = res.categories
+          categories.forEach(item => {
+            item.headImgUrl = baseImgUrl + item.headImg.url
+            item.products.forEach(pItem => {
+              pItem.mainImgUrl = baseImgUrl + pItem.main_img_url
             })
           })
-          this.categories = categories.data
+          this.selectedLabel = categories[0].name
+          this.categories = this.categories.concat(categories)
         }
       })
     },
-    // getProducts () {
-    //   getProducts().then((products) => {
-    //     this.products = products
-    //   })
-    // },
     clickHandler (item) {
       this.$router.push({
-        path: `product/${item.product_id}`
+        path: `product/${item.id}`
       })
     }
   },
@@ -95,59 +88,66 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.fade-enter-active
+  // transition transform .8s ease
+  transition opacity .5s ease
+.fade-enter, .fade-leave-to
+  // transform translateY(571px)
+  opacity 0
+.container
+  height 100%
 .category-container
-    margin 46px 0 60px 0
-    .left-panel
-        position absolute
-        width 22%
+  margin 46px 0 60px 0
+  height calc(100% - 96px)
+  .left-panel
+    position absolute
+    width 22%
+    height 100%
+    box-sizing border-box
+    top 46px
+    left 0
+    border-right 1px solid #dddddd
+  .cube-tab-bar
+      flex-direction column
+      justify-content flex-start
+      font-size 14px
+  >>> .cube-tab
+      position relative
+      flex none
+      width 100%
+      padding 18px 0
+  >>> .cube-tab_active
+      color #ab956c
+  >>> .cube-tab_active:after
+        content ''
+        width 2px
         height 100%
-        box-sizing border-box
-        top 46px
+        position absolute
+        top 0
         left 0
-        border-right 1px solid #dddddd
-    .cube-tab-bar
-        flex-direction column
-        justify-content flex-start
-        font-size 14px
-    >>> .cube-tab
-        position relative
-        flex none
-        width 100%
-        padding 18px 0
-    >>> .cube-tab_active
-        color #ab956c
-    >>> .cube-tab_active:after
-            content ''
-            width 2px
-            height 100%
-            position absolute
-            top 0
-            left 0
-            background-color #ab956c
-    .right-panel
-        margin-left 22%
-        box-sizing border-box
-        padding 20px
-    .head-img-wrap
-        width 100%
-        margin-bottom 20px
-    .head-img-wrap img
-        width 100%
-        height 100px
-        border-radius 2px
+        background-color #ab956c
+  .right-panel
+    margin-left 22%
+    box-sizing border-box
+    height 100%
+    .scroll-wrap
+      height 100%
+      box-sizing border-box
+      padding 15px
+    .head-img
+      width 100%
+    .product-list
+      display flex
+      flex-wrap wrap
     .product
-        width 33%
-        display inline-block
-    .product .img-wrap
-        width 100%
-        text-align center
-    .product img
-        width 50%
-        height 50px
-    .product .desc
-        font-size 12px
-        text-align center
-        margin 8px 0 20px 0
-    .product .desc .name
-        margin-right 2px
+      flex-basis 33%
+      font-size 12px
+      margin-bottom 10px
+    .main-img
+      width 100%
+    .name
+      width 80%
+      margin 0 auto
+      text-align center
+      line-height 20px
 </style>

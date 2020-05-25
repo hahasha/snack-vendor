@@ -9,14 +9,11 @@
                   <span class="iconfont icon-unchecked" v-else></span>
                 </div>
                 <div class="img-wrap">
-                  <img :src="item.img_url" alt="">
+                  <img :src="item.main_img_url | toFullPath" alt="">
                 </div>
                 <div class="right-box">
                   <div class="info-wrap">
-                    <div class="title">
-                      <span class="name">{{item.name}}</span>
-                      <span class="spec">{{item.spec}}</span>
-                    </div>
+                    <span class="name">{{item.name}}</span>
                     <span class="price">¥{{item.price}}</span>
                   </div>
                   <div class="control-wrap">
@@ -36,7 +33,7 @@
                 <span class="iconfont icon-unchecked" v-else></span>
                 <span class="total-count">全选({{totalCount}})</span>
               </div>
-              <span class="total-price">合计：¥{{totalPrice}}</span>
+              <span class="total-price">合计：¥{{totalPrice | toFixed}}</span>
               <span class="place-order" @click="placeOrder">去结算</span>
             </div>
         </div>
@@ -52,7 +49,8 @@
 import topBar from '@/components/top-bar/top-bar'
 import Tab from '@/components/tab/tab'
 import Popup from '@/components/popup/popup'
-import { mapMutations } from 'vuex'
+import { baseImgUrl } from '@/api/http'
+import { mapGetters, mapMutations } from 'vuex'
 export default {
   data () {
     return {
@@ -62,28 +60,23 @@ export default {
     }
   },
   computed: {
-    cartList () {
-      return this.$store.state.cartList.filter(item => { return item.isDelete === false })
-    },
-    checkedCartList () {
-      return this.cartList.filter((item) => { return item.isChecked === true })
-    },
-    totalCount () {
-      let count = 0
-      this.checkedCartList.forEach((item) => {
-        count += item.count
-      })
-      return count
-    },
-    totalPrice () {
-      let totalPrice = 0
-      this.checkedCartList.forEach((item) => {
-        totalPrice += item.count * Number(item.price)
-      })
-      return totalPrice.toFixed(2)
-    },
+    ...mapGetters([
+      'cartList',
+      'checkedCartList',
+      'totalCount',
+      'totalPrice'
+    ]),
     allChecked () {
-      return this.cartList.every((item) => { return item.isChecked === true })
+      return this.cartList.every(item => { return item.isChecked === true })
+    }
+  },
+  filters: {
+    toFullPath (value) {
+      if (!value) return ''
+      return baseImgUrl + value
+    },
+    toFixed (value) {
+      return value.toFixed(2)
     }
   },
   methods: {
@@ -92,8 +85,7 @@ export default {
       this.updateCart(item)
     },
     deleteHandler (item) {
-      item.isDelete = true
-      this.updateCart(item)
+      this.deleteCart(item)
     },
     reduce (item) {
       if (item.count > 1) {
@@ -111,23 +103,20 @@ export default {
       this.$refs.popup.show()
     },
     checkAll () {
-      if (this.allChecked) {
-        this.updateAll({
-          isChecked: false
-        })
+      if (!this.allChecked) {
+        this.updateAll('check')
       } else {
-        this.updateAll({
-          isChecked: true
-        })
+        this.updateAll('unCheck')
       }
     },
     placeOrder () {
       this.$router.push('confirmOrder')
     },
-    ...mapMutations([
-      'updateCart',
-      'updateAll'
-    ])
+    ...mapMutations({
+      updateCart: 'UPDATE_CART',
+      deleteCart: 'DELETE_CART',
+      updateAll: 'UPDATE_CART_ALL'
+    })
   },
   components: {
     topBar,
@@ -155,9 +144,9 @@ export default {
         box-sizing border-box
         border-bottom 1px solid #e1e1e1
         .check-wrap
-          flex-basis 8%
+          flex-basis 10%
           .iconfont
-            font-size 26px
+            font-size 24px
           .icon-checked
             color #e83d3e
         .img-wrap
@@ -166,9 +155,9 @@ export default {
           justify-content center
           width 80px
           height 80px
+          background #f7f7f7
           img
-            width 80%
-            border-radius 50%
+            width 100%
         .right-box
           flex 1
           display flex
@@ -177,7 +166,7 @@ export default {
           height 60px
           color #666
           font-size 14px
-          margin-left 10px
+          margin-left 14px
           .info-wrap, .control-wrap
             display flex
             justify-content space-between
