@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <topBar :nav="nav"></topBar>
+    <headBar :nav="nav"></headBar>
     <div class="category-container">
       <div class="left-panel">
         <cube-scroll>
@@ -35,7 +35,7 @@
 <script>
 import { getCategories } from '@/api/api'
 import { baseImgUrl } from '@/api/http'
-import topBar from '@/components/top-bar/top-bar'
+import headBar from '@/components/header/header'
 import Tab from '@/components/tab/tab'
 export default {
   data () {
@@ -81,7 +81,7 @@ export default {
     }
   },
   components: {
-    topBar,
+    headBar,
     Tab
   }
 }
@@ -97,13 +97,12 @@ export default {
 .container
   height 100%
 .category-container
-  margin 46px 0 60px 0
+  padding 46px 0 50px 0
   height calc(100% - 96px)
   .left-panel
     position absolute
     width 22%
-    height 100%
-    box-sizing border-box
+    bottom 50px
     top 46px
     left 0
     border-right 1px solid #dddddd
@@ -128,8 +127,6 @@ export default {
         background-color #ab956c
   .right-panel
     margin-left 22%
-    box-sizing border-box
-    height 100%
     .scroll-wrap
       height 100%
       box-sizing border-box

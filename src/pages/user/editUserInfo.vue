@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <topBar :nav="nav"></topBar>
+    <headBar :nav="nav"></headBar>
     <div class="edit-user-container">
       <cube-form @submit.prevent="submitHandler">
         <cube-form-group>
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import topBar from '@/components/top-bar/top-bar'
+import headBar from '@/components/header/header'
 export default {
   data () {
     return {
@@ -82,7 +82,7 @@ export default {
     submitHandler () {}
   },
   components: {
-    topBar
+    headBar
   }
 }
 </script>
@@ -91,10 +91,9 @@ export default {
 .container
   height 100%
   .edit-user-container
-    height 100%
+    height calc(100% - 46px)
     background-color #f4f4f4
     padding-top 46px
-    box-sizing border-box
   .username .cubeic-arrow
     margin-left 10px
   .upload-wrap

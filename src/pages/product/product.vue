@@ -1,6 +1,6 @@
 <template>
 <div class="container">
-  <topBar :nav="nav"></topBar>
+  <headBar :nav="nav"></headBar>
   <cube-scroll>
     <div class="product-container">
       <div class="head-wrap">
@@ -36,7 +36,7 @@
           <cube-tab-bar v-model="selectedTab" :data="tabs" show-slider></cube-tab-bar>
           <cube-tab-panels v-model="selectedTab">
               <cube-tab-panel label="商品详情" >
-                  <div class="detail-wrap" v-if="isEmpty(productInfo.details)">
+                  <div class="detail-wrap" v-if="productInfo.details">
                       <div v-for="item in productInfo.details" :key="item.id">
                           <img :src="item.url | toFullPath" alt="">
                       </div>
@@ -44,7 +44,7 @@
                   <div class="detail-wrap none" v-else>暂无详细信息</div>
               </cube-tab-panel>
               <cube-tab-panel label="产品参数">
-                  <div class="attr-wrap" v-if="isEmpty(productInfo.properties)">
+                  <div class="attr-wrap" v-if="productInfo.properties">
                     <div v-for="item in productInfo.properties" :key="item.id">
                       <div class="attr-item"><span>{{item.name}}</span>{{item.detail}}</div>
                     </div>
@@ -64,7 +64,7 @@
 <script>
 import { getProductById } from '@/api/api'
 import { baseImgUrl } from '@/api/http'
-import topBar from '@/components/top-bar/top-bar'
+import headBar from '@/components/header/header'
 import Bubble from '@/components/bubble/bubble'
 import { mapGetters, mapMutations } from 'vuex'
 export default {
@@ -75,6 +75,7 @@ export default {
         back: true
       },
       like: false,
+      cartCount: 0, // 当前商品加购数量
       productInfo: {},
       selectedTab: '商品详情',
       tabs: [{
@@ -91,20 +92,13 @@ export default {
     ...mapGetters([
       'cartList'
     ]),
-    cartCount () {
-      const product = this.cartList.filter(item => item.id === this.currentId)[0]
-      if (this.isEmpty(product)) {
-        return 0
-      } else {
-        return product.count
-      }
-    },
     showStock () {
       return this.productInfo.stock && this.productInfo.stock > 0 ? '有货' : '缺货'
     }
   },
   created () {
     this.getProductInfo()
+    this.setCartCount()
   },
   filters: {
     toFullPath (value) {
@@ -113,6 +107,14 @@ export default {
     }
   },
   methods: {
+    setCartCount () {
+      const product = this.cartList.filter(item => item.id === this.currentId)[0]
+      if (this.isEmpty(product)) {
+        this.cartCount = 0
+      } else {
+        this.cartCount = product.count
+      }
+    },
     isEmpty (e) {
       var t
       for (t in e) {
@@ -147,7 +149,7 @@ export default {
     })
   },
   components: {
-    topBar,
+    headBar,
     Bubble
   }
 }

@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-      <topBar :nav="nav"></topBar>
+      <headBar :nav="nav"></headBar>
         <div class="home-container">
           <cube-scroll
             ref="scroll"
@@ -11,7 +11,7 @@
             <cube-slide :data="banners">
               <cube-slide-item v-for="item in banners" :key="item.id">
                 <a href="">
-                  <img :src="item.imgUrl" alt="">
+                  <img :src="item.img.url | toFullPath" alt="">
                 </a>
               </cube-slide-item>
             </cube-slide>
@@ -19,7 +19,7 @@
                 <h2 class="title">精选主题</h2>
                 <div class="theme-content">
                     <div class="theme-item" v-for="item in themes" :key="item.id" @click="themeClickHandler(item)">
-                        <img :src="item.topicImgUrl" alt="">
+                        <img :src="item.topic_img.url | toFullPath" alt="">
                     </div>
                 </div>
             </div>
@@ -27,12 +27,10 @@
                 <h2 class="title">最近新品</h2>
                 <div class="product-content">
                     <div class="product" v-for="(item, index) in newProducts" :key="index" @click="clickHandler(item)">
-                        <img :src="item.mainImgUrl" alt="">
+                        <img class="main-img" :src="item.main_img_url | toFullPath" alt="">
                         <div class="desc">
-                            <p class="name-wrap">
-                                <span class="name">{{item.name}}</span>
-                            </p>
-                            <span class="price">¥{{item.price}}</span>
+                          <p class="name">{{item.name}}</p>
+                          <p class="price">¥{{item.price}}</p>
                         </div>
                     </div>
                 </div>
@@ -46,7 +44,7 @@
 <script>
 import { getBanners, getThemes, getNewProducts } from '@/api/api'
 import { baseImgUrl } from '@/api/http'
-import topBar from '@/components/top-bar/top-bar'
+import headBar from '@/components/header/header'
 import Tab from '@/components/tab/tab'
 const COUNT = 6 // 新品每次请求的数量
 
@@ -83,6 +81,12 @@ export default {
       }
     }
   },
+  filters: {
+    toFullPath (value) {
+      if (!value) return ''
+      return baseImgUrl + value
+    }
+  },
   created () {
     this.getBanners()
     this.getThemes()
@@ -108,7 +112,6 @@ export default {
         if (res.errcode === 0) {
           const items = res.banners[0].items
           items.forEach(item => {
-            item.imgUrl = baseImgUrl + item.img.url
             this.banners.push(item)
           })
         }
@@ -118,8 +121,6 @@ export default {
       getThemes().then((res) => {
         if (res.errcode === 0) {
           res.themes.forEach(item => {
-            item.topicImgUrl = baseImgUrl + item.topic_img.url
-            item.headImgUrl = baseImgUrl + item.head_img.url
             this.themes.push(item)
           })
         }
@@ -156,7 +157,7 @@ export default {
     }
   },
   components: {
-    topBar,
+    headBar,
     Tab
   }
 }
@@ -166,9 +167,8 @@ export default {
 .container
   height 100%
 .home-container
-  height 100%
+  height calc(100% - 96px)
   padding 46px 0 50px 0
-  box-sizing border-box
 >>> .cube-pullup-wrapper
   font-size 14px
   color #999
@@ -208,26 +208,20 @@ export default {
         height 100%
 .product-content
     padding 0 8px
+    display flex
+    flex-wrap wrap
+    justify-content space-between
     .product
-        position relative
-        display inline-block
-        box-sizing border-box
-        width 50%
-        margin-bottom 1px
-    .product:nth-of-type(2n+1)
-        border-right 4px solid #fff
-    .product img
-        width 100%
-        height 4.5rem
-        border-radius 4px
-    .product .desc
-        width 100%
-        position absolute
-        bottom 0px
-        font-size 14px
+      flex-basis 49.2%
+      padding-bottom 10px
+      background #f7f7f7
+      font-size 14px
+      margin-bottom 6px
+      border-radius 4px
+      text-align center
+      .main-img
+        width 80%
+      .name, .price
         text-align center
-    .product .desc .name-wrap
-        margin-bottom 2px
-    .product .desc .name
-        margin-right 4px
+        line-height 20px
 </style>

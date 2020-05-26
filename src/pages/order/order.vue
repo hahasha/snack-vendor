@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <topBar :nav="nav"></topBar>
+        <headBar :nav="nav"></headBar>
         <div class="orders-container">
             <div class="tab-container">
               <cube-tab-bar v-model="selectedLabel" show-slider>
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import topBar from '@/components/top-bar/top-bar'
+import headBar from '@/components/header/header'
 import { mapState } from 'vuex'
 export default {
   data () {
@@ -115,7 +115,7 @@ export default {
     }
   },
   components: {
-    topBar
+    headBar
   }
 }
 </script>
@@ -124,10 +124,9 @@ export default {
 .container
   height 100%
   .orders-container
-    min-height 100%
+    height calc(100% - 46px)
     background #f4f4f4
     padding-top 46px
-    box-sizing border-box
     font-size 14px
     .tab-container
       position: fixed;

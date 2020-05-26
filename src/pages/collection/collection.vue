@@ -1,14 +1,14 @@
 <template>
     <div class="container">
-        <topBar :nav="nav"></topBar>
-        <div class="collections-container">
+        <headBar :nav="nav"></headBar>
+        <div class="collection-container">
             我的收藏
         </div>
     </div>
 </template>
 
 <script>
-import topBar from '@/components/top-bar/top-bar'
+import headBar from '@/components/header/header'
 export default {
   data () {
     return {
@@ -19,7 +19,7 @@ export default {
     }
   },
   components: {
-    topBar
+    headBar
   }
 }
 </script>

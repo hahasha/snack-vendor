@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <topBar :nav="nav"></topBar>
+        <headBar :nav="nav"></headBar>
         <div class="about-us-container">
             <div class="avatar-wrap">
                 <span class="iconfont icon-avatar"></span>
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import topBar from '@/components/top-bar/top-bar'
+import headBar from '@/components/header/header'
 export default {
   data () {
     return {
@@ -24,7 +24,7 @@ export default {
     }
   },
   components: {
-    topBar
+    headBar
   }
 }
 </script>

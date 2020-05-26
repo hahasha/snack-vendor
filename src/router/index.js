@@ -1,27 +1,34 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import login from '@/pages/login/login'
 import home from '@/pages/home/home'
 import category from '@/pages/category/category'
+import theme from '@/pages/theme/theme'
 import shopCart from '@/pages/shopCart/shopCart'
 import userCenter from '@/pages/userCenter/userCenter'
 import product from '@/pages/product/product'
 import aboutUs from '@/pages/aboutUs/aboutUs'
-import orders from '@/pages/orders/orders'
-import collections from '@/pages/collections/collections'
+import collection from '@/pages/collection/collection'
 import address from '@/pages/address/address'
-import addAddress from '@/pages/addAddress/addAddress'
-import editAddress from '@/pages/editAddress/editAddress'
-import login from '@/pages/login/login'
-import editUserInfo from '@/pages/editUserInfo/editUserInfo'
-import resetPassword from '@/pages/resetPassword/resetPassword'
-import modifyName from '@/pages/modifyName/modifyName'
-import confirmOrder from '@/pages/confirmOrder/confirmOrder'
-import orderDetail from '@/pages/orderDetail/orderDetail'
-import theme from '@/pages/theme/theme'
+import addAddress from '@/pages/address/addAddress'
+import editAddress from '@/pages/address/editAddress'
+import editUserInfo from '@/pages/user/editUserInfo'
+import resetPassword from '@/pages/user/resetPassword'
+import modifyName from '@/pages/user/modifyName'
+import confirmOrder from '@/pages/order/confirmOrder'
+import orderDetail from '@/pages/order/orderDetail'
+import order from '@/pages/order/order'
+import store from '../store'
+import { storage } from '@/assets/js/util'
 
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    name: 'login',
+    path: '/login',
+    component: login
+  },
   {
     name: 'home',
     path: '/',
@@ -31,6 +38,16 @@ const routes = [
     name: 'category',
     path: '/category',
     component: category
+  },
+  {
+    name: 'theme',
+    path: '/theme',
+    component: theme
+  },
+  {
+    name: 'product',
+    path: '/product/:id',
+    component: product
   },
   {
     name: 'shopCart',
@@ -48,89 +65,104 @@ const routes = [
     component: aboutUs
   },
   {
-    name: 'orders',
-    path: '/orders',
-    component: orders
+    name: 'order',
+    path: '/order',
+    component: order,
+    meta: {
+      requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
+    }
   },
   {
-    name: 'collections',
-    path: '/collections',
-    component: collections
+    name: 'collection',
+    path: '/collection',
+    component: collection
   },
   {
     name: 'address',
     path: '/address',
-    component: address
+    component: address,
+    meta: {
+      requireAuth: true
+    }
   },
   {
     name: 'addAddress',
     path: '/addAddress',
-    component: addAddress
+    component: addAddress,
+    meta: {
+      requireAuth: true
+    }
   },
   {
     name: 'editAddress',
     path: '/editAddress',
-    component: editAddress
-  },
-  {
-    name: 'product',
-    path: '/product/:id',
-    component: product
-  },
-  {
-    name: 'login',
-    path: '/login',
-    component: login
+    component: editAddress,
+    meta: {
+      requireAuth: true
+    }
   },
   {
     name: 'editUserInfo',
     path: '/editUserInfo',
-    component: editUserInfo
+    component: editUserInfo,
+    meta: {
+      requireAuth: true
+    }
   },
   {
     name: 'resetPassword',
     path: '/resetPassword',
-    component: resetPassword
+    component: resetPassword,
+    meta: {
+      requireAuth: true
+    }
   },
   {
     name: 'modifyName',
     path: '/modifyName',
-    component: modifyName
+    component: modifyName,
+    meta: {
+      requireAuth: true
+    }
   },
   {
     name: 'confirmOrder',
     path: '/confirmOrder',
-    component: confirmOrder
+    component: confirmOrder,
+    meta: {
+      requireAuth: true
+    }
   },
   {
     name: 'orderDetail',
     path: '/orderDetail',
-    component: orderDetail
-  },
-  {
-    name: 'theme',
-    path: '/theme',
-    component: theme
+    component: orderDetail,
+    meta: {
+      requireAuth: true
+    }
   }
 ]
 
 const router = new VueRouter({
-  // scrollBehavior (to, from, savedPosition) {
-  //   if (savedPosition) {
-  //     return savedPosition
-  //   } else {
-  //     return {
-  //       x: 0,
-  //       y: 0
-  //     }
-  //   }
-  // },
   routes
 })
 
 router.beforeEach((to, from, next) => {
-  document.body.scrollTop = 0
-  next()
+  const token = store.state.token || storage.get('token')
+  if (to.meta.requireAuth && !token) { // 判断如果当前路由需要登录并且没有token
+    next({
+      path: '/login',
+      query: { redirect: to.fullPath } // 将要跳转的路由作为参数，实现登录重定向
+    })
+  } else {
+    next()
+  }
 })
+
+// Uncaught (in promise) undefined
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push (location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 
 export default router

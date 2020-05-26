@@ -1,14 +1,14 @@
 <template>
     <div class="container">
-        <topBar :nav="nav"></topBar>
+        <headBar :nav="nav"></headBar>
         <div class="add-adddress-container">
-          <addressForm :operate="operate"></addressForm>
+          <addressForm :type="type" :data="addressData" @add="addAddress"></addressForm>
         </div>
     </div>
 </template>
 
 <script>
-import topBar from '@/components/top-bar/top-bar'
+import headBar from '@/components/header/header'
 import addressForm from '@/components/addressForm/addressForm'
 export default {
   data () {
@@ -17,15 +17,18 @@ export default {
         title: '添加收货地址',
         back: true
       },
-      operate: {
-        type: 'add',
-        data: {}
-      }
+      type: 'add',
+      addressData: {}
     }
   },
   components: {
-    topBar,
+    headBar,
     addressForm
+  },
+  methods: {
+    addAddress (data) {
+      console.log(data)
+    }
   }
 }
 </script>
@@ -34,8 +37,8 @@ export default {
 .container
   height 100%
 .add-adddress-container
-  height 100%
+  height calc(100% - 46px)
   background #f4f4f4
-  margin-top 46px
+  padding-top 46px
   font-size 14px
 </style>

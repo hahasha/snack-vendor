@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <topBar :nav="nav"></topBar>
+    <headBar :nav="nav"></headBar>
     <div class="order-detail-container">
       <div class="status-wrap">
         <span class="status">{{statusTxt[order.status]}}</span>
@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import topBar from '@/components/top-bar/top-bar'
+import headBar from '@/components/header/header'
 import moment from 'moment'
 import { mapState } from 'vuex'
 export default {
@@ -78,7 +78,7 @@ export default {
     this.address = this.addressList.filter(item => item.id === this.order.address_id)[0]
   },
   components: {
-    topBar
+    headBar
   }
 }
 </script>
@@ -88,7 +88,7 @@ export default {
   height 100%
   .order-detail-container
     padding-top 46px
-    height 100%
+    height calc(100% - 46px)
     background #f4f4f4
     font-size 14px
     color #333

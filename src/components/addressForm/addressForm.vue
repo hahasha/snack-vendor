@@ -1,5 +1,5 @@
 <template>
-  <cube-form :model="model" @submit.prevent="submitHandler">
+  <cube-form :model="model">
       <cube-form-group>
           <cube-form-item :field="fields[0]"></cube-form-item>
           <cube-form-item :field="fields[1]"></cube-form-item>
@@ -30,17 +30,16 @@
           <cube-form-item :field="fields[5]"></cube-form-item>
       </cube-form-group>
       <cube-form-group>
-          <cube-button class="btn" type="submit">保存</cube-button>
-          <cube-button class="btn btn-delete" v-show="this.operate.type === 'edit'" @click="deleteHandler">删除收货地址</cube-button>
+          <cube-button class="btn" @click="saveHandler">保存</cube-button>
       </cube-form-group>
   </cube-form>
 </template>
 
 <script>
 import { provinceList, cityList, areaList } from '@/assets/js/area.js'
-import { mapMutations } from 'vuex'
+import { isEmpty } from '@/assets/js/util'
 const addressData = provinceList
-addressData.forEach(province => {
+addressData.forEach(province => { // 处理AddressPicker数据
   province.children = cityList[province.value]
   province.children.forEach(city => {
     city.children = areaList[city.value]
@@ -55,7 +54,7 @@ export default {
     return {
       model: {
         name: '',
-        tel: '',
+        mobile: '',
         location: '',
         detail: '',
         label: '',
@@ -88,7 +87,7 @@ export default {
         },
         {
           type: 'input',
-          modelKey: 'tel',
+          modelKey: 'mobile',
           props: {
             placeholder: '手机号码'
           },
@@ -125,22 +124,24 @@ export default {
     }
   },
   props: {
-    operate: {
+    type: {
+      type: String,
+      default: ''
+    },
+    data: {
       type: Object,
       default: function () {
-        return null
+        return {}
       }
     }
   },
   created () {
-    if (this.operate.type === EVENT_EDIT && this.operate.data) {
-      const { id, isDelete } = this.operate.data
-      this.model = this.operate.data
-      this.model.id = id
-      this.model.isDelete = isDelete
+    if (this.type === 'edit' && !isEmpty(this.data)) {
+      this.model = this.data
     }
   },
   mounted () {
+    // 初始化城市联动选择框
     this.addressPicker = this.$createCascadePicker({
       title: '请选择',
       data: addressData,
@@ -155,7 +156,6 @@ export default {
     selectHandle (selectedVal, selectedIndex, selectedText) {
       this.model.location = selectedText
     },
-    cancelHandle () {},
     selectLabel (item) {
       const label = item.value
       this.model.label = label
@@ -168,25 +168,14 @@ export default {
               : ''
         : ''
     },
-    submitHandler () {
-      if (this.operate.type === EVENT_ADD) {
-        this.addAddress(this.model)
-        this.$router.push('address')
+    saveHandler () {
+      if (this.type === EVENT_ADD) {
+        this.$emit(EVENT_ADD, this.model)
       }
-      if (this.operate.type === EVENT_EDIT) {
-        this.updateAddress(this.model)
-        this.$router.push('address')
+      if (this.type === EVENT_EDIT) {
+        this.$emit(EVENT_EDIT, this.model)
       }
-    },
-    deleteHandler () {
-      this.model.isDelete = true
-      this.updateAddress(this.model)
-      this.$router.push('address')
-    },
-    ...mapMutations([
-      'addAddress',
-      'updateAddress'
-    ])
+    }
   }
 }
 </script>

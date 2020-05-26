@@ -1,5 +1,5 @@
 import * as types from './mutation-types'
-import { storage, isEmpty } from '@/assets/js/util.js'
+import { storage } from '@/assets/js/util.js'
 
 const mutations = {
   // 存储登录状态
@@ -7,12 +7,14 @@ const mutations = {
     state.token = token
     storage.set('token', token)
   },
+  // 存储用户信息
+  [types.SET_USER_INFO] (state, userInfo) {
+    state.userInfo = userInfo
+    storage.set('userInfo', userInfo)
+  },
   // 添加购物车
   [types.UPDATE_CART] (state, product) {
-    if (isEmpty(state.cartList)) {
-      // 购物车为空，直接添加商品
-      state.cartList.push(product)
-    } else {
+    if (state.cartList.length > 0) {
       // 判断该商品是否已加入购物车，如果已加入直接修改数量，否则添加商品
       const index = state.cartList.findIndex(item => { return item.id === product.id })
       if (index === -1) {
@@ -20,6 +22,9 @@ const mutations = {
       } else {
         state.cartList.splice(index, 1, product)
       }
+    } else {
+      // 购物车为空，直接添加商品
+      state.cartList.push(product)
     }
     storage.set('cartList', state.cartList)
   },

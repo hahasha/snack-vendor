@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <topBar :nav="nav"></topBar>
+        <headBar :nav="nav"></headBar>
         <div class="shopcart-container">
           <div class="user-info-wrap" v-if="userInfo" @click="editUser">
             <img class="avatar" v-if="userInfo.avatar_url" :src="userInfo.avatar_url" alt="" >
@@ -14,8 +14,8 @@
           </div>
           <div class="setting-wrap" @click.stop="clickHandler">
             <div class="set-item" data-type="address">我的收货地址<span class="arrow cubeic-arrow"></span></div>
-            <div class="set-item" data-type="collections">我的收藏<span class="arrow cubeic-arrow"></span></div>
-            <div class="set-item" data-type="orders">我的订单<span class="arrow cubeic-arrow"></span></div>
+            <div class="set-item" data-type="collection">我的收藏<span class="arrow cubeic-arrow"></span></div>
+            <div class="set-item" data-type="order">我的订单<span class="arrow cubeic-arrow"></span></div>
             <div class="set-item" data-type="aboutUs">关于我们<span class="arrow cubeic-arrow"></span></div>
           </div>
           <div class="operate-wrap">
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import topBar from '@/components/top-bar/top-bar'
+import headBar from '@/components/header/header'
 import Tab from '@/components/tab/tab'
 import { mapMutations } from 'vuex'
 export default {
@@ -79,7 +79,7 @@ export default {
     ])
   },
   components: {
-    topBar,
+    headBar,
     Tab
   }
 }
@@ -87,9 +87,11 @@ export default {
 
 <style lang="stylus" scoped>
 .container
+  height 100%
   overflow hidden
 .shopcart-container
-    margin 46px 0 60px 0
+    height calc(100% - 96px)
+    padding 46px 0 50px 0
     background #ececec
     .user-info-wrap
       width 100%

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <topBar :nav="nav"></topBar>
+    <headBar :nav="nav"></headBar>
     <div class="login-container">
       <cube-form :model="model" @submit.prevent="submitHandler">
         <cube-form-group>
@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import { loginOrRegister } from '@/api/api'
-import topBar from '@/components/top-bar/top-bar'
+import { login } from '@/api/api'
+import headBar from '@/components/header/header'
 import { mapMutations } from 'vuex'
 export default {
   data () {
@@ -58,57 +58,39 @@ export default {
       ]
     }
   },
-  computed: {
-    userList () {
-      return this.$store.state.userList
-    }
-  },
   methods: {
     submitHandler () {
-      // const index = this.userList.findIndex(item => { return item.name === this.model.name })
-      // if (index !== -1) {
-      //   // 如果当前用户存在,再判断密码是否正确
-      //   if (this.userList[index].password === this.model.password) {
-      //     this.switchAccount(this.userList[index])
-      //     this.$router.go(-1)
-      //   } else {
-      //     this.$createDialog({
-      //       type: 'alert',
-      //       content: '密码错误',
-      //       icon: 'cubeic-alert'
-      //     }).show()
-      //   }
-      // } else {
-      //   this.addUser(this.model)
-      //   this.switchAccount(this.userList[this.userList.length - 1])
-      //   this.$router.go(-1)
-      // }
-      var userParam = {
+      login({
         username: this.model.name,
         password: this.model.password
-      }
-      console.log(userParam)
-      loginOrRegister(userParam).then((res) => {
-        console.log(res)
-        if (res.code !== 0) {
-          this.$createDialog({
-            type: 'alert',
-            content: '密码错误',
-            icon: 'cubeic-alert'
+      }).then(res => {
+        if (res.errcode === 0) {
+          this.saveToken(res.token)
+          this.saveUserInfo(res.userInfo)
+          this.$createToast({
+            type: 'correct',
+            txt: '登录成功'
           }).show()
-        } else {
-          this.switchAccount(res.data.userdata)
-          this.$router.go(-1)
+          // 登录重定向
+          const redirectPath = this.$route.query.redirect
+          this.$router.push(redirectPath)
+        } else if (res.errcode === 60000) {
+          this.$createToast({
+            type: 'error',
+            txt: '密码不正确'
+          }).show()
         }
+      }).catch(err => {
+        console.log(err)
       })
     },
-    ...mapMutations([
-      'addUser',
-      'switchAccount'
-    ])
+    ...mapMutations({
+      saveToken: 'SET_TOKEN',
+      saveUserInfo: 'SET_USER_INFO'
+    })
   },
   components: {
-    topBar
+    headBar
   }
 }
 </script>
@@ -117,9 +99,9 @@ export default {
 .container
   height 100%
   .login-container
-    margin-top 46px
+    padding-top 46px
     background-color #f4f4f4
-    height 100%
+    height calc(100% - 46px)
     >>>.cube-form-label
       font-size 14px
     .btn-login

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <topBar :nav="nav"></topBar>
+    <headBar :nav="nav"></headBar>
     <div class="reset-container">
       <cube-form :model="model" :schema="schema" @submit.prevent="submitHandler" @validate="validateHandler">
       </cube-form>
@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import topBar from '@/components/top-bar/top-bar'
+import headBar from '@/components/header/header'
 import { mapMutations } from 'vuex'
 export default {
   data () {
@@ -101,7 +101,7 @@ export default {
     ])
   },
   components: {
-    topBar
+    headBar
   }
 }
 </script>
@@ -111,9 +111,8 @@ export default {
   height 100%
 .reset-container
   padding-top 46px
-  height 100%
+  height calc(100% - 46px)
   background-color #f4f4f4
-  box-sizing border-box
   >>>.cube-form-label
     font-size 14px
   >>>.cube-form-label:before

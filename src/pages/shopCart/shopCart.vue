@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <topBar :nav="nav"></topBar>
+        <headBar :nav="nav"></headBar>
         <div class="shopcart-container" v-if="cartList.length">
             <div class="cart-list-wrap">
               <div class="cart-item" v-for="(item, index) in cartList" :key="index">
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import topBar from '@/components/top-bar/top-bar'
+import headBar from '@/components/header/header'
 import Tab from '@/components/tab/tab'
 import Popup from '@/components/popup/popup'
 import { baseImgUrl } from '@/api/http'
@@ -119,7 +119,7 @@ export default {
     })
   },
   components: {
-    topBar,
+    headBar,
     Tab,
     Popup
   }
@@ -127,81 +127,84 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.container
+  height 100%
 .shopcart-container
-    margin 46px 0 60px 0
-    .text
-      text-align center
-      font-size 14px
-      color #c7c4c4
-      margin-top 70px
-    .cart-list-wrap
-      width 100%
-      .cart-item
-        display flex
-        align-items center
-        width 100%
-        padding 10px 20px 10px 10px
-        box-sizing border-box
-        border-bottom 1px solid #e1e1e1
-        .check-wrap
-          flex-basis 10%
-          .iconfont
-            font-size 24px
-          .icon-checked
-            color #e83d3e
-        .img-wrap
-          display flex
-          align-items center
-          justify-content center
-          width 80px
-          height 80px
-          background #f7f7f7
-          img
-            width 100%
-        .right-box
-          flex 1
-          display flex
-          flex-direction column
-          justify-content space-between
-          height 60px
-          color #666
-          font-size 14px
-          margin-left 14px
-          .info-wrap, .control-wrap
-            display flex
-            justify-content space-between
-          .info-wrap .name
-            margin-right 6px
-          .control-wrap .count-wrap
-            flex-basis 40%
-            display flex
-            justify-content space-between
-            align-items center
-            font-size 12px
-          .count-wrap .reduce, .count-wrap .add
-            font-size 16px
-    .operate-wrap
-      position fixed
-      left 0
-      right 0
-      bottom 50px
-      width 100%
-      height 46px
-      padding 0 10px
-      background-color #ac956c
-      font-size 14px
-      color #fff
+  height calc(100% - 96px)
+  padding 46px 0 50px 0
+  .text
+    text-align center
+    font-size 14px
+    color #c7c4c4
+    margin-top 70px
+  .cart-list-wrap
+    width 100%
+    .cart-item
       display flex
       align-items center
-      .select-all
-        flex-basis 50%
+      width 100%
+      padding 10px 20px 10px 10px
+      box-sizing border-box
+      border-bottom 1px solid #e1e1e1
+      .check-wrap
+        flex-basis 10%
+        .iconfont
+          font-size 24px
+        .icon-checked
+          color #e83d3e
+      .img-wrap
         display flex
         align-items center
-        .iconfont
-          font-size 20px
-          margin-right 10px
-      .total-price
+        justify-content center
+        width 80px
+        height 80px
+        background #f7f7f7
+        img
+          width 100%
+      .right-box
         flex 1
-      .place-order
-        flex-basis 20%
+        display flex
+        flex-direction column
+        justify-content space-between
+        height 60px
+        color #666
+        font-size 14px
+        margin-left 14px
+        .info-wrap, .control-wrap
+          display flex
+          justify-content space-between
+        .info-wrap .name
+          margin-right 6px
+        .control-wrap .count-wrap
+          flex-basis 40%
+          display flex
+          justify-content space-between
+          align-items center
+          font-size 12px
+        .count-wrap .reduce, .count-wrap .add
+          font-size 16px
+  .operate-wrap
+    position fixed
+    left 0
+    right 0
+    bottom 50px
+    width 100%
+    height 46px
+    padding 0 10px
+    background-color #ac956c
+    font-size 14px
+    color #fff
+    display flex
+    align-items center
+    .select-all
+      flex-basis 50%
+      display flex
+      align-items center
+      .iconfont
+        font-size 20px
+        margin-right 10px
+    .total-price
+      flex 1
+    .place-order
+      flex-basis 20%
 </style>

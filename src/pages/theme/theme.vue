@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <topBar :nav="nav"></topBar>
+    <headBar :nav="nav"></headBar>
     <div class="theme-container">
       <div class="head-img-wrap">
         <img :src="head_img" alt="">
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import topBar from '@/components/top-bar/top-bar'
+import headBar from '@/components/header/header'
 import { getThemeProduct } from '@/api/api'
 import { baseImgUrl } from '@/api/http'
 export default {
@@ -65,14 +65,17 @@ export default {
     }
   },
   components: {
-    topBar
+    headBar
   }
 }
 </script>
 
 <style lang="stylus" scoped>
+.container
+  height 100%
 .theme-container
-  margin-top 46px
+  height calc(100% - 46px)
+  padding-top 46px
   .head-img-wrap
     width 100%
     height 180px

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <topBar :nav="nav"></topBar>
+    <headBar :nav="nav"></headBar>
     <div class="confirm-container">
       <div class="address-wrap" @click="selectAddress">
         <span class="iconfont icon-location"></span>
@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import topBar from '@/components/top-bar/top-bar'
+import headBar from '@/components/header/header'
 import { mapState, mapMutations } from 'vuex'
 export default {
   data () {
@@ -134,7 +134,7 @@ export default {
           total_price: this.totalPrice
         }
         this.saveOrder(orderInfo)
-        this.$router.push('orders')
+        this.$router.push('order')
       }
     },
     ...mapMutations([
@@ -142,7 +142,7 @@ export default {
     ])
   },
   components: {
-    topBar
+    headBar
   }
 }
 </script>
@@ -151,10 +151,9 @@ export default {
 .container
   height 100%
   .confirm-container
-    height 100%
-    background #f4f4f4
+    height calc(100% - 46px)
     padding-top 46px
-    box-sizing border-box
+    background #f4f4f4
     font-size 14px
     color #333
     .address-wrap
