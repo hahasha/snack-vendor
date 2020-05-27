@@ -1,5 +1,5 @@
 <template>
-  <cube-form :model="model">
+  <cube-form :model="model" @submit.prevent="saveHandler">
       <cube-form-group>
           <cube-form-item :field="fields[0]"></cube-form-item>
           <cube-form-item :field="fields[1]"></cube-form-item>
@@ -30,7 +30,7 @@
           <cube-form-item :field="fields[5]"></cube-form-item>
       </cube-form-group>
       <cube-form-group>
-          <cube-button class="btn" @click="saveHandler">保存</cube-button>
+          <cube-button class="btn" type="submit">保存</cube-button>
       </cube-form-group>
   </cube-form>
 </template>
@@ -52,6 +52,8 @@ export default {
   name: 'addressForm',
   data () {
     return {
+      validity: {},
+      valid: undefined,
       model: {
         name: '',
         mobile: '',
@@ -92,7 +94,8 @@ export default {
             placeholder: '手机号码'
           },
           rules: {
-            required: true
+            required: true,
+            type: 'tel'
           }
         },
         {

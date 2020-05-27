@@ -110,7 +110,15 @@ export default {
       }
     },
     placeOrder () {
-      this.$router.push('confirmOrder')
+      if (this.checkedCartList.length > 0) {
+        this.$router.push('confirmOrder')
+      } else {
+        this.$createToast({
+          type: 'warn',
+          txt: '请至少选择一件商品！',
+          time: 1000
+        }).show()
+      }
     },
     ...mapMutations({
       updateCart: 'UPDATE_CART',

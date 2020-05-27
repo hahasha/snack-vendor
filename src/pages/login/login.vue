@@ -23,6 +23,7 @@ import { mapMutations } from 'vuex'
 export default {
   data () {
     return {
+      redirectPath: '',
       nav: {
         title: '账号登录',
         back: true
@@ -58,6 +59,9 @@ export default {
       ]
     }
   },
+  created () {
+    this.redirectPath = this.$route.query.redirect
+  },
   methods: {
     submitHandler () {
       login({
@@ -71,9 +75,8 @@ export default {
             type: 'correct',
             txt: '登录成功'
           }).show()
-          // 登录重定向
-          const redirectPath = this.$route.query.redirect
-          this.$router.push(redirectPath)
+          const redirectPath = this.redirectPath ? this.redirectPath : '/'
+          this.$router.push(redirectPath) // 登录重定向
         } else if (res.errcode === 60000) {
           this.$createToast({
             type: 'error',

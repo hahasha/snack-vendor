@@ -12,14 +12,14 @@
                     :index="index"
                     :btns="btns"
                     @btn-click="onBtnClick">
-                    <div class="address-item">
+                    <div class="address-item" @click="onItemClick(item, index)">
                       <div class="icon-wrap">
                           <span class="iconfont icon-address-home" v-if="item.label==='家'"></span>
                           <span class="iconfont icon-address-company2" v-else-if="item.label==='公司'"></span>
                           <span class="iconfont icon-address-school" v-else-if="item.label==='学校'"></span>
                           <span class="iconfont icon-default" v-else>{{item.name.slice(-1)}}</span>
                       </div>
-                      <div class="info-wrap" @click="selectHandler(item)">
+                      <div class="info-wrap">
                           <p class="user-info">
                               <span class="name">{{item.name}}</span>
                               <span class="tel">{{item.mobile}}</span>
@@ -87,6 +87,17 @@ export default {
     this.getAddress()
   },
   methods: {
+    onItemClick (item, index) { // 确认订单时选择地址
+      const params = this.$route.params
+      if (params.name) {
+        this.$router.push({
+          name: params.name,
+          params: {
+            address: item
+          }
+        })
+      }
+    },
     onBtnClick (btn, index) {
       if (btn.action === 'edit') {
         this.$router.push({
@@ -125,24 +136,13 @@ export default {
             })
           },
           onCancel: () => {
-            this.$refs.swipeItem[index].shrink()
+            this.$refs.swipeItem[index].shrink() // 收缩滑块
           }
         }).show()
       }
     },
     addAddress () {
       this.$router.push('addAddress')
-    },
-    selectHandler (item) {
-      // if (this.$route.params.type === 'select') { // 进行的是确认订单时选择地址的操作
-      //   this.$router.push({
-      //     name: 'confirmOrder',
-      //     params: {
-      //       status: 'selected',
-      //       selectedAddress: item
-      //     }
-      //   })
-      // }
     },
     getAddress () {
       getAddress({
@@ -152,11 +152,8 @@ export default {
           const addressList = res.addresses
           if (addressList.length > 0) {
             addressList.forEach(item => {
-              const location = []
-              location.push(item.province)
-              location.push(item.city)
-              location.push(item.country)
-              item.location = location
+              item.location = []
+              item.location.push(item.province, item.city, item.country)
               item.isDefault = !!item.is_default // 转成Boolen类型
             })
           }
@@ -181,13 +178,19 @@ export default {
     text-align center
     font-size 14px
     color #c7c4c4
-    margin-top 70px
+    padding-top 20px
   .cube-swipe-btn
     text-align center
   .cube-swipe-btn .text
     font-size 14px
   .swipe-wrap
     padding-top 20px
+  .swipe-item
+    height 51.6px
+    margin-bottom 15px
+  .cube-swipe-item
+    height 51.6px
+    display flex
   .add-address
       position fixed
       top 18px
@@ -196,47 +199,47 @@ export default {
       color #fff
       z-index 1000
   .address-item
-      display flex
-      align-items center
-      font-size 12px
-      color #333
-      margin-bottom 20px
-      .icon-wrap
-          flex-basis 12%
-          text-align center
-          .iconfont
-              font-size 30px
-              color #fff
-              background-color #e4d4b5
-              border-radius 50%
-          .icon-default
-              font-size 16px
-              background-color #d6d3d3
-              display inline-block
-              width 30px
-              height 30px
-              line-height 30px
-              text-align center
-      .info-wrap
-          flex 1
-          padding 0 8px 0 4px
-          box-sizing border-box
-          .detail
-            line-height 16px
-          .user-info
-            margin-bottom 4px
-            .name
-              font-size 14px
-              margin-right 20px
-            .tel
-                color #999
-          .default, .label
+    flex 1
+    display flex
+    align-items center
+    font-size 12px
+    color #333
+    .icon-wrap
+        flex-basis 12%
+        text-align center
+        .iconfont
+            font-size 28px
+            color #fff
+            background-color #e4d4b5
+            border-radius 50%
+        .icon-default
+            font-size 16px
+            background-color #d6d3d3
             display inline-block
-            padding 1px 5px
-            background #f4f4f4
-            color #666
-          .default
-            color #ec7734
-            background #fff1ec
-            margin-right 6px
+            width 30px
+            height 30px
+            line-height 30px
+            text-align center
+    .info-wrap
+        flex 1
+        padding 0 8px 0 4px
+        box-sizing border-box
+        .detail
+          line-height 16px
+        .user-info
+          margin-bottom 4px
+          .name
+            font-size 14px
+            margin-right 20px
+          .tel
+              color #999
+        .default, .label
+          display inline-block
+          padding 1px 5px
+          background #f4f4f4
+          color #666
+        .default
+          color #ec7734
+          background #fff1ec
+          margin-right 6px
 </style>

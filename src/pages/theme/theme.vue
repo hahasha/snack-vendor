@@ -1,28 +1,28 @@
 <template>
   <div class="container">
     <headBar :nav="nav"></headBar>
-    <div class="theme-container">
-      <div class="head-img-wrap">
-        <img :src="head_img" alt="">
-      </div>
-      <ul class="product-list">
-        <li class="product" v-for="(item, index) in products" :key="index" @click="clickHandler(item)">
-          <div class="img-wrap">
-            <img :src="item.main_img_url" alt="" class="wrap">
-          </div>
-          <div class="info-wrap">
-            <span class="name">{{item.name}}</span>
-          </div>
-          <span class="price">¥{{item.price}}</span>
-        </li>
-      </ul>
+    <div class="theme-container" v-if="!isEmpty(theme)">
+        <div class="head-img-wrap">
+          <img :src="theme.head_img.url | toFullPath" alt="">
+        </div>
+        <ul class="product-list">
+          <li class="product" v-for="(item, index) in theme.products" :key="index" @click="clickHandler(item)">
+            <div class="img-wrap">
+              <img :src="item.main_img_url | toFullPath" alt="" class="wrap">
+            </div>
+            <div class="info-wrap">
+              <span class="name">{{item.name}}</span>
+            </div>
+            <span class="price">¥{{item.price}}</span>
+          </li>
+        </ul>
     </div>
   </div>
 </template>
 
 <script>
 import headBar from '@/components/header/header'
-import { getThemeProduct } from '@/api/api'
+import { getThemeById } from '@/api/api'
 import { baseImgUrl } from '@/api/http'
 export default {
   data () {
@@ -31,37 +31,38 @@ export default {
         title: '',
         back: true
       },
-      theme: {},
-      head_img: '',
-      products: []
+      theme: {}
     }
   },
   created () {
-    const theme = this.$route.query.item
-    const id = Number(theme.theme_id)
-    this.head_img = theme.head_img_url
-    this.nav.title = theme.theme_name
-    this.getTheme(id)
-    console.log(this.$route.query)
+    this.getTheme()
+  },
+  filters: {
+    toFullPath (value) {
+      if (!value) return ''
+      return baseImgUrl + value
+    }
   },
   methods: {
-    getTheme (id) {
-      var params = { id }
-      getThemeProduct(params).then((res) => {
-        if (res.code === 0) {
-          var list = res.data
-          list.forEach((item, index) => {
-            item.main_img_url = baseImgUrl + item.main_img_url
-          })
-          this.products = list
-        } else {
-          alert('result is null')
-          console.log(res)
+    getTheme () {
+      getThemeById({
+        id: this.$route.query.id
+      }).then(res => {
+        if (res.errcode === 0) {
+          this.theme = res.theme
+          this.nav.title = res.theme.description
         }
       })
     },
     clickHandler (item) {
       this.$router.push(`product/${item.id}`)
+    },
+    isEmpty (e) {
+      var t
+      for (t in e) {
+        return !1
+      }
+      return !0
     }
   },
   components: {
@@ -85,14 +86,12 @@ export default {
   .product-list
     display flex
     flex-wrap wrap
-    margin 15px 10px
-    .product:nth-of-type(2n+1)
-      margin-right 6px
+    justify-content space-between
+    padding 15px 10px
     .product
-      width 48%
+      flex-basis 49%
       padding 20px 0
       display flex
-      flex 1 0 auto
       flex-direction column
       font-size 14px
       align-items center
@@ -102,13 +101,13 @@ export default {
       border-radius 4px
       .img-wrap
         width 60%
-        height 80px
+        height auto
         img
           width 100%
           height 100%
           border-radius 50%
       .info-wrap
-        margin 20px 0 10px 0
+        margin 10px 0
         .name
           margin-right 2px
       .price

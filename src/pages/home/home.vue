@@ -151,7 +151,7 @@ export default {
       this.$router.push({
         name: 'theme',
         query: {
-          item: item
+          id: item.id
         }
       })
     }

@@ -2,37 +2,36 @@
   <div class="container">
     <headBar :nav="nav"></headBar>
     <div class="confirm-container">
-      <div class="address-wrap" @click="selectAddress">
-        <span class="iconfont icon-location"></span>
-        <div class="address" v-if="selectedAddress">
-          <div class="info-wrap">
-            <span class="name">{{selectedAddress.name}}</span>
-            <span class="tel">{{selectedAddress.tel}}</span>
+      <cube-scroll>
+        <div class="address-wrap" @click="changeAddress">
+          <span class="iconfont icon-location"></span>
+          <div class="address" v-if="!isEmpty(address)">
+            <div class="info-wrap">
+              <span class="name">{{address.name}}</span>
+              <span class="tel">{{address.mobile}}</span>
+            </div>
+            <p class="detail">{{fullAddress}}</p>
           </div>
-          <p class="detail">{{selectedAddress.location.join('') + selectedAddress.detail}}</p>
+          <div class="address" v-else>请选择收货地址</div>
+          <span class="cubeic-arrow"></span>
         </div>
-        <div class="address" v-else>请添加一个收货地址</div>
-        <span class="cubeic-arrow"></span>
-      </div>
-      <ul class="product-list">
-        <li v-for="(item, index) in checkedList" :key="index">
-          <div class="head-img-wrap">
-            <img :src="item.img_url" alt="">
-          </div>
-          <div class="desc">
-            <p class="title-wrap">
+        <ul class="product-list">
+          <li v-for="(item, index) in checkedCartList" :key="index">
+            <div class="head-img-wrap">
+              <img :src="item.main_img_url | toFullPath" alt="">
+            </div>
+            <div class="desc">
               <span class="name">{{item.name}}</span>
-              <span class="spec">{{item.spec}}</span>
-            </p>
-            <span class="price">¥{{item.price}}</span>
-          </div>
-          <div class="count">x{{item.count}}</div>
-        </li>
-      </ul>
+              <span class="price">¥{{item.price}}</span>
+            </div>
+            <div class="count">x{{item.count}}</div>
+          </li>
+        </ul>
+      </cube-scroll>
       <div class="operate-wrap">
         <div class="total-wrap">
           <span class="totalcount">共{{totalCount}}件</span>
-          <span class="totalprice">合计: ¥{{totalPrice}}</span>
+          <span class="totalprice">合计: ¥{{totalPrice | toFixed}}</span>
         </div>
         <cube-button :inline="true" @click="placeOrder">提交订单</cube-button>
       </div>
@@ -42,103 +41,76 @@
 
 <script>
 import headBar from '@/components/header/header'
-import { mapState, mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
+import { baseImgUrl } from '@/api/http'
+import { getDefault } from '@/api/api'
 export default {
   data () {
     return {
       nav: {
         title: '确认订单',
         back: true
-      } //,
-      // orderInfo: {
-      //   id: 1,
-      //   order_num: '',
-      //   user_id: null,
-      //   address_id: null,
-      //   product_list: [],
-      //   status: 1, // 1：待付款 2：待发货 3：待收货 4：待评价
-      //   create_time: '',
-      //   total_count: 0,
-      //   total_price: 0,
-      // }
+      },
+      address: {}
     }
   },
   computed: {
-    ...mapState([
-      'currentUser',
-      'cartList',
-      'addressList'
+    ...mapGetters([
+      'userInfo',
+      'checkedCartList',
+      'totalCount',
+      'totalPrice'
     ]),
-    selectedAddress () {
-      if (this.$route.params.status === 'selected') {
-        return this.$route.params.selectedAddress
-      } else {
-        return this.addressList.filter(item => { return item.isDefault === true })[0] || this.addressList[0] || null
-      }
+    fullAddress () {
+      const { province, city, country, detail } = this.address
+      return province + ' ' + city + ' ' + country + ' ' + detail
+    }
+  },
+  filters: {
+    toFullPath (value) {
+      if (!value) return ''
+      return baseImgUrl + value
     },
-    checkedList () {
-      return this.cartList.filter(item => { return item.isChecked === true && item.isDelete === false })
-    },
-    totalCount () {
-      let totalCount = 0
-      this.checkedList.forEach(item => {
-        totalCount += item.count
-      })
-      return totalCount
-    },
-    totalPrice () {
-      let totalPrice = 0
-      this.checkedList.forEach(item => {
-        totalPrice += item.count * Number(item.price)
-      })
-      return totalPrice.toFixed(2)
+    toFixed (value) {
+      return value.toFixed(2)
+    }
+  },
+  created () {
+    const address = this.$route.params.address
+    if (address) {
+      this.address = address // 修改当前地址为所选地址
+    } else {
+      this.getAddress()
     }
   },
   methods: {
-    selectAddress () {
+    getAddress () {
+      getDefault({
+        id: this.userInfo.id
+      }).then(res => {
+        if (res.errcode === 0 && res.address) {
+          this.address = res.address
+        }
+      })
+    },
+    changeAddress () {
       this.$router.push({
         name: 'address',
         params: {
-          type: 'select'
+          name: this.$route.name
         }
       })
     },
     placeOrder () {
-      if (!this.currentUser) {
-        this.$createDialog({
-          type: 'confirm',
-          content: '请先登录',
-          icon: 'cubeic-alert',
-          confirmBtn: {
-            text: '确定',
-            active: true,
-            disabled: false,
-            href: 'javascript:;'
-          },
-          cancelBtn: {
-            text: '取消',
-            active: false,
-            disabled: false,
-            href: 'javascript:;'
-          },
-          onConfirm: () => {
-            this.$router.push('login')
-          }
-        }).show()
-      } else {
-        const orderInfo = {
-          user_id: this.currentUser.id,
-          address_id: this.selectedAddress.id,
-          product_list: this.checkedList,
-          total_count: this.totalCount,
-          total_price: this.totalPrice
-        }
-        this.saveOrder(orderInfo)
-        this.$router.push('order')
+    },
+    isEmpty (e) {
+      var t
+      for (t in e) {
+        return !1
       }
+      return !0
     },
     ...mapMutations([
-      'saveOrder'
     ])
   },
   components: {
@@ -157,6 +129,8 @@ export default {
     font-size 14px
     color #333
     .address-wrap
+      height: 100px;
+      box-sizing: border-box;
       background #fff
       padding 20px 10px
       display flex
@@ -176,13 +150,14 @@ export default {
             color #b2b2b2
             font-size 12px
         .detail
-          line-height 16px
+          line-height 20px
       .cubeic-arrow
         color #b2b2b2
     .product-list
       margin-top 10px
       background #fff
-      height 100%
+      height calc(100% - 156px)
+      padding-bottom 50px
       li
         display flex
         align-items center
@@ -198,6 +173,9 @@ export default {
             border-radius 50%
         .desc
           flex-basis 65%
+          display flex
+          flex-direction column
+          line-height 22px
           .title-wrap
             margin-bottom 10px
             .name
@@ -207,12 +185,15 @@ export default {
       left 0
       right 0
       bottom 0
+      z-index 99
       border-top 1px solid #f4f4f4
       padding 6px 10px
       background #fff
       display flex
       align-items center
       justify-content space-between
+      height: 50px;
+      box-sizing: border-box;
       .totalcount, .totalprice
         margin-left 15px
         color #a80c0c

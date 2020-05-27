@@ -10,6 +10,8 @@
 <script>
 import headBar from '@/components/header/header'
 import addressForm from '@/components/addressForm/addressForm'
+import { mapGetters } from 'vuex'
+import { addAddress } from '@/api/api'
 export default {
   data () {
     return {
@@ -21,13 +23,30 @@ export default {
       addressData: {}
     }
   },
+  computed: {
+    ...mapGetters([
+      'userInfo'
+    ])
+  },
   components: {
     headBar,
     addressForm
   },
   methods: {
     addAddress (data) {
-      console.log(data)
+      data.province = data.location[0]
+      data.city = data.location[1]
+      data.country = data.location[2]
+      data.user_id = this.userInfo.id
+      addAddress(data).then(res => {
+        if (res.errcode === 0) {
+          this.$createToast({
+            type: 'correct',
+            txt: '添加地址成功'
+          }).show()
+          this.$router.push('address')
+        }
+      })
     }
   }
 }

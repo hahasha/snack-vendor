@@ -37,9 +37,9 @@ export default {
             type: 'correct',
             txt: '修改地址成功'
           }).show()
+          this.$router.push('address')
         }
       })
-      this.$router.push('address')
     }
   }
 }

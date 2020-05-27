@@ -1,8 +1,15 @@
 <template>
   <div class="container">
     <headBar :nav="nav"></headBar>
-    <div class="reset-container">
-      <cube-form :model="model" :schema="schema" @submit.prevent="submitHandler" @validate="validateHandler">
+    <div class="reset-container" v-if="userInfo">
+      <cube-form :model="model" @submit.prevent="submitHandler">
+        <cube-form-group>
+          <cube-form-item :field="usernameFiled">
+            <cube-input :placeholder="userInfo.username" :disabled="true"></cube-input>
+          </cube-form-item>
+        </cube-form-group>
+         <cube-form-group :fields="fields">
+         </cube-form-group>
       </cube-form>
     </div>
   </div>
@@ -10,7 +17,8 @@
 
 <script>
 import headBar from '@/components/header/header'
-import { mapMutations } from 'vuex'
+import { resetPassword } from '@/api/api'
+import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
@@ -23,82 +31,86 @@ export default {
         newPassword: '',
         newPassword2: ''
       },
-      schema: {
-        fields: [
-          {
-            type: 'input',
-            label: '用户名',
-            props: {
-              placeholder: this.$store.state.currentUser ? this.$store.state.currentUser.name : '',
-              readonly: 'readonly'
-            },
-            rules: {
-              required: true
-            }
+      usernameFiled: {
+        type: 'input',
+        label: '用户名'
+      },
+      fields: [
+        {
+          type: 'input',
+          modelKey: 'password',
+          label: '旧密码',
+          props: {
+            type: 'password',
+            placeholder: '请输入密码'
           },
-          {
-            type: 'input',
-            modelKey: 'password',
-            label: '旧密码',
-            props: {
-              placeholder: '请输入旧密码'
-            },
-            rules: {
-              required: true
-            }
-          },
-          {
-            type: 'input',
-            modelKey: 'newPassword',
-            label: '新密码',
-            props: {
-              placeholder: '请输入新密码'
-            },
-            rules: {
-              required: true
-            }
-          },
-          {
-            type: 'input',
-            modelKey: 'newPassword2',
-            label: '确认新密码',
-            props: {
-              placeholder: '请再次输入新密码'
-            },
-            rules: {
-              required: true,
-              custom: (val) => {
-                return val === this.model.newPassword
-              }
-            },
-            messages: {
-              custom: '两次输入的密码不一致'
-            }
-          },
-          {
-            type: 'submit',
-            label: '确认修改'
+          rules: {
+            required: true
           }
-        ]
-      }
+        },
+        {
+          type: 'input',
+          modelKey: 'newPassword',
+          label: '新密码',
+          props: {
+            type: 'password',
+            placeholder: '请输入新密码'
+          },
+          rules: {
+            required: true
+          }
+        },
+        {
+          type: 'input',
+          modelKey: 'newPassword2',
+          label: '确认新密码',
+          props: {
+            type: 'password',
+            placeholder: '请再次输入新密码'
+          },
+          rules: {
+            required: true,
+            custom: (val) => {
+              return val === this.model.newPassword
+            }
+          },
+          messages: {
+            custom: '两次输入的密码不一致'
+          }
+        },
+        {
+          type: 'submit',
+          label: '确认修改'
+        }
+      ]
     }
   },
   computed: {
-    user () {
-      return this.$store.state.currentUser
-    }
+    ...mapGetters([
+      'userInfo'
+    ])
   },
   methods: {
     submitHandler () {
-      this.user.password = this.model.newPassword
-      this.updateUser(this.user)
-      this.$router.go(-1)
-    },
-    validateHandler (result) {
-    },
-    ...mapMutations([
-      'updateUser'
-    ])
+      resetPassword({
+        id: this.userInfo.id,
+        password: this.model.password,
+        newPassword: this.model.newPassword
+      }).then(res => {
+        if (res.errcode === 0) {
+          this.$createToast({
+            type: 'correct',
+            txt: '密码重置成功'
+          }).show()
+          this.$router.go(-1)
+        } else {
+          this.$createToast({
+            type: 'error',
+            txt: '密码不正确'
+          }).show()
+        }
+      })
+    }
   },
   components: {
     headBar
@@ -127,4 +139,5 @@ export default {
   >>>.cube-btn
     border-top 10px solid #f4f4f4
     font-size 14px
+    background #ab956c
 </style>

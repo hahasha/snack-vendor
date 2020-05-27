@@ -2,10 +2,10 @@
     <div class="container">
         <headBar :nav="nav"></headBar>
         <div class="shopcart-container">
-          <div class="user-info-wrap" v-if="userInfo" @click="editUser">
-            <img class="avatar" v-if="userInfo.avatar_url" :src="userInfo.avatar_url" alt="" >
+          <div class="user-info-wrap" v-if="!isEmpty(userInfo)" @click="editUser">
+            <img class="avatar" v-if="userInfo.avatar" :src="userInfo.avatar | toFullPath" alt="" >
             <span class="iconfont icon-avatar" v-else></span>
-            <span class="text">{{userInfo.name}}</span>
+            <span class="text">{{userInfo.username}}</span>
             <span class="edit">编辑</span>
           </div>
           <div class="user-info-wrap" v-else>
@@ -19,7 +19,7 @@
             <div class="set-item" data-type="aboutUs">关于我们<span class="arrow cubeic-arrow"></span></div>
           </div>
           <div class="operate-wrap">
-            <div class="operate-item switch" @click="switchUser" v-show="userInfo">切换账户</div>
+            <!-- <div class="operate-item switch" @click="switchUser" v-show="userInfo">切换账户</div> -->
             <div class="operate-item logout" @click="logout" v-show="userInfo">退出登录</div>
           </div>
         </div>
@@ -30,7 +30,8 @@
 <script>
 import headBar from '@/components/header/header'
 import Tab from '@/components/tab/tab'
-import { mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
+import { baseImgUrl } from '@/api/http'
 export default {
   data () {
     return {
@@ -40,8 +41,14 @@ export default {
     }
   },
   computed: {
-    userInfo () {
-      return this.$store.state.currentUser
+    ...mapGetters([
+      'userInfo'
+    ])
+  },
+  filters: {
+    toFullPath (value) {
+      if (!value) return ''
+      return baseImgUrl + value
     }
   },
   methods: {
@@ -67,16 +74,24 @@ export default {
           active: false
         },
         onConfirm: () => {
-          this.switchAccount(null)
+          this.clearToken() // 退出登录，清除token，跳转到登录页
+          this.$router.push('login')
         }
       }).show()
     },
     editUser () {
       this.$router.push('editUserInfo')
     },
-    ...mapMutations([
-      'switchAccount'
-    ])
+    isEmpty (e) {
+      var t
+      for (t in e) {
+        return !1
+      }
+      return !0
+    },
+    ...mapMutations({
+      clearToken: 'CLEAR_TOKEN'
+    })
   },
   components: {
     headBar,
@@ -103,6 +118,11 @@ export default {
       font-size 16px
       display flex
       align-items center
+      .avatar
+        width 50px
+        height 50px
+        border-radius 50%
+        margin-right 10px
       .icon-avatar
         font-size 30px
         margin-right 10px

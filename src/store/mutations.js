@@ -7,6 +7,13 @@ const mutations = {
     state.token = token
     storage.set('token', token)
   },
+  // 退出登录，清除token和userInfo
+  [types.CLEAR_TOKEN] (state) {
+    state.token = null
+    state.userInfo = {}
+    storage.remove('token')
+    storage.remove('userInfo')
+  },
   // 存储用户信息
   [types.SET_USER_INFO] (state, userInfo) {
     state.userInfo = userInfo

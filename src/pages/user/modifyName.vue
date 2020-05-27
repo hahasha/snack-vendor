@@ -16,7 +16,7 @@
 
 <script>
 import headBar from '@/components/header/header'
-import { mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 export default {
   data () {
     return {
@@ -35,26 +35,30 @@ export default {
         },
         rules: {
           required: true,
-          min: 4,
+          min: 1,
           max: 20
         }
       }
     }
   },
   computed: {
-    user () {
-      return this.$store.state.currentUser
-    }
+    ...mapGetters([
+      'userInfo'
+    ])
   },
   methods: {
     submitHandler () {
-      this.user.name = this.model.name
-      this.updateUser(this.user)
+      const userInfo = {
+        id: this.userInfo.id,
+        username: this.model.name,
+        avatar: this.userInfo.avatar
+      }
+      this.updateUserInfo(userInfo)
       this.$router.go(-1)
     },
-    ...mapMutations([
-      'updateUser'
-    ])
+    ...mapMutations({
+      updateUserInfo: 'SET_USER_INFO'
+    })
   },
   components: {
     headBar
@@ -75,4 +79,5 @@ export default {
       height 20px
     >>>.cube-btn
       font-size 14px
+      background #ab956c
 </style>

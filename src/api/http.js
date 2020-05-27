@@ -30,6 +30,18 @@ export function post (url, params) {
   })
 }
 
+export function upload (url, params) {
+  return new Promise((resolve, reject) => {
+    axios.post(baseUrl + url, params)
+      .then(res => {
+        resolve(res.data)
+      })
+      .catch(err => {
+        reject(err.data)
+      })
+  })
+}
+
 export {
   baseImgUrl,
   baseUrl
