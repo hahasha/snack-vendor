@@ -36,7 +36,7 @@
           <cube-tab-bar v-model="selectedTab" :data="tabs" show-slider></cube-tab-bar>
           <cube-tab-panels v-model="selectedTab">
               <cube-tab-panel label="商品详情" >
-                  <div class="detail-wrap" v-if="productInfo.details">
+                  <div class="detail-wrap" v-if="!isEmpty(productInfo.details)">
                       <div v-for="item in productInfo.details" :key="item.id">
                           <img :src="item.url | toFullPath" alt="">
                       </div>
@@ -44,7 +44,7 @@
                   <div class="detail-wrap none" v-else>暂无详细信息</div>
               </cube-tab-panel>
               <cube-tab-panel label="产品参数">
-                  <div class="attr-wrap" v-if="productInfo.properties">
+                  <div class="attr-wrap" v-if="!isEmpty(productInfo.properties)">
                     <div v-for="item in productInfo.properties" :key="item.id">
                       <div class="attr-item"><span>{{item.name}}</span>{{item.detail}}</div>
                     </div>
@@ -115,13 +115,6 @@ export default {
         this.cartCount = product.count
       }
     },
-    isEmpty (e) {
-      var t
-      for (t in e) {
-        return !1
-      }
-      return !0
-    },
     getProductInfo () {
       getProductById({
         id: this.currentId
@@ -143,6 +136,13 @@ export default {
     },
     goCart () {
       this.$router.push('/shopCart')
+    },
+    isEmpty (e) {
+      var t
+      for (t in e) {
+        return !1
+      }
+      return !0
     },
     ...mapMutations({
       updateCart: 'UPDATE_CART'

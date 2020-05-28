@@ -6,6 +6,19 @@
         <cube-form-group>
           <cube-form-item :field="fields[0]"></cube-form-item>
           <cube-form-item :field="fields[1]"></cube-form-item>
+          <!-- <cube-form-item>
+            <cube-input
+              v-model="value"
+              :placeholder="placeholder"
+              :type="type"
+              :maxlength="maxlength"
+              :readonly="readonly"
+              :disabled="disabled"
+              :autofocus="autofocus"
+              :autocomplete="autocomplete"
+              :eye="eye"
+            ></cube-input>
+          </cube-form-item> -->
         </cube-form-group>
         <cube-form-group>
           <cube-button type="submit" class="btn-login">登录</cube-button>
@@ -53,7 +66,11 @@ export default {
           label: '密码',
           props: {
             type: 'password',
-            placeholder: '请输入密码'
+            placeholder: '请输入密码',
+            eye: {
+              open: true,
+              reverse: false
+            }
           }
         }
       ]
