@@ -33,5 +33,6 @@ module.exports = {
     config.plugin('context')
       .use(webpack.ContextReplacementPlugin,
         [/moment[/\\]locale$/, /zh-cn/])
-  }
+  },
+  publicPath: '' // 配置为相对路径，解决打包上线后静态资源路径的问题
 }
