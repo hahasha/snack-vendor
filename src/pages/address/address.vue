@@ -129,7 +129,8 @@ export default {
               if (res.errcode === 0) {
                 this.$createToast({
                   type: 'correct',
-                  txt: '删除成功'
+                  txt: '删除成功',
+                  time: 1000
                 }).show()
                 this.getAddress()
               }

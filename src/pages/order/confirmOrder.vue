@@ -129,7 +129,7 @@ export default {
     font-size 14px
     color #333
     .address-wrap
-      height: 100px;
+      height: 70px;
       box-sizing: border-box;
       background #fff
       padding 20px 10px
@@ -156,8 +156,7 @@ export default {
     .product-list
       margin-top 10px
       background #fff
-      height calc(100% - 156px)
-      padding-bottom 50px
+      margin-bottom 50px
       li
         display flex
         align-items center

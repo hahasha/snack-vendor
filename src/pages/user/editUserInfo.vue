@@ -20,7 +20,7 @@
                 >
                   <cube-upload-file v-for="(file, i) in files" :file="file" :key="i"></cube-upload-file>
                   <cube-upload-btn :multiple="false" :class="{'transform' : files.length > 0}">
-                    <img class="avatar" v-if="userInfo && !files.length" :src="userInfo.avatar | toFullPath" alt="">
+                    <img class="avatar" v-if="userInfo.avatar && !files.length" :src="userInfo.avatar | toFullPath" alt="">
                     <span class="iconfont icon-avatar" v-else-if="!files.length"></span>
                   </cube-upload-btn>
                 </cube-upload>
@@ -179,6 +179,8 @@ export default {
         width 60px
         height 60px
         border-radius 50%
+      >>>.cube-upload-btn-def
+        width 60px
       >>>.cubeic-wrong
         display none
       .avatar

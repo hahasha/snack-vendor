@@ -103,6 +103,7 @@ export default {
       this.$refs.popup.show()
     },
     checkAll () {
+      console.log('checkAll')
       if (!this.allChecked) {
         this.updateAll('check')
       } else {
