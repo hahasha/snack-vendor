@@ -26,7 +26,7 @@
                           </p>
                           <div class="address-wrap">
                               <p class="detail">
-                                  <span class="default" v-show="item.isDefault">默认</span>
+                                  <span class="default" v-show="item.is_default">默认</span>
                                   <span class="label" v-show="item.label">{{item.label}}</span>
                                   {{item | toFullAddress}}
                               </p>
@@ -155,7 +155,6 @@ export default {
             addressList.forEach(item => {
               item.location = []
               item.location.push(item.province, item.city, item.country)
-              item.isDefault = !!item.is_default // 转成Boolen类型
             })
           }
           this.addressList = addressList

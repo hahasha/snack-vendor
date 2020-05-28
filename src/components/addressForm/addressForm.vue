@@ -60,7 +60,7 @@ export default {
         location: '',
         detail: '',
         label: '',
-        isDefault: false
+        is_default: false
       },
       labels: [
         {
@@ -120,7 +120,7 @@ export default {
         },
         {
           type: 'switch',
-          modelKey: 'isDefault',
+          modelKey: 'is_default',
           label: '设为默认地址'
         }
       ]
