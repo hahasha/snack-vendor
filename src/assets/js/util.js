@@ -1,6 +1,10 @@
 export const storage = {
   get (key) {
-    return JSON.parse(localStorage.getItem(key))
+    if (key === 'token') {
+      return localStorage.getItem(key)
+    } else {
+      return JSON.parse(localStorage.getItem(key))
+    }
   },
   set (key, value) {
     if (!this.get(key)) {

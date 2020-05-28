@@ -144,7 +144,7 @@ export default {
     text-align center
     font-size 14px
     color #c7c4c4
-    margin-top 70px
+    margin-top 20px
   .cart-list-wrap
     width 100%
     .cart-item
