@@ -12,16 +12,15 @@
                 <div v-if="item.orders.length > 0">
                   <div class="order-wrap" v-for="(order, index) in item.orders" :key="index" @click="clickHandler(order.id)">
                     <div class="title-wrap">
-                      <span class="order-num">订单编号: {{order.order_num}}</span>
+                      <span class="order-num">订单编号: {{order.order_no}}</span>
                       <span class="status">{{statusTxt[order.status]}}</span>
                     </div>
-                    <div class="product-wrap" v-for="(product, index) in order.product_list" :key="index">
+                    <div class="product-wrap" v-for="(product, index) in order.products" :key="index">
                       <div class="img-wrap">
-                        <img class="img" :src="product.img_url" alt="">
+                        <img class="img" :src="product.main_img_url | toFullPath" alt="">
                       </div>
                       <p class="name-wrap">
                         <span class="name">{{product.name}}</span>
-                        <span class="spec">{{product.spec}}</span>
                       </p>
                       <div class="price-wrap">
                         <span class="price">¥{{product.price}}</span>
@@ -48,7 +47,9 @@
 
 <script>
 import headBar from '@/components/header/header'
-import { mapState } from 'vuex'
+import { getOrders } from '@/api/api'
+import { baseImgUrl } from '@/api/http'
+import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
@@ -87,8 +88,8 @@ export default {
     }
   },
   computed: {
-    ...mapState([
-      'orderList'
+    ...mapGetters([
+      'userInfo'
     ]),
     statusTxt () {
       return ['', '待付款', '等待卖家发货', '卖家已发货', '交易成功']
@@ -97,12 +98,14 @@ export default {
       return ['', '去付款', '提醒发货', '确认收货', '评价']
     }
   },
+  filters: {
+    toFullPath (value) {
+      if (!value) return ''
+      return baseImgUrl + value
+    }
+  },
   created () {
-    this.tabs[0].orders = this.orderList
-    this.tabs[1].orders = this.orderList.filter(item => { return item.status === 1 }) // 待付款
-    this.tabs[2].orders = this.orderList.filter(item => { return item.status === 2 }) // 待发货
-    this.tabs[3].orders = this.orderList.filter(item => { return item.status === 3 }) // 待收货
-    this.tabs[4].orders = this.orderList.filter(item => { return item.status === 4 }) // 待评价
+    this.getOrders()
   },
   methods: {
     clickHandler (id) {
@@ -110,6 +113,22 @@ export default {
         name: 'orderDetail',
         query: {
           id
+        }
+      })
+    },
+    getOrders () {
+      getOrders({
+        user_id: this.userInfo.id
+      }).then(res => {
+        if (res.errcode === 0) {
+          res.orders.forEach(item => {
+            item.products = JSON.parse(item.snap_items)
+          })
+          this.tabs[0].orders = res.orders
+          this.tabs[1].orders = res.orders.filter(item => item.status === 1) // 待付款
+          this.tabs[2].orders = res.orders.filter(item => item.status === 2) // 待发货
+          this.tabs[3].orders = res.orders.filter(item => item.status === 3) // 待收货
+          this.tabs[4].orders = res.orders.filter(item => item.status === 4) // 待评价
         }
       })
     }
@@ -129,15 +148,18 @@ export default {
     padding-top 46px
     font-size 14px
     .tab-container
-      position: fixed;
+      position fixed
       top 46px
-      left 10px
-      right 10px
+      left 0
+      right 0
+      padding 0 10px
       z-index 1000
       height 50px
       background: #f4f4f4
     .cube-tab-panels
       margin-top 50px
+    .cube-tab-panel
+      background #f4f4f4
     >>>.cube-tab
       margin 10px 0
     >>>.cube-tab_active
@@ -165,9 +187,9 @@ export default {
         padding 10px
         display flex
         justify-content space-between
+        align-items center
         .img-wrap
           flex-basis 22%
-          height 80px
         .img
           width 100%
           height 100%

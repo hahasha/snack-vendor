@@ -131,7 +131,7 @@ export default {
       this.cartCount++
       this.updateCart(Object.assign(this.productInfo, {
         count: this.cartCount,
-        isChecked: false
+        isChecked: true
       }))
     },
     goCart () {

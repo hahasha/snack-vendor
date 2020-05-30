@@ -2,31 +2,33 @@
     <div class="container">
         <headBar :nav="nav"></headBar>
         <div class="shopcart-container" v-if="cartList.length">
-            <div class="cart-list-wrap">
-              <div class="cart-item" v-for="(item, index) in cartList" :key="index">
-                <div class="check-wrap" @click="checkHandler(item)">
-                  <span class="iconfont icon-checked" v-if="item.isChecked"></span>
-                  <span class="iconfont icon-unchecked" v-else></span>
-                </div>
-                <div class="img-wrap">
-                  <img :src="item.main_img_url | toFullPath" alt="">
-                </div>
-                <div class="right-box">
-                  <div class="info-wrap">
-                    <span class="name">{{item.name}}</span>
-                    <span class="price">¥{{item.price}}</span>
+          <cube-scroll>
+              <div class="cart-list-wrap">
+                <div class="cart-item" v-for="(item, index) in cartList" :key="index">
+                  <div class="check-wrap" @click="checkHandler(item)">
+                    <span class="iconfont icon-checked" v-if="item.isChecked"></span>
+                    <span class="iconfont icon-unchecked" v-else></span>
                   </div>
-                  <div class="control-wrap">
-                    <div class="count-wrap">
-                      <span class="reduce" @click="reduce(item)">-</span>
-                      <span class="count">{{item.count}}</span>
-                      <span class="add" @click="add(item)">+</span>
+                  <div class="img-wrap">
+                    <img :src="item.main_img_url | toFullPath" alt="">
+                  </div>
+                  <div class="right-box">
+                    <div class="info-wrap">
+                      <span class="name">{{item.name}}</span>
+                      <span class="price">¥{{item.price}}</span>
                     </div>
-                    <span class="delete cubeic-close" @click="deleteHandler(item)"></span>
+                    <div class="control-wrap">
+                      <div class="count-wrap">
+                        <span class="reduce" @click="reduce(item)">-</span>
+                        <span class="count">{{item.count}}</span>
+                        <span class="add" @click="add(item)">+</span>
+                      </div>
+                      <span class="delete cubeic-close" @click="deleteHandler(item)"></span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </cube-scroll>
             <div class="operate-wrap">
               <div class="select-all" @click="checkAll">
                 <span class="iconfont icon-check" v-if="allChecked"></span>
@@ -34,7 +36,7 @@
                 <span class="total-count">全选({{totalCount}})</span>
               </div>
               <span class="total-price">合计：¥{{totalPrice | toFixed}}</span>
-              <span class="place-order" @click="placeOrder">去结算</span>
+              <span class="place-order" @click="confirmOrder">去结算</span>
             </div>
         </div>
         <div class="shopcart-container" v-else>
@@ -64,11 +66,9 @@ export default {
       'cartList',
       'checkedCartList',
       'totalCount',
-      'totalPrice'
-    ]),
-    allChecked () {
-      return this.cartList.every(item => { return item.isChecked === true })
-    }
+      'totalPrice',
+      'allChecked'
+    ])
   },
   filters: {
     toFullPath (value) {
@@ -85,7 +85,28 @@ export default {
       this.updateCart(item)
     },
     deleteHandler (item) {
-      this.deleteCart(item)
+      this.$createDialog({
+        type: 'confirm',
+        content: '确认删除该商品吗？',
+        confirmBtn: {
+          text: '确定',
+          active: true
+        },
+        cancelBtn: {
+          text: '取消',
+          active: false
+        },
+        onConfirm: () => {
+          this.deleteCart(item)
+          this.$createToast({
+            type: 'correct',
+            time: 1000,
+            txt: '删除成功'
+          }).show()
+        },
+        onCancel: () => {
+        }
+      }).show()
     },
     reduce (item) {
       if (item.count > 1) {
@@ -103,14 +124,13 @@ export default {
       this.$refs.popup.show()
     },
     checkAll () {
-      console.log('checkAll')
       if (!this.allChecked) {
         this.updateAll('check')
       } else {
         this.updateAll('unCheck')
       }
     },
-    placeOrder () {
+    confirmOrder () {
       if (this.checkedCartList.length > 0) {
         this.$router.push('confirmOrder')
       } else {
@@ -139,8 +159,8 @@ export default {
 .container
   height 100%
 .shopcart-container
-  height calc(100% - 96px)
-  padding 46px 0 50px 0
+  height calc(100% - 142px)
+  padding 46px 0 96px 0
   .text
     text-align center
     font-size 14px

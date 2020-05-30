@@ -43,7 +43,7 @@
 import headBar from '@/components/header/header'
 import { mapGetters, mapMutations } from 'vuex'
 import { baseImgUrl } from '@/api/http'
-import { getDefault } from '@/api/api'
+import { getDefault, placeOrder } from '@/api/api'
 export default {
   data () {
     return {
@@ -101,7 +101,31 @@ export default {
         }
       })
     },
-    placeOrder () {
+    placeOrder () { // 下单
+      if (this.isEmpty(this.address)) {
+        this.$createDialog({
+          type: 'alert',
+          content: '请选择收货地址'
+        }).show()
+      }
+      placeOrder({
+        user_id: this.userInfo.id,
+        total_price: this.totalPrice,
+        total_count: this.totalCount,
+        snap_address: this.address,
+        snap_items: this.checkedCartList
+      }).then(res => {
+        if (res.errcode === 0) {
+          this.deleteChecked(this.checkedCartList) // 购物车删除下单成功的商品
+          this.$router.push(`orderDetail?id=${res.order_id}`)
+        } else {
+          this.$createToast({
+            type: 'error',
+            txt: res.msg,
+            time: 1000
+          }).show()
+        }
+      })
     },
     isEmpty (e) {
       var t
@@ -110,8 +134,9 @@ export default {
       }
       return !0
     },
-    ...mapMutations([
-    ])
+    ...mapMutations({
+      deleteChecked: 'DELETE_CART_CHECKED'
+    })
   },
   components: {
     headBar

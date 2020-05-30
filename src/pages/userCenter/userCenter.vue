@@ -14,7 +14,7 @@
           </div>
           <div class="setting-wrap" @click.stop="clickHandler">
             <div class="set-item" data-type="address">我的收货地址<span class="arrow cubeic-arrow"></span></div>
-            <div class="set-item" data-type="collection">我的收藏<span class="arrow cubeic-arrow"></span></div>
+            <!-- <div class="set-item" data-type="collection">我的收藏<span class="arrow cubeic-arrow"></span></div> -->
             <div class="set-item" data-type="order">我的订单<span class="arrow cubeic-arrow"></span></div>
             <div class="set-item" data-type="aboutUs">关于我们<span class="arrow cubeic-arrow"></span></div>
           </div>
@@ -63,7 +63,6 @@ export default {
     logout () {
       this.$createDialog({
         type: 'confirm',
-        icon: 'cubeic-alert',
         title: '是否退出登录',
         confirmBtn: {
           text: '退出',

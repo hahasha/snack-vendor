@@ -13,3 +13,7 @@ export const totalPrice = state => state.cartList.filter(item => item.isChecked 
 }, 0)
 
 export const userInfo = state => state.userInfo
+
+export const addressSelect = state => state.addressSelect
+
+export const allChecked = state => state.cartList.every(item => item.isChecked === true)

@@ -1,23 +1,22 @@
 import * as types from './mutation-types'
-import { storage } from '@/assets/js/util.js'
 
 const mutations = {
   // 存储登录状态
   [types.SET_TOKEN] (state, token) {
     state.token = token
-    storage.set('token', token)
+    localStorage.setItem('token', JSON.stringify(token))
   },
   // 退出登录，清除token和userInfo
   [types.CLEAR_TOKEN] (state) {
     state.token = null
     state.userInfo = {}
-    storage.remove('token')
-    storage.remove('userInfo')
+    localStorage.removeItem('token')
+    localStorage.removeItem('userInfo')
   },
   // 存储用户信息
   [types.SET_USER_INFO] (state, userInfo) {
     state.userInfo = userInfo
-    storage.set('userInfo', userInfo)
+    localStorage.setItem('userInfo', JSON.stringify(userInfo))
   },
   // 添加购物车
   [types.UPDATE_CART] (state, product) {
@@ -33,7 +32,7 @@ const mutations = {
       // 购物车为空，直接添加商品
       state.cartList.push(product)
     }
-    storage.set('cartList', state.cartList)
+    localStorage.setItem('cartList', JSON.stringify(state.cartList))
   },
   // 删除购物车商品
   [types.DELETE_CART] (state, product) {
@@ -41,19 +40,33 @@ const mutations = {
     if (index !== -1) {
       state.cartList.splice(index, 1)
     }
-    storage.set('cartList', state.cartList)
+    localStorage.setItem('cartList', JSON.stringify(state.cartList))
   },
-  // 批量更新购物车（全选）
-  [types.UPDATE_CART_ALL] (state, type) {
+  // 下单后清空购物车
+  [types.DELETE_CART_CHECKED] (state) {
+    var list = []
     state.cartList.forEach(item => {
-      switch (type) {
-        case 'check': item.isChecked = true
-          break
-        case 'unCheck': item.isChecked = false
-          break
+      if (!item.isChecked) {
+        list.push(item)
       }
     })
-    storage.set('cartList', state.cartList)
+    state.cartList.splice(0, state.cartList.length, ...list)
+    localStorage.setItem('cartList', JSON.stringify(state.cartList))
+  },
+  // 批量更新购物车
+  [types.UPDATE_CART_ALL] (state, type) {
+    state.cartList.forEach(item => {
+      if (type === 'check') {
+        item.isChecked = true
+      } else if (type === 'unCheck') {
+        item.isChecked = false
+      }
+    })
+    localStorage.setItem('cartList', JSON.stringify(state.cartList))
+  },
+  // 修改地址的操作（是否可选）
+  [types.SET_ADDRESS_SELECT] (state, addressSelect) {
+    state.addressSelect = addressSelect
   }
 }
 

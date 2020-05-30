@@ -30,3 +30,11 @@ export const uploadAvatar = params => upload('/v1/image/upload', params)
 export const resetPassword = params => post('/v1/user/resetPassword', params)
 // 修改用户信息
 export const updateUserInfo = params => post('/v1/user/update', params)
+// 下单
+export const placeOrder = params => post('/v1/order/place', params)
+// 获取订单详情
+export const getOrderDetail = params => get('/v1/order/detail', params)
+// 获取订单列表
+export const getOrders = params => get('/v1/order', params)
+// 支付接口
+export const pay = params => post('/v1/pay', params)

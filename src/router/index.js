@@ -83,6 +83,12 @@ const routes = [
     component: address,
     meta: {
       requireAuth: true
+    },
+    beforeEnter: (to, from, next) => {
+      if (from.name === 'confirmOrder') {
+        store.commit('SET_ADDRESS_SELECT', true)
+      }
+      next()
     }
   },
   {

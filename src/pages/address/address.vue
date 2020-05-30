@@ -49,7 +49,7 @@
 <script>
 import headBar from '@/components/header/header'
 import { getAddress, deleteAddress } from '@/api/api'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 export default {
   data () {
     return {
@@ -74,7 +74,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'userInfo'
+      'userInfo',
+      'addressSelect'
     ])
   },
   filters: {
@@ -88,15 +89,15 @@ export default {
   },
   methods: {
     onItemClick (item, index) { // 确认订单时选择地址
-      const params = this.$route.params
-      if (params.name) {
+      if (this.addressSelect) {
         this.$router.push({
-          name: params.name,
+          name: 'confirmOrder',
           params: {
             address: item
           }
         })
       }
+      this.setAddressSelect(false)
     },
     onBtnClick (btn, index) {
       if (btn.action === 'edit') {
@@ -110,17 +111,14 @@ export default {
       if (btn.action === 'delete') {
         this.$createDialog({
           type: 'confirm',
-          icon: 'cubeic-alert',
           content: '确认要删除吗?',
           confirmBtn: {
             text: '确定',
-            active: true,
-            disabled: false
+            active: true
           },
           cancelBtn: {
             text: '取消',
-            active: false,
-            disabled: false
+            active: false
           },
           onConfirm: () => {
             deleteAddress({
@@ -160,7 +158,10 @@ export default {
           this.addressList = addressList
         }
       })
-    }
+    },
+    ...mapMutations({
+      setAddressSelect: 'SET_ADDRESS_SELECT'
+    })
   },
   components: {
     headBar

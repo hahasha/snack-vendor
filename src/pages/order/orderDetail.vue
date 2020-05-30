@@ -1,43 +1,53 @@
 <template>
   <div class="container">
     <headBar :nav="nav"></headBar>
-    <div class="order-detail-container">
-      <div class="status-wrap">
-        <span class="status">{{statusTxt[order.status]}}</span>
-      </div>
-      <div class="address-wrap">
-        <span class="iconfont icon-location"></span>
-        <div class="address">
-          <div class="info-wrap">
-            <span class="name">{{address.name}}</span>
-            <span class="tel">{{address.tel}}</span>
+    <div class="order-detail-container" v-if="!isEmpty(order)">
+      <div class="scroll-wrap">
+        <cube-scroll>
+          <div class="status-wrap">
+            <span class="status">{{statusTxt[order.status]}}</span>
           </div>
-          <p class="detail">{{address.location.join(' ') + address.detail}}</p>
-        </div>
-      </div>
-      <div class="order-wrap">
-        <div class="product-wrap" v-for="(product, index) in order.product_list" :key="index">
-          <div class="img-wrap">
-            <img class="img" :src="product.img_url" alt="">
+          <div class="address-wrap">
+            <span class="iconfont icon-location"></span>
+            <div class="address">
+              <div class="info-wrap">
+                <span class="name">{{address.name}}</span>
+                <span class="tel">{{address.mobile}}</span>
+              </div>
+              <p class="detail">{{fullAddress}}</p>
+            </div>
           </div>
-          <p class="name-wrap">
-            <span class="name">{{product.name}}</span>
-            <span class="spec">{{product.spec}}</span>
-          </p>
-          <div class="price-wrap">
-            <span class="price">¥{{product.price}}</span>
-            <span class="count">x{{product.count}}</span>
+          <div class="order-wrap">
+            <div class="product-wrap"
+              v-for="(item, index) in productList"
+              :key="index"
+              @click="clickHandler(item.id)"
+              >
+              <div class="img-wrap">
+                <img class="img" :src="item.main_img_url | toFullPath" alt="">
+              </div>
+              <p class="name-wrap">
+                <span class="name">{{item.name}}</span>
+              </p>
+              <div class="price-wrap">
+                <span class="price">¥{{item.price}}</span>
+                <span class="count">x{{item.count}}</span>
+              </div>
+            </div>
+            <div class="total-wrap">
+              <span class="text">实付款</span>
+              <span class="total-price">¥{{order.total_price}}</span>
+            </div>
           </div>
-        </div>
-        <div class="total-wrap">
-          <span class="text">实付款</span>
-          <span class="total-price">¥{{order.total_price}}</span>
-        </div>
+          <div class="order-info">
+            <span class="title">订单信息</span>
+            <span class="order-num">订单编号 : {{order.order_no}}</span>
+            <span class="create-time">创建时间 : {{formatTime}}</span>
+          </div>
+        </cube-scroll>
       </div>
-      <div class="order-info">
-        <span class="title">订单信息</span>
-        <span class="order-num">订单编号 : {{order.order_num}}</span>
-        <span class="create-time">创建时间 : {{formatTime}}</span>
+      <div class="operate-wrap">
+        <div class="btn" @click="goPay">{{btnTxt[order.status]}}</div>
       </div>
     </div>
   </div>
@@ -45,8 +55,9 @@
 
 <script>
 import headBar from '@/components/header/header'
+import { getOrderDetail, pay } from '@/api/api'
+import { baseImgUrl } from '@/api/http'
 import moment from 'moment'
-import { mapState } from 'vuex'
 export default {
   data () {
     return {
@@ -55,14 +66,11 @@ export default {
         back: true
       },
       order: {},
-      address: {}
+      address: {},
+      productList: []
     }
   },
   computed: {
-    ...mapState([
-      'addressList',
-      'orderList'
-    ]),
     statusTxt () {
       return ['', '待付款', '等待卖家发货', '卖家已发货', '交易成功']
     },
@@ -71,11 +79,60 @@ export default {
     },
     formatTime () {
       return moment(this.order.create_time).format('YYYY-MM-DD hh:mm:ss')
+    },
+    fullAddress () {
+      return this.address.location.join(' ') + ' ' + this.address.detail
+    }
+  },
+  filters: {
+    toFullPath (value) {
+      if (!value) return ''
+      return baseImgUrl + value
     }
   },
   created () {
-    this.order = this.orderList.filter(item => item.id === Number(this.$route.query.id))[0]
-    this.address = this.addressList.filter(item => item.id === this.order.address_id)[0]
+    this.getOrder()
+  },
+  methods: {
+    getOrder () {
+      getOrderDetail({
+        id: this.$route.query.id
+      }).then(res => {
+        if (res.errcode === 0) {
+          this.address = JSON.parse(res.order.snap_address)
+          this.productList = JSON.parse(res.order.snap_items)
+          this.order = res.order
+        } else {
+          this.$createToast({
+            type: 'error',
+            txt: res.msg,
+            time: 1000
+          })
+        }
+      })
+    },
+    clickHandler (id) {
+      this.$router.push(`product/${id}`)
+    },
+    isEmpty (e) {
+      var t
+      for (t in e) {
+        return !1
+      }
+      return !0
+    },
+    goPay () {
+      pay({
+        body: 'order description', // 订单描述
+        subject: 'order title', // 订单标题
+        outTradeId: this.order.order_no + '', // 订单号
+        amount: this.order.total_price + ''
+      }).then(res => {
+        if (res.errcode === 0 && res.url) {
+          window.location = res.url
+        }
+      })
+    }
   },
   components: {
     headBar
@@ -92,6 +149,8 @@ export default {
     background #f4f4f4
     font-size 14px
     color #333
+    .scroll-wrap
+      height calc(100% - 50px)
     .status-wrap
       background #fff
       padding 20px 0
@@ -104,7 +163,6 @@ export default {
       padding 20px 10px
       display flex
       align-items center
-      justify-content space-between
       .iconfont
         flex-basis 12%
         font-size 30px
@@ -123,9 +181,9 @@ export default {
       padding 20px 10px
       margin-bottom 10px
       .product-wrap
-        margin-bottom 10px
         display flex
         justify-content space-between
+        align-items center
         .img-wrap
           flex-basis 22%
           height 80px
@@ -133,8 +191,6 @@ export default {
           width 100%
           height 100%
           border-radius 10px
-        .name-wrap, .price-wrap
-          margin-top 20px
         .name-wrap
           flex-basis 50%
           .name
@@ -148,7 +204,7 @@ export default {
             font-size 12px
             color #999
       .total-wrap
-        margin-top 30px
+        margin-top 20px
         font-size 16px
         display flex
         align-items center
@@ -177,4 +233,27 @@ export default {
       .order-num, .create-time
         padding-left 6px
         color #666
+    .operate-wrap
+      position fixed
+      bottom 0
+      left 0
+      right 0
+      z-index 99
+      width 100%
+      height 50px
+      border-top 1px solid #e5e5e5
+      box-sizing border-box
+      background #fff
+      display flex
+      align-items center
+      justify-content flex-end
+      padding 0 20px
+      .btn
+        width 70px
+        height 30px
+        line-height 30px
+        text-align center
+        border 1px solid #ab956c
+        border-radius 20px
+        color #ab956c
 </style>
