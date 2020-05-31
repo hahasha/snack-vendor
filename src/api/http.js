@@ -3,13 +3,15 @@ import QS from 'qs'
 import store from '../store'
 import router from '../router'
 import { Toast } from 'cube-ui'
-const baseImgUrl = 'http://localhost:3000/images'
+let baseImgUrl = ''
 
 // 环境的切换
 if (process.env.NODE_ENV === 'development') { // 开发环境
   axios.defaults.baseURL = 'http://localhost:3000'
+  baseImgUrl = 'http://localhost:3000/images'
 } else if (process.env.NODE_ENV === 'production') { // 生产环境
-  axios.defaults.baseURL = 'http://localhost:3000'
+  axios.defaults.baseURL = 'http://www.liusha.ltd/vendor'
+  baseImgUrl = 'http://www.liusha.ltd/vendor/images'
 } else if (process.env.NODE_ENV === 'debug') {
   axios.defaults.baseURL = ''
 }
