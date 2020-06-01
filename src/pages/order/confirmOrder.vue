@@ -117,7 +117,7 @@ export default {
       }).then(res => {
         if (res.errcode === 0) {
           this.deleteChecked(this.checkedCartList) // 购物车删除下单成功的商品
-          this.$router.push(`orderDetail?id=${res.order_id}`)
+          this.$router.push(`orderDetail?orderNo=${res.order_no}`)
         } else {
           this.$createToast({
             type: 'error',
