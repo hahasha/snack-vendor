@@ -83,7 +83,8 @@ export default {
       return moment(this.order.create_time).format('YYYY-MM-DD hh:mm:ss')
     },
     fullAddress () {
-      return this.address.location.join(' ') + ' ' + this.address.detail
+      const { province, city, country, detail } = this.address
+      return province + ' ' + city + ' ' + country + ' ' + detail
     }
   },
   filters: {
@@ -101,6 +102,7 @@ export default {
         orderNo: this.$route.query.orderNo
       }).then(res => {
         if (res.errcode === 0) {
+          console.log(res)
           this.address = JSON.parse(res.order.snap_address)
           this.productList = JSON.parse(res.order.snap_items)
           this.order = res.order
