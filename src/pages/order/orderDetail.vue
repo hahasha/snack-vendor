@@ -41,13 +41,18 @@
           </div>
           <div class="order-info">
             <span class="title">订单信息</span>
-            <span class="order-num">订单编号 : {{order.order_no}}</span>
-            <span class="create-time">创建时间 : {{formatTime}}</span>
+            <span class="info-item">订单编号 : {{order.order_no}}</span>
+            <span class="info-item" v-if="order.trade_no">支付宝交易号 : {{order.trade_no}}</span>
+            <span class="info-item">创建时间 : {{formatTime}}</span>
+            <span class="info-item" v-if="order.gmt_payment">付款时间 : {{order.gmt_payment}}</span>
           </div>
         </cube-scroll>
       </div>
       <div class="operate-wrap">
-        <div class="btn" @click="goPay">{{btnTxt[order.status]}}</div>
+        <div class="btn" v-if="order.status === 1" @click="goPay">去付款</div>
+        <div class="btn" v-else-if="order.status === 2">提醒发货</div>
+        <div class="btn" v-else-if="order.status === 3">确认收货</div>
+        <div class="btn" v-else>评价</div>
       </div>
     </div>
   </div>
@@ -72,10 +77,7 @@ export default {
   },
   computed: {
     statusTxt () {
-      return ['', '待付款', '等待卖家发货', '卖家已发货', '交易成功']
-    },
-    btnTxt () {
-      return ['', '去付款', '提醒发货', '确认收货', '评价']
+      return ['', '待付款', '支付成功！等待卖家发货', '卖家已发货', '交易成功']
     },
     formatTime () {
       return moment(this.order.create_time).format('YYYY-MM-DD hh:mm:ss')
@@ -102,7 +104,6 @@ export default {
           this.address = JSON.parse(res.order.snap_address)
           this.productList = JSON.parse(res.order.snap_items)
           this.order = res.order
-          console.log(this.order)
         } else {
           this.$createToast({
             type: 'error',
@@ -125,7 +126,7 @@ export default {
     goPay () {
       pay({
         body: '零食商贩', // 订单描述
-        subject: this.productList[0].name + '等', // 订单标题
+        subject: this.productList.length >= 1 ? this.productList[0].name + '等' : this.productList[0].name, // 订单标题
         outTradeId: this.order.order_no + '', // 订单号
         amount: this.order.total_price + '',
         returnPath: this.$route.fullPath
@@ -232,7 +233,7 @@ export default {
         width 2px
         height 16px
         background #d73636
-      .order-num, .create-time
+      .info-item
         padding-left 6px
         color #666
     .operate-wrap

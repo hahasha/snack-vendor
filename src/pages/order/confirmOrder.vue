@@ -113,7 +113,9 @@ export default {
         total_price: this.totalPrice,
         total_count: this.totalCount,
         snap_address: this.address,
-        snap_items: this.checkedCartList
+        snap_items: this.checkedCartList,
+        snap_img: this.checkedCartList[0].main_img_url,
+        snap_name: this.checkedCartList.length >= 1 ? this.checkedCartList[0].name + '等' : this.checkedCartList[0].name
       }).then(res => {
         if (res.errcode === 0) {
           this.deleteChecked(this.checkedCartList) // 购物车删除下单成功的商品
