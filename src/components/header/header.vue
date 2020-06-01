@@ -23,7 +23,11 @@ export default {
   },
   methods: {
     goBack () {
-      window.history.length > 0 ? this.$router.go(-1) : this.$router.push('/')
+      if (this.title === '订单详情' && this.$route.query.method === 'trade.wap.pay.return') { // 防止支付成功后回退到支付宝支付页面
+        this.$router.push('order')
+      } else {
+        window.history.length > 0 ? this.$router.go(-1) : this.$router.push('/')
+      }
     }
   }
 }

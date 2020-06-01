@@ -102,7 +102,6 @@ export default {
         orderNo: this.$route.query.orderNo
       }).then(res => {
         if (res.errcode === 0) {
-          console.log(res)
           this.address = JSON.parse(res.order.snap_address)
           this.productList = JSON.parse(res.order.snap_items)
           this.order = res.order
