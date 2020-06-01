@@ -96,12 +96,13 @@ export default {
   methods: {
     getOrder () {
       getOrderDetail({
-        id: this.$route.query.id
+        orderNo: this.$route.query.orderNo
       }).then(res => {
         if (res.errcode === 0) {
           this.address = JSON.parse(res.order.snap_address)
           this.productList = JSON.parse(res.order.snap_items)
           this.order = res.order
+          console.log(this.order)
         } else {
           this.$createToast({
             type: 'error',
@@ -126,7 +127,8 @@ export default {
         body: '零食商贩', // 订单描述
         subject: this.productList[0].name + '等', // 订单标题
         outTradeId: this.order.order_no + '', // 订单号
-        amount: this.order.total_price + ''
+        amount: this.order.total_price + '',
+        returnPath: this.$route.fullPath
       }).then(res => {
         if (res.errcode === 0 && res.url) {
           window.location = res.url

@@ -10,7 +10,7 @@
             <cube-tab-panels v-model="selectedLabel">
               <cube-tab-panel v-for="(item, index) in tabs" :key="index" :label="item.label">
                 <div v-if="item.orders.length > 0">
-                  <div class="order-wrap" v-for="(order, index) in item.orders" :key="index" @click="clickHandler(order.id)">
+                  <div class="order-wrap" v-for="(order, index) in item.orders" :key="index" @click="clickHandler(order.order_no)">
                     <div class="title-wrap">
                       <span class="order-num">订单编号: {{order.order_no}}</span>
                       <span class="status">{{statusTxt[order.status]}}</span>
@@ -108,11 +108,11 @@ export default {
     this.getOrders()
   },
   methods: {
-    clickHandler (id) {
+    clickHandler (orderNo) {
       this.$router.push({
         name: 'orderDetail',
         query: {
-          id
+          orderNo
         }
       })
     },
