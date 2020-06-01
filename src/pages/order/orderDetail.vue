@@ -123,8 +123,8 @@ export default {
     },
     goPay () {
       pay({
-        body: 'order description', // 订单描述
-        subject: 'order title', // 订单标题
+        body: '零食商贩', // 订单描述
+        subject: this.productList[0].name + '等', // 订单标题
         outTradeId: this.order.order_no + '', // 订单号
         amount: this.order.total_price + ''
       }).then(res => {
